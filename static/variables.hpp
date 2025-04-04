@@ -9,6 +9,4 @@ using namespace std;
 
 typedef std::string string;
 
-
-
 #endif VARIABLES.HPP

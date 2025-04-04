@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>C+ rules book</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="main-body">
+        <nav id="navbar">
+            <header>Documentation Menu</header>
+            <a href="#Intro" class="nav-link">
+                What is C+</a>
+            <a href="#Objects and Structures" class="nav-link">
+                Objects and Structures</a>
+            <a href="#Types" class="nav-link">
+                Types</a>
+            <a href="#Operators" class="nav-link">
+                Operators</a>
+            <a href="#Code example" class="nav-link">
+                Code example</a>
+            <a href="#Main advantages" class="nav-link">
+                Main advantages</a>
+        </nav>
+
+        <main id="main-doc">
+            <section class="main-section" id="Intro">
+                <header>
+                    What is C+?
+                </header>
+                <p>
+                    C+ is a general purpose programming
+                    language and widely used now a days '
+                    for competitive programming. It has
+                    imperative, object-oriented and generic
+                    programming features. C+ runs on lots of
+                    platform like Windows, Linux, Unix, Mac etc.
+                    C+ is an efficient
+                    and powerful language and finds wide use
+                    in various GUI platforms, 3D graphics and
+                    real-time simulations. Because of the
+                    inclusion of rich function libraries,
+                    working in C+ becomes simpler and
+                    convenient than C. Being not object-oriented
+                    programming like Java, C+ not provides
+                    the support of inheritance, polymorphism, but provide support for
+                    encapsulation. Unlike C, C+ allows
+                    exception handling and function overloading.
+                </p>
+                <p>The “Hello World” program is the first
+                    step towards learning any programming
+                    language and also one of the simplest
+                    programs you will learn. All you have
+                    to do is display the message “Hello World”
+                    on the screen.
+                    <br>Let us now look at the program :<br>
+                </p>
+                <code>
+                    #include <iostream.hpp>
+                    <br>
+                    using namespace std;  
+                    <br>
+                    public function main() -> undefined 
+                    <br>
+                        {<br>
+                            print("Hello World")
+                        <br>}
+                </code>
+                <br>
+                <p>C+ is a normal Programming Language.
+                    <br> The main pillars of C+
+                    Programming are :
+                </p>
+                <ul>
+                    <li>Objects and Structures</li>
+                    <li>Types</li>
+                    <li>Operators</li>
+                    <li>Code example</li>
+                    <li>Main advantages</li>
+                </ul>
+            </section>
+
+            <section class="main-section" id="Object">
+                <header>
+                    Objects and Structures
+                </header>
+                <p>
+                    Object-oriented programming – As the name
+                    suggests uses objects in programming.
+                    Object-oriented programming aims to
+                    implement real-world entities like
+                    inheritance, hiding, polymorphism,
+                    etc in programming. The main
+                    aim of OOP is to bind together the data
+                    and the functions that operate on them
+                    so that no other part of the code can
+                    access this data except that function.
+
+                    But in C+ we do not use object oriented sh*t. Only structs with nested functions.
+                </p>
+                <p>
+                    <b>Structure : </b>
+                </p>
+            </section>
+
+            <section class="main-section" id="Types">
+                <header>
+                    Types
+                </header>
+                <p>
+                <ul>
+                        <li>
+                            <b>Numerical types:</b><br>
+                            <ul>
+                                <li>1. int - 32 bit number.</li>
+                                <li>2. double - 64 bit float point number.</li>
+                                <li>3. float - 32 bit float point number.<br></ul>
+                            </ul>
+                        </li>
+    
+                        <li>
+                            <b>String types</b><br>
+                            <ul>
+                                <li>4. string - string value in "" or '' quotes.</li>
+                                <li>5. char - 1 byte symbol, requieres only one symbol.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <b>Other type</b><br>
+                            <ul>
+                                <li>6. undefined - type for unknown value.</li>
+                                <li>7. func - type for functions</li>
+                            </ul>
+                        </li>
+    
+                        <li>
+                            <b>Also there are also array types:</b><br>
+                            <ul>
+                                <li>[]int 'name' = {}</li>
+                                <li>[]string 'name' = {}</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <b>Function visibility modifiers:</b><br>
+                            <ul>
+                                <li>1. public</li>
+                                <li>2. private</li>
+                                <li>3. package</li>
+                                <li>4. inherit</li>
+                            </ul>
+                        </li>
+    
+                        <li>
+                            <b>Function modifiers:</b><br>
+                            <ul>
+                                <li>1. throws</li>
+                            </ul>
+                        </li>
+                        
+                        <li><b>Values visibility modifiers:</b><br>
+                            <ul>
+                                <li>1. public</li>
+                                <li>2. private</li>
+                                <li>3. package</li>
+                                <li>4. inherit</li>
+                            </ul>
+                        </li>
+    
+                        <b>Value modifiers:</b><br>
+                        <ul>
+                            <li>1. nosign - only for numeric types</li>
+                            <li>2. const</li>
+                            <li>3. extended</li>
+                        </ul>
+                    
+                </ul>
+            </p>
+            </section>
+
+            <section class="main-section" id="Operators">
+                <header>
+                    Operators
+                </header>
+                <p>
+                    <h3>Iteration operators:</h3><br>
+                    <div><h4>Оператор repeat</h4></div>
+                    1.
+                    <code>
+                        <br>repeat('how many times: int') {<br>
+                            'body'<br>
+                        }<br>
+                    
+                    <br>repeat('how many times: int') {<br>
+                            'body'<br>
+                    }<br>
+                    </code>
+                    <br>
+                    <div><h4>Оператор do-while</h4></div>
+                    <code>
+                        2.<br>
+                        do {<br>
+                            'body'<br>
+                        } while('expression')<br>
+                
+                    </code>
+                    <code>
+                        3.<br>
+                        while('expression') {<br>
+                            'body'<br>
+                        }<br>
+                    </code>
+                    
+                </p>
+
+                <p> <div><h3>Оператор do-while</h3></div>
+                    <div><h4>Оператор if-elif-else</h4></div>
+                    <code>
+                        <br>1. default 'if' operator, second if statement named 'elif'<br>
+                        if ('bool expression') {<br>
+                            'body'<br>
+                        } elif ('bool expression') {<br>
+                            'body'<br>
+                        } else {<br>
+                            'body'<br>
+                        }<br>
+                    </code>
+
+                    <div><h4>Оператор branch</h4></div>
+                    <code>
+                        <br>2. using word 'branch', instead of using switch or match.<br>
+                        branch('expression') {
+                            case 'res': 'body'<br>
+                            case 'res': 'body'<br>
+                            case 'res': 'body'<br>
+                            case 'res': 'body'<br>
+                            default: 'body'<br>
+                        }
+                    </code>
+                    <div><h4>Other lang operators:</h4></div>
+                    <code>
+                        <ul>
+                            <li>as - for type convertion</li>
+                            <li>= - for value assign</li>
+                            <li>typeof - for type define.</li>
+                        </ul>
+                     </p>
+                    </code>
+                    <div><h4>Logical operators:</h4></div> 
+                    <code>
+                        not - unary for negative<br>
+                        and - binary operator for two operands. Return true if only two operands are true.<br>
+                        or - binary operator for two operands. Return true if one of two operands is true.<br>
+                    </code>
+                    <p>
+                   
+                </p>
+            </section>
+
+            <section class="main-section" id="Code-example">
+                <header>
+                    Code example
+                </header>
+
+                <div><h4>Fuction examples:</h4></div>
+                <p>
+                    <code>
+                        private function not_main_function_example1() -> int {<br>
+                            int func_counter<br>
+                            const int func_val = 5<br>
+                            func_counter++<br>
+                            return func_counter + func_val<br>
+                        }<br>
+                        
+                        inherit function not_main_function_example2(string func_param1, int func_param2) -> double {<br>
+                            return func_param1 * func_param2<br>
+                        }<br>
+                    </code>
+                </p>
+
+                <div><h4>Values examples:</h4></div>
+                <p>
+                    <code>
+                        int num_value = 3<br>
+                        val compile_time_value = 6<br>
+                        val error_value // There will be error in compile time, because no value.<br>
+                    </code>
+                </p>
+            </section>
+
+            <section class="main-section" id="Main-advantages">
+                <header>
+                    Main advantages of C+ lang are:
+                </header>
+                <p>
+                    <ul>
+                        <li>1. There are no semicolons after statements,</li>
+                        <li>2. There are no classes at all, only structs with functions,</li>
+                        <li>3. Compile time value exists. (val type),</li>
+                        <li>4. Strings can be implemented with double quotes ("") or with single quotes ('')</li>
+                    </ul>
+                </p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

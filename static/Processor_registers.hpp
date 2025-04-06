@@ -2,7 +2,7 @@
 
 #ifndef PROCESSOR_REGISTERS.HPP
 
-#define PROCESSOR_REGISTERS.HPP
+#define PROCESSOR_REGISTERS .HPP
 
 // 32 bit registers.
 #define EAX

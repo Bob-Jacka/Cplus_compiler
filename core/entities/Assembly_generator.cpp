@@ -2,22 +2,23 @@
 This class needs for assembly generate.
 */
 
-class Assembly_generator {
-    
-    private:
-        /* data */
-    public:
-        Assembly_generator(/* args */);
-        ~Assembly_generator();
-        void movl();
-        void movr();
-        void jmp();
-        void neg();
-        void cmp();
-        void div();
-        void push();
-        void sub();
-        void inc();
+class Assembly_generator
+{
+
+private:
+    /* data */
+public:
+    Assembly_generator(/* args */);
+    ~Assembly_generator();
+    void movl();
+    void movr();
+    void jmp();
+    void neg();
+    void cmp();
+    void div();
+    void push();
+    void sub();
+    void inc();
 };
 
 Assembly_generator::Assembly_generator(/* args */)

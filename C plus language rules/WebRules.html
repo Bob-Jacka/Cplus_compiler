@@ -7,22 +7,25 @@
 </head>
 
 <body>
-
     <div class="main-body">
         <nav id="navbar">
             <header>Documentation Menu</header>
             <a href="#Intro" class="nav-link">
                 What is C+</a>
-            <a href="#Objects and Structures" class="nav-link">
+            <a href="#Objects_and_structures" class="nav-link">
                 Objects and Structures</a>
             <a href="#Types" class="nav-link">
                 Types</a>
             <a href="#Operators" class="nav-link">
                 Operators</a>
-            <a href="#Code example" class="nav-link">
+            <a href="#Code_example" class="nav-link">
                 Code example</a>
-            <a href="#Main advantages" class="nav-link">
+            <a href="#Ide_section" class="nav-link">
+                IDE information</a>
+            <a href="#Main_advantages" class="nav-link">
                 Main advantages</a>
+            <a href="#Compiler_architecture" class="nav-link">
+                Compiler architecture</a>
         </nav>
 
         <main id="main-doc">
@@ -32,11 +35,11 @@
                 </header>
                 <p>
                     C+ is a first general purpose programming
-                    language with AI and widely used now a days '
+                    language with AI and several run modes (by VM or compiled), widely used now a days
                     for competitive programming. It has
-                    imperative, object-oriented and generic
+                    imperative, functional and generic
                     programming features. C+ runs on lots of
-                    platform like Windows, Linux, Unix, Mac etc.
+                    platform like Windows, Linux, Unix, etc.
                     C+ is an efficient
                     and powerful language and finds wide use
                     in various GUI platforms, 3D graphics and
@@ -46,7 +49,7 @@
                     convenient than C. Being not object-oriented
                     programming like Java, C+ not provides
                     the support of inheritance, polymorphism, but provide support for
-                    encapsulation. Unlike C, C+ allows
+                    encapsulation and other very modern abilities. Unlike C, C+ allows
                     exception handling and function overloading.
                 </p>
                 <p>The “Hello World” program is the first
@@ -65,28 +68,26 @@
                     <br>
                     public function main() -> undefined 
                     <br>
-                        {<br>
-                            print("Hello World")
-                        <br>}
+                        {
+                            <p class="tabulated">print("Hello World")</p>
+                        }
                 </code>
-                <br>
-                <p>C+ is a normal Programming Language.
-                    <br> The main pillars of C+ Programming are :
-                    Native AI support in language.
-                </p>
-
+                
+                <h4>Short description:</h4>
                 <ul>
                     <li>Objects and Structures</li>
                     <li>Types</li>
                     <li>Operators</li>
                     <li>Code example</li>
+                    <li>IDE information</li>
                     <li>Main advantages</li>
+                    <li>Compiler architecture</li>
                 </ul>
             </section>
 
-            <section class="main-section" id="Object">
+            <section class="main-section" id="Objects_and_structures">
                 <header>
-                    Objects and Structures
+                    Objects and structures
                 </header>
                 <p>
                     Object-oriented programming – As the name
@@ -100,11 +101,20 @@
                     so that no other part of the code can
                     access this data except that function.
 
-                    But in C+ we do not use object oriented sh*t. Only structs with nested functions.
+                    *But in C+ we do not use object oriented sh*t. Only structs with nested functions.
                 </p>
-                <p>
-                    <b>Structure : </b>
-                </p>
+                    <b>Structures: </b>
+                    <code>
+                        structure 'name' {<br>
+                        <p class="tabulated">string name</p>
+                        <p class="tabulated">int age</p>
+                        }
+                        <br>
+                        <br>
+                        Example:
+                        <br>
+                        Person person_struct = {.name="Ivan", .age=40}
+                    </code>
             </section>
 
             <section class="main-section" id="Types">
@@ -115,68 +125,62 @@
                 <ul>
                     <li>
                         <b>Numerical types:</b><br>
-                        <ul>
-                            <li>1. int - 32 bit number.</li>
-                            <li>2. double - 64 bit float point number.</li>
-                            <li>3. float - 32 bit float point number.<br>
-                        </ul>
+                            <ul>
+                                <li>1. int - 32 bit number.</li>
+                                <li>2. double - 64 bit float point number.</li>
+                                <li>3. float - 32 bit float point number.<br>
+                            </ul>
 
                     <li>
                         <b>String types</b><br>
-                        <ul>
-                            <li>4. string - string value in "" or '' quotes.</li>
-                            <li>5. char - 1 byte symbol, requieres only one symbol.</li>
-                        </ul>
+                            <ul>
+                                <li>4. string - string value in "" or '' quotes.</li>
+                                <li>5. char - 1 byte symbol, requieres only one symbol.</li>
+                            </ul>
                     </li>
 
                     <li>
                         <b>Other type</b><br>
-                        <ul>
-                            <li>6. undefined - type for unknown value.</li>
-                            <li>7. func - type for functions</li>
-                        </ul>
+                            <ul>
+                                <li>6. undefined - type for unknown value.</li>
+                                <li>7. func - type for functions</li>
+                            </ul>
                     </li>
 
                     <li>
                         <b>Also there are also array types:</b><br>
-                        <ul>
-                            <li>[]int 'name' = {}</li>
-                            <li>[]string 'name' = {}</li>
-                        </ul>
+                            <ul>
+                                <li>[]int 'name' = {}</li>
+                                <li>[]string 'name' = {}</li>
+                                <li>[]Persons 'name' = {Person{...}, Person{...}} //array of structures</li>
+                                <li>...And other array types</li>
+                            </ul>
                     </li>
                 </ul>
-                <li>
-                    <b>Function visibility modifiers:</b><br>
+                
+                <b>Function visibility modifiers:</b><br>
                     <ul>
-                        <li>1. public</li>
-                        <li>2. private</li>
-                        <li>3. package</li>
-                        <li>4. inherit</li>
+                        <li>1. public - visible everywhere</li>
+                        <li>2. private - visible only in one file</li>
+                        <li>3. package - visible only in package where file stored</li>
+                        <li>4. inherit - visible only in inheritance</li>
                     </ul>
-                </li>
+                
 
-                <li>
-                    <b>Function modifiers:</b><br>
+                <b>Values visibility modifiers:</b><br>
                     <ul>
-                        <li>1. throws</li>
+                        <li>1. public - visible everywhere</li>
+                        <li>2. private - visible only in one file</li>
+                        <li>3. package - visible only in package where file stored</li>
+                        <li>4. inherit - visible only in inheritance</li>
                     </ul>
-                </li>
-
-                <li><b>Values visibility modifiers:</b><br>
-                    <ul>
-                        <li>1. public</li>
-                        <li>2. private</li>
-                        <li>3. package</li>
-                        <li>4. inherit</li>
-                    </ul>
-                </li>
 
                 <b>Value modifiers:</b><br>
-                <ul>
-                    <li>1. nosign - only for numeric types</li>
-                    <li>2. const</li>
-                    <li>3. extended</li>
-                </ul>
+                    <ul>
+                        <li>1. nosign - only for numeric types</li>
+                        <li>2. const - can be applied for strings or numerics</li>
+                        <li>3. extended - for high capacity values</li>
+                    </ul>
                 </p>
             </section>
 
@@ -184,97 +188,176 @@
                 <header>
                     Operators
                 </header>
-                <p>
-                <h3>Iteration operators:</h3><br>
+                <h3>Iteration operators:</h3>
+                
                 <div>
-                    <h4>Оператор repeat</h4>
+                    <h4>Operator repeat</h4>
+                    <h5>1.</h5>
                 </div>
-                1.
                 <code>
-                        <br>repeat('how many times: int') {<br>
-                            'body'<br>
+                        repeat('how many times: int') {<br>
+                            <p class="tabulated">'body'</p>
                         }<br>
                     
-                    <br>repeat('how many times: int') {<br>
-                            'body'<br>
-                    }<br>
+                    
+                    <br>
+                    <div>//Will be executed 5 times</div>
+                    repeat(5) {<br>
+                        <p class="tabulated">print("Hello world")</p>
+                    }
+                    <br>
+                    <br>
+                    Output:
+                    <p class="tabulated">Hello world</p>
+                    <p class="tabulated">Hello world</p>
+                    <p class="tabulated">Hello world</p>
+                    <p class="tabulated">Hello world</p>
+                    <p class="tabulated">Hello world</p>
                     </code>
                 <br>
+                
                 <div>
-                    <h4>Оператор do-while</h4>
+                    <h4>Operator do-while</h4>
+                    <h5>2.</h5>
                 </div>
                 <code>
-                        2.<br>
                         do {<br>
-                            'body'<br>
+                            <p class="tabulated">'body'</p>
                         } while('expression')<br>
-                
-                    </code>
+                        <br>
+                        <br>
+                        Example:
+                        <br>
+                        <p>int nubmer = 5</p>
+                        <p>do {</p>
+                        <p class="tabulated">number--</p>
+                        <p class="tabulated">print(number)</p>
+                        <p>} while (number != 1)</p>
+                        Output:
+                        <br>
+                        <p class="tabulated">5</p>
+                        <p class="tabulated">4</p>
+                        <p class="tabulated">3</p>
+                        <p class="tabulated">2</p>
+                        <p class="tabulated">1</p>
+
+                </code>
+
+                <div>
+                    <h4>Only operator while</h4>
+                    <h5>3.</h5>
+                </div>
                 <code>
-                        3.<br>
                         while('expression') {<br>
-                            'body'<br>
+                            <p class="tabulated">'body'</p>
                         }<br>
-                    </code>
+
+                        <br>
+                        <br>
+                        Example:
+                        <br>
+                        <p>int nubmer = 5</p>
+                        <p>while (number != 1) {</p>
+                        <p class="tabulated">number--</p>
+                        <p class="tabulated">print(number)</p>
+                        <p>}</p>
+                        Output:
+                        <br>
+                        <p class="tabulated">5</p>
+                        <p class="tabulated">4</p>
+                        <p class="tabulated">3</p>
+                        <p class="tabulated">2</p>
+                        <p class="tabulated">1</p>
+                </code>
 
                 </p>
 
                 <p>
                 <div>
-                    <h3>Оператор do-while</h3>
+                    <h3>Branching operators</h3>
                 </div>
+
                 <div>
-                    <h4>Оператор if-elif-else</h4>
+                    <h4>Operator if-elif-else</h4>
+                    <h5>1.</h5>
                 </div>
                 <code>
-                        <br>1. default 'if' operator, second if statement named 'elif'<br>
+                        <br>//default 'if' operator, second if statement named 'elif'<br>
                         if ('bool expression') {<br>
-                            'body'<br>
+                            <p class="tabulated">'body'</p>
                         } elif ('bool expression') {<br>
-                            'body'<br>
+                            <p class="tabulated">'body'</p>
                         } else {<br>
-                            'body'<br>
+                            <p class="tabulated">'body'</p>
                         }<br>
+
+                        <br>
+                        <br>
+
+                        if (2 == 2) {<br>
+                            <p class="tabulated">print("You're right!")</p>
+                        } elif (2 != 2) {<br>
+                            <p class="tabulated">print("You're not right!")</p>
+                        } else {<br>
+                            <p class="tabulated">print("You're not right!")</p>
+                        }<br>
+                        
+                        <br>
+                        <br>
+
+                        Output: You're right!
                     </code>
 
                 <div>
-                    <h4>Оператор branch</h4>
+                    <h4>Operator branch</h4>
+                    <h5>2.</h5>
                 </div>
                 <code>
-                        <br>2. using word 'branch', instead of using switch or match.<br>
+                        <br>//using word 'branch', instead of using switch or match.<br>
                         branch('expression') {
-                            case 'res': 'body'<br>
-                            case 'res': 'body'<br>
-                            case 'res': 'body'<br>
-                            case 'res': 'body'<br>
-                            default: 'body'<br>
+                            <p class="tabulated">case 'res': 'body'</p>
+                            <p class="tabulated">case 'res': 'body'</p>
+                            <p class="tabulated">case 'res': 'body'</p>
+                            <p class="tabulated">case 'res': 'body'</p>
+                            <p class="tabulated">default: 'body'</p>
                         }
+                        <br>
+                        <br>
+                        branch(2+2) {
+                            <p class="tabulated">case 1: print("1")</p>
+                            <p class="tabulated">case 2: print("2")</p>
+                            <p class="tabulated">case 3: print("3")</p>
+                            <p class="tabulated">case 4: print("4")</p>
+                            <p class="tabulated">default: print("I do not know")</p>
+                        }
+                        <br>
+                        <br>
+                        Output:
+                        4
                     </code>
+
                 <div>
                     <h4>Other lang operators:</h4>
                 </div>
                 <code>
-                        <ul>
-                            <li>as - for type convertion</li>
-                            <li>= - for value assign</li>
-                            <li>typeof - for type define.</li>
-                        </ul>
-                     </p>
-                    </code>
+                        as - for type convertion.<br>
+                        = - for value assign.<br>
+                        typeof - for type define.<br>
+                        using - for namespaces.
+                </code>
+
                 <div>
                     <h4>Logical operators:</h4>
                 </div>
                 <code>
-                        not - unary for negative<br>
-                        and - binary operator for two operands. Return true if only two operands are true.<br>
-                        or - binary operator for two operands. Return true if one of two operands is true.<br>
-                    </code>
-                <p>
-
-                </p>
+                    not - unary for negative<br>
+                    and - binary operator for two operands. Return true if only two operands are true.<br>
+                    or - binary operator for two operands. Return true if one of two operands is true.<br>
+                </code>
+            
             </section>
-
-            <section class="main-section" id="Code-example">
+            <br>
+            <section class="main-section" id="Code_example">
                 <header>
                     Code example
                 </header>
@@ -282,21 +365,20 @@
                 <div>
                     <h4>Fuction examples:</h4>
                 </div>
-                <p>
-                    <code>
-                        private function not_main_function_example1() -> int {<br>
-                            int func_counter<br>
-                            const int func_val = 5<br>
-                            func_counter++<br>
-                            return func_counter + func_val<br>
-                        }<br>
-                        
-                        inherit function not_main_function_example2(string func_param1, int func_param2) -> double {<br>
-                            return func_param1 * func_param2<br>
-                        }<br>
-                    </code>
-                </p>
-
+                <code>
+                        <div>private function not_main_function_example1() -> int {</div>
+                        <p class="tabulated">int func_counter</p>
+                        <p class="tabulated">const int func_val = 5</p>
+                        <p class="tabulated">func_counter++</p>
+                        <p class="tabulated">return func_counter + func_val</p>
+                    }
+                    <br>
+                    <br>
+                    inherit function not_main_function_example2(string func_param1, int func_param2) -> double {<br>
+                    <p class="tabulated">return func_param1 * func_param2</p>
+                    }<br>
+                </code>
+                
                 <div>
                     <h4>Values examples:</h4>
                 </div>
@@ -309,18 +391,39 @@
                 </p>
             </section>
 
-            <section class="main-section" id="Main-advantages">
+            <section class="ide" id="Ide_section">
+                <header>
+                    C+ IDE information:
+                </header>
+                <p class="tabulated">
+                    Will be in progress after finishing C+ compiler.
+                </p>
+                <br>
+            </section>
+
+            <section class="main-section" id="Main_advantages">
                 <header>
                     Main advantages of C+ lang are:
                 </header>
                 <p>
                 <ul>
-                    <li>1. There are no semicolons after statements,</li>
-                    <li>2. There are no classes at all, only structs with functions,</li>
-                    <li>3. Compile time value exists. (val type),</li>
-                    <li>4. Strings can be implemented with double quotes ("") or with single quotes ('')</li>
+                    <li>1. C+ language can be compiled or running with virtual machine (like Java),</li>
+                    <li>2. Native support of AI inside of language,</li>
+                    <li>3. Dynamic import - you import only what you want,</li>
+
+                    <li>4. There are no semicolons after statements,</li>
+                    <li>5. There are no classes at all, only structs with functions,</li>
+                    <li>6. Compile time value exists. (val type),</li>
+                    <li>7. Strings can be implemented with double quotes ("") or with single quotes ('')</li>
                 </ul>
                 </p>
+            </section>
+
+            <section class="architecture" id="Compiler_architecture">
+                <header>
+                    Compiler architecture:
+                </header>
+                <img src="CplusArchitecture.drawio.png" alt="There is a picture here" width="970px" height="500px">
             </section>
         </main>
     </div>

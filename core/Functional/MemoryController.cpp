@@ -1,6 +1,23 @@
 #include <iostream>
 
-inline int **create_2d_array(size_t a, size_t b)
+/*
+Class, that used fro memory actions.
+*/
+class MemoryController
+{
+private:
+    /* data */
+public:
+    MemoryController(/* args */) {}
+    ~MemoryController() {}
+    int **create_2d_array(size_t a, size_t b);
+    void MemoryController::kill_2d_array(int **m);
+};
+
+/*
+Method for creating 2d array by effective way.
+*/
+int** MemoryController::create_2d_array(size_t a, size_t b)
 {
     int **m = new int *[a];
     m[0] = new int[a * b];
@@ -11,7 +28,10 @@ inline int **create_2d_array(size_t a, size_t b)
     return m;
 }
 
-void kill_2d_array(int **m)
+/*
+Method for deleting 2d array by given link.
+*/
+void MemoryController::kill_2d_array(int **m)
 {
     delete [] m[0];
     delete [] m;

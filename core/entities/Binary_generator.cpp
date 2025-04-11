@@ -5,20 +5,18 @@ class Binary_generator
 private:
     void generate_binary();
 
-    static Singleton * pinstance_;
+    static Binary_generator * pinstance_;
     static std::mutex mutex_;
 
 protected:
-    Binary_generator()
-    {
-    }
+    Binary_generator() {}
     ~Binary_generator() {}
 
 public:
     Binary_generator(/* args */) {}
     ~Binary_generator() {}
 
-    Binary_generator(Singleton &other) = delete;
+    Binary_generator(Binary_generator &other) = delete;
     void operator=(const Binary_generator &) = delete;
     static Binary_generator *GetInstance();
 };
@@ -31,6 +29,11 @@ std::mutex Binary_generator::mutex_;
  *      and then we make sure again that the variable is null and then we
  *      set the value. RU:
  */
+void Binary_generator::generate_binary()
+{
+    //
+}
+
 Binary_generator *Binary_generator::GetInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);

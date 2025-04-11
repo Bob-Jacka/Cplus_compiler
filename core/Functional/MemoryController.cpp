@@ -6,13 +6,34 @@ Class, that used fro memory actions.
 class MemoryController
 {
 private:
-    /* data */
-public:
+    static Singleton * pinstance_;
+    static std::mutex mutex_;
+
+protected:
     MemoryController(/* args */) {}
     ~MemoryController() {}
+    
+public:
+    MemoryController(MemoryController &other) = delete;
+    void operator=(const MemoryController &) = delete;
+    static MemoryController *GetInstance(const std::string& value);
+
     int **create_2d_array(size_t a, size_t b);
     void MemoryController::kill_2d_array(int **m);
 };
+
+MemoryController* MemoryController::pinstance_{nullptr};
+std::mutex MemoryController::mutex_;
+
+MemoryController *MemoryController::GetInstance(const std::string& value)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    if (pinstance_ == nullptr)
+    {
+        pinstance_ = new MemoryController(value);
+    }
+    return pinstance_;
+}
 
 /*
 Method for creating 2d array by effective way.

@@ -9,10 +9,10 @@ class LexerException : public BaseException {
 
 void LexerException::WrongValueType()
 {
-    //
+    std::cerr << "Wrong type error occurred";
 }
 
 void LexerException::WrongFunctionType()
 {
-    //
+    std::cerr << "Wrong function type error occurred";
 }

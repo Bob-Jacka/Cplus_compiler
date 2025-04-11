@@ -10,17 +10,14 @@ class Linker
 private:
     void append_file();
 
-    static Singleton * pinstance_;
+    static Linker * pinstance_;
     static std::mutex mutex_;
 
-Linker() {}
-~Linker() {}
-
+    Linker() {}
+    ~Linker() {}
 
 public:
-    Linker();
-    ~Linker();
-    Singleton(Singleton &other) = delete;
+    Linker(Linker &other) = delete;
 
     void operator=(const Linker &) = delete;
 

@@ -13,7 +13,7 @@ private:
 public:
     BaseException(const string& msg) : message(msg) {}
     
-    const string what() const noexcept override {
+    const string message() const noexcept override {
         return message.c_str();
     }
 };

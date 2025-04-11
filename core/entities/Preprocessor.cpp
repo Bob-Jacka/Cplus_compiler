@@ -10,7 +10,7 @@ class Preprocessor
 
 private:
 string []list_of_directives = {"include", "pragma", "define"};
-static Singleton * pinstance_;
+static Preprocessor * pinstance_;
 static std::mutex mutex_;
 
 protected:

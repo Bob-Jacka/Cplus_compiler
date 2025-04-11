@@ -8,5 +8,5 @@ class AssemblyGeneratorException : public BaseException {
 
 void AssemblyGeneratorException::ErrorInAssemblyGeneration()
 {
-    //
+    std::cerr << "Error in assembly generation occurred";
 }

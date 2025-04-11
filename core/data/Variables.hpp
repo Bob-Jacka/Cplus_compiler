@@ -4,9 +4,9 @@
 #define VARIABLES.HPP
 
 #include <string>
+#include <fstream>
 
-using namespace std;
-
+typedef std::ifstream file;
 typedef std::string string;
 
 #endif VARIABLES.HPP

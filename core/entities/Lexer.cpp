@@ -25,12 +25,12 @@ struct Function {
 };
 
 /*
-Structure representing structures (class in other lans) in C+ language
+Structure representing structures (class in other langs) in C+ language
 */
 struct Lang_struct {
     string name
-    string []values
-    string []functions //methods
+    string []values //structure values
+    string []functions //structure methods
 };
 
 /*
@@ -47,6 +47,10 @@ private:
     void split_to_function();
     void split_to_struct();
 
+    void function();
+    void value();
+    void lang_struct();
+
     void validate_func();
 
     static Singleton * pinstance_;
@@ -62,10 +66,6 @@ public:
     Lexer(Lexer &other) = delete;
 
     void operator=(const Lexer &) = delete;
-
-    void function();
-    void value();
-    void lang_struct();
 
     static Lexer *GetInstance();
     static []string value_modifiers = {"nosign", "const", "extended"};

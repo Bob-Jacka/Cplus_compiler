@@ -4,6 +4,10 @@
 
 #define PROCESSOR_REGISTERS .HPP
 
+// 8 bit registers.
+
+// 16 bit registers.
+
 // 32 bit registers.
 #define EAX
 #define EBX

@@ -2,7 +2,7 @@
 This class needs for assembly generate.
 */
 
-#include <data/exceptions/AssemblyGeneratorException.hpp>
+#include <data/exceptions/AssemblyGeneratorException.cpp>
 
 class Assembly_generator
 {
@@ -10,6 +10,7 @@ class Assembly_generator
 private:
 void movl();
 void movr();
+void movz();
 void jmp();
 void neg();
 void cmp();
@@ -20,15 +21,11 @@ void sub();
 void inc();
 
 protected:
-    Assembly_generator()
-    {
-    }
+    Assembly_generator(){}
     ~Assembly_generator() {}
 
 public:
-Assembly_generator(/* args */);
 Assembly_generator(Assembly_generator another_obj) = delete;
-~Assembly_generator();
 
 void operator=(const Assembly_generator &) = delete;
 
@@ -76,6 +73,11 @@ void Assembly_generator::movl()
 }
 
 void Assembly_generator::movr()
+{
+    //
+}
+
+void Assembly_generator::movz()
 {
     //
 }

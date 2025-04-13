@@ -22,7 +22,7 @@ namespace utility {
         return *source.find(string_if_contains);
     }
 
-    inline void colored_txt_output(string str = "", string color = "white")
+    inline void colored_txt_output(string str = "", const char * color = "white")
     {
         switch (color)
         {
@@ -49,7 +49,7 @@ namespace utility {
     /*
     Function for transfering askii to bool value.
     */
-    inline bool atob(const string string_to_scan)
+    inline bool atob(const char * string_to_scan)
     {
         switch (string_to_scan)
         {

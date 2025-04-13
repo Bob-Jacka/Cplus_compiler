@@ -1,7 +1,9 @@
 #include <Variables.hpp>
 #include <data/exceptions/VirtualMachineException.cpp>
+#include <mutex>
 
-struct VM_settings {
+struct VM_settings
+{
     string name = "";
     bool is_multi_thread = false;
     long mem_allocate = 0;
@@ -13,10 +15,10 @@ Virtual Machine runs one line of code by one.
 class VirtualMachine
 {
 private:
-    static VirtualMachine * pinstance_;
+    static VirtualMachine *pinstance_;
     static std::mutex mutex_;
 
-    VM_settings vm_settings = settings;
+    VM_settings vm_settings;
 
     void proceed_line();
     void generate_vm_name();
@@ -28,15 +30,15 @@ protected:
 
 public:
     VirtualMachine(VirtualMachine &other) = delete;
-    void operator=(const Singleton &) = delete;
+    void operator=(const VirtualMachine &) = delete;
     static VirtualMachine *GetInstance(VM_settings settings);
-    VM_settings get_machine_settings();
+    VM_settings get_machine_settings() const;
     bool start_machine();
     bool exit_machine();
     bool is_multithread();
 };
 
-VirtualMachine* VirtualMachine::pinstance_{nullptr};
+VirtualMachine *VirtualMachine::pinstance_{nullptr};
 std::mutex VirtualMachine::mutex_;
 
 VirtualMachine *VirtualMachine::GetInstance(VM_settings settings)
@@ -44,7 +46,7 @@ VirtualMachine *VirtualMachine::GetInstance(VM_settings settings)
     std::lock_guard<std::mutex> lock(mutex_);
     if (pinstance_ == nullptr)
     {
-        VM_settings settings = new VM_settings();
+        this.vm_settings = new VM_settings();
         pinstance_ = new VirtualMachine(settings);
     }
     return pinstance_;
@@ -65,9 +67,9 @@ void VirtualMachine::create_threads()
     //
 }
 
-VM_settings VirtualMachine::get_machine_settings()
+VM_settings VirtualMachine::get_machine_settings() const
 {
-    return this.vm_settings;
+    return this->vm_settings;
 }
 
 bool VirtualMachine::start_machine()

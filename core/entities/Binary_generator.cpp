@@ -1,11 +1,12 @@
 #include <data/exceptions/BinaryGeneratorException.cpp>
+#include <mutex>
 
 class Binary_generator
 {
 private:
     void generate_binary();
 
-    static Binary_generator * pinstance_;
+    static Binary_generator *pinstance_;
     static std::mutex mutex_;
 
 protected:
@@ -21,7 +22,7 @@ public:
     static Binary_generator *GetInstance();
 };
 
-Binary_generator* Binary_generator::pinstance_{nullptr};
+Binary_generator *Binary_generator::pinstance_{nullptr};
 std::mutex Binary_generator::mutex_;
 
 /**
@@ -39,7 +40,7 @@ Binary_generator *Binary_generator::GetInstance()
     std::lock_guard<std::mutex> lock(mutex_);
     if (pinstance_ == nullptr)
     {
-        pinstance_ = new Binary_generator(value);
+        pinstance_ = new Binary_generator();
     }
     return pinstance_;
 }

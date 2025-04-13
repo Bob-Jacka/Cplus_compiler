@@ -6,13 +6,15 @@ using namespace std;
 /*
 Interface class for strategy pattern.
 */
-class Strategy {
-    public:
+class Strategy
+{
+public:
     virtual ~Strategy() = default;
     virtual void doAlgorithm(void) const = 0;
 };
 
-class Context {
+class Context
+{
 private:
     unique_ptr<Strategy> strategy_;
 
@@ -33,11 +35,14 @@ public:
      */
     void do_businessLogic() const
     {
-        if (strategy_) {
+        if (strategy_)
+        {
             std::cout << "Context: using strategy - \n";
             std::string result = strategy_->doAlgorithm();
             std::cout << result << "\n";
-        } else {
+        }
+        else
+        {
             std::cout << "Context: Strategy isn't set\n";
         }
     }

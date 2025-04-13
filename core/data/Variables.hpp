@@ -1,7 +1,7 @@
 #pragma once
 
 #ifndef VARIABLES.HPP
-#define VARIABLES.HPP
+#define VARIABLES .HPP
 
 #include <string>
 #include <fstream>

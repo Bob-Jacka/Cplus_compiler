@@ -4,7 +4,7 @@
 /*
 Strategy that runs program one line by one.
 */
-class VMStrategy : public IStrategy
+class VMStrategy : public Strategy
 {
 private:
     /* data */
@@ -19,6 +19,5 @@ Algorithm of the virtual machine strategy.
 */
 void VMStrategy::doAlgorithm(void)
 {
-    VirtualMachine * vm_instance = VirtualMachine.GetInstance();
-    
+    VirtualMachine *vm_instance = VirtualMachine.GetInstance();
 }

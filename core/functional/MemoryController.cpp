@@ -6,7 +6,7 @@ Class, that used fro memory actions.
 class MemoryController
 {
 private:
-    static Singleton * pinstance_;
+    static MemoryController * pinstance_;
     static std::mutex mutex_;
 
 protected:
@@ -16,7 +16,7 @@ protected:
 public:
     MemoryController(MemoryController &other) = delete;
     void operator=(const MemoryController &) = delete;
-    static MemoryController *GetInstance(const std::string& value);
+    static MemoryController *GetInstance();
 
     int **create_2d_array(size_t a, size_t b);
     void MemoryController::kill_2d_array(int **m);
@@ -25,12 +25,12 @@ public:
 MemoryController* MemoryController::pinstance_{nullptr};
 std::mutex MemoryController::mutex_;
 
-MemoryController *MemoryController::GetInstance(const std::string& value)
+MemoryController *MemoryController::GetInstance()
 {
     std::lock_guard<std::mutex> lock(mutex_);
     if (pinstance_ == nullptr)
     {
-        pinstance_ = new MemoryController(value);
+        pinstance_ = new MemoryController();
     }
     return pinstance_;
 }

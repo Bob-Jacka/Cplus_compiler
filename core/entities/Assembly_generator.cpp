@@ -26,7 +26,6 @@ private:
 
 protected:
     Assembly_generator() {}
-    ~Assembly_generator() {}
 
 public:
     Assembly_generator(Assembly_generator * another_obj) = delete;
@@ -34,6 +33,7 @@ public:
     void operator=(const Assembly_generator &) = delete;
 
     static Assembly_generator *GetInstance();
+    ~Assembly_generator() {}
 };
 
 Assembly_generator *Assembly_generator::pinstance_{nullptr};

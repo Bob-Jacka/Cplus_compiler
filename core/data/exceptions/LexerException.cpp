@@ -1,8 +1,8 @@
 #include <BaseException.hpp>
 
-class LexerException : public BaseException {
+class LexerException : BaseException {
 
-    public:
+public:
     void WrongValueType();
     void WrongFunctionType();
 };

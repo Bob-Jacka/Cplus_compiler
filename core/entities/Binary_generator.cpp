@@ -8,14 +8,11 @@ private:
 
     static Binary_generator *pinstance_;
     static std::mutex mutex_;
-
-protected:
     Binary_generator() {}
-    ~Binary_generator() {}
-
+    
 public:
-    Binary_generator(/* args */) {}
-    ~Binary_generator() {}
+    Binary_generator() {};
+    ~Binary_generator() {};
 
     Binary_generator(Binary_generator &other) = delete;
     void operator=(const Binary_generator &) = delete;
@@ -43,4 +40,8 @@ Binary_generator *Binary_generator::GetInstance()
         pinstance_ = new Binary_generator();
     }
     return pinstance_;
+}
+
+Binary_generator::~Binary_generator() {
+    delete& mutex_;
 }

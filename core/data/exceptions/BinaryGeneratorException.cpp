@@ -1,9 +1,9 @@
 #include <BaseException.hpp>
 
-class BinaryGeneratorException : public BaseException {
+class BinaryGeneratorException : BaseException {
 
 public:
-void ErrorInBinaryGeneration();
+    void ErrorInBinaryGeneration();
 };
 
 void BinaryGeneratorException::ErrorInBinaryGeneration()

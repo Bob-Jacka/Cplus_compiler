@@ -3,16 +3,16 @@
 /*
     Occurs when error happens in linkage
     */
-class LinkerException : public BaseException {
+class LinkerException : BaseException {
 
-    public:
+public:
     void linkageError();
     void failedAddFileError();
 };
 
 void LinkerException::linkageError()
 {
-    std::cerr << "Error occurred in linkage process";
+    throw "Error occurred in linkage process";
 }
 
 void LinkerException::failedAddFileError() {

@@ -1,8 +1,8 @@
 #include <BaseException.hpp>
 
-class AssemblyGeneratorException : public BaseException {
+class AssemblyGeneratorException : BaseException {
 
-    public:
+public:
     void ErrorInAssemblyGeneration();
 };
 

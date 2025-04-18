@@ -8,20 +8,13 @@ This class used for preprocessing file with code.
 
 class Preprocessor
 {
-
 private:
-    string * list_of_directives = new string() {"include", "pragma", "define"};
+    string list_of_directives[3] = {"include", "pragma", "define"};
     static Preprocessor *pinstance_;
     static std::mutex mutex_;
-
-protected:
-    Preprocessor()
-    {
-    }
-    ~Preprocessor() {}
+    Preprocessor() {};
 
 public:
-    Preprocessor();
     ~Preprocessor();
     Preprocessor(Preprocessor &other) = delete;
 
@@ -29,7 +22,7 @@ public:
 
     static Preprocessor *GetInstance();
 
-    void preprocess();
+    void preprocess() const;
 };
 
 /**
@@ -54,17 +47,17 @@ Preprocessor *Preprocessor::GetInstance()
     return pinstance_;
 }
 
-Preprocessor::Preprocessor(/* args */)
+Preprocessor::Preprocessor()
 {
     //
 }
 
 Preprocessor::~Preprocessor()
 {
-    //
+    delete& mutex_;
 }
 
-void Preprocessor::preprocess()
+void Preprocessor::preprocess() const
 {
     //
 }

@@ -1,8 +1,11 @@
-class NegativeTests
+#include <BaseTest.hpp>
+#include <static/UtilFuncs.hpp>
+
+class NegativeTests : BaseTest
 {
 private:
-    /* data */
+    //
 public:
-    NegativeTests(/* args */) {}
-    ~NegativeTests() {}
+    NegativeTests() {};
+    ~NegativeTests() {};
 };

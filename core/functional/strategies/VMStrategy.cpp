@@ -1,23 +1,25 @@
 #include <IStrategy.cpp>
-#include <entities/VirtualMachine.cpp>
+#include <entities/VM/VirtualMachine.cpp>
 
 /*
 Strategy that runs program one line by one.
 */
-class VMStrategy : public Strategy
+class VMStrategy : Strategy
 {
-private:
-    /* data */
 public:
-    VMStrategy(/* args */) {}
+    VMStrategy() {}
     ~VMStrategy() {}
-    void doAlgorithm(void);
+    void doAlgorithm(string file_name);
 };
 
 /*
 Algorithm of the virtual machine strategy.
 */
-void VMStrategy::doAlgorithm(void)
+void VMStrategy::doAlgorithm(string file_name)
 {
-    VirtualMachine *vm_instance = VirtualMachine.GetInstance();
+    //Virtual machine strategy set up.
+    VirtualMachine *vm_instance = VirtualMachine::GetInstance(VM_settings());
+
+    //End of the virtual machine strategy
+    delete vm_instance;
 }

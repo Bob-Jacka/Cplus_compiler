@@ -5,37 +5,38 @@
 
 #include <Variables.hpp>
 #include <termcolor.hpp>
-
-// System defined exit symbol
-#if defined(_WIN32) || defined(_WIN64)
-#define NEW_LINE "\r\n"
-#elif defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-#define NEW_LINE "\n"
-#endif
+#include <regex>
 
 namespace utility {
+
+    static enum class Color {
+        white,
+        red,
+        blue,
+        green
+    };
 
     using namespace std;
 
     inline bool contains(string &source, string string_if_contains)
     {
-        return *source.find(string_if_contains);
+        return source.find(string_if_contains);
     }
 
-    inline void colored_txt_output(string str = "", const char * color = "white")
+    inline void colored_txt_output(string str, Color color = Color::white)
     {
         switch (color)
         {
-        case "white":
+        case Color::white:
             cout << termcolor::white;
             break;
-        case "red":
+        case Color::red:
             cout << termcolor::red;
             break;
-        case "blue":
+        case Color::blue:
             cout << termcolor::blue;
             break;
-        case "green":
+        case Color::green:
             cout << termcolor::green;
             break;
         default:
@@ -43,33 +44,79 @@ namespace utility {
             break;
         }
         cout << str;
-        cout << termcolor::nocolor;
+        cout << termcolor::nocolorize;
     }
     
     /*
     Function for transfering askii to bool value.
     */
-    inline bool atob(const char * string_to_scan)
+    inline bool atob(const_string string_to_scan)
     {
-        switch (string_to_scan)
-        {
-            case "true":
-                return true;
-            case "false":
-                return false;
-            case "True":
-                return true;
-            case "False":
-                return false;
-            default:
-                break;
+        if (string_to_scan == "true") {
+            return true;
         }
+        else if (string_to_scan == "false") {
+            return false;
+        }
+        else if (string_to_scan == "True") {
+            return true;
+        }
+        else if (string_to_scan == "False") {
+            return false;
+        }
+        else if (string_to_scan == "true") {
+            return false;
+        }
+        else {
+            colored_txt_output("Error occurred in atob function", Color::red);
+        }
+    }
+
+    // Manual converting each character to lowercase
+    // using ASCII values
+    static string toLowerCase(string& s) {
+        std::transform(s.begin(), s.end(), s.begin(),
+            [](unsigned char c) { return std::tolower(c); });
+    }
+
+    // Manual converting each character to highcase
+    // using ASCII values
+    static string toHighCase(string& s) {
+        std::transform(s.begin(), s.end(), s.begin(),
+            [](unsigned char c) { return std::toupper(c); });
+    }
+
+    // Manual converting each character to capitalize case
+    // using ASCII values
+    static string toCapitalize(string& s) {
+        auto first_character = std::transform(s.begin(), s.end(), s.begin(),
+            [](unsigned char c) { return std::toupper(c); });
+        
+        auto another_word_part = std::transform(s.begin() + 1, s.end(), s.begin(),
+            [](unsigned char c) { return std::tolower(c); });
+    }
+
+    /*
+    Function for replacing symbol c1 with c2.
+    Returns string value with replacing symbols.
+    */
+    static string replace(string s, char c1, char c2)
+    {
+        int l = s.length();
+        for (int i = 0; i < l; i++)
+        {
+            if (s[i] == c1)
+                s[i] = c2;
+            else if (s[i] == c2)
+                s[i] = c1;
+        }
+        return s;
     }
 
     /*
     Function for splitting string into array of strings.
     */
-    inline string[] line_splitter(const string to_split, const string delim) {
+    static string * line_splitter(const_string to_split, const_string delim) {
         regex del(delim);
         sregex_token_iterator it(to_split.begin(), to_split.end(), del, -1);
         sregex_token_iterator end;
@@ -114,6 +161,29 @@ namespace utility {
         if (pos != string::npos)
             str.replace(pos, replace.length(), with);
         return str;
+    }
+
+    /*
+    Function for converting from char array into string array.
+    Input_array - char array.
+    Size - size of the char array.
+    */
+    string convertToString(char* input_array, int size)
+    {
+        int i;
+        string s = "";
+        for (i = 0; i < size; i++) {
+            s = s + input_array[i];
+        }
+        return s;
+    }
+
+    /*
+    Function for checking if elem in 
+    */
+    template <typename elem>
+    bool elem_in() {
+        //
     }
 }
 

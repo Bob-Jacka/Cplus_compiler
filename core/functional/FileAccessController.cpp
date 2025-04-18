@@ -15,34 +15,36 @@ class FileAccessController
 {
 private:
 	static FileAccessController *pinstance_;
-	static std::mutex mutex_;
+	static mutex mutex_;
 
-	bool check_file_ext{[](string str) -> bool
-						{ return contains(str, CPLUS_EXT); }};
 	void __write_to_file__(const string file_name);
-	std::ifstream file_to_compile; // global variable name of the file with .cp extension.
-
-protected:
 	FileAccessController() {}
-	~FileAccessController() {}
-
+	
 public:
+	~FileAccessController() {}
 	FileAccessController(FileAccessController &other) = delete;
 	void operator=(const FileAccessController &) = delete;
+
 	static FileAccessController *GetInstance();
 
-	void create_tmp_file(const string file_name);
+	//Create different types of files.
+	ifstream create_tmp_file(const string file_name);
 	ifstream create_object_file(const string file_name);
 	ifstream create_assembly_file(const string file_name);
-	ifstream open_file(const string file_name);
+
+	//Crud operations on files.
+	bool delete_file(const char* file_to_delete) const;
+	ofstream* copy_file(string input, string output_file) const;
+	ifstream* open_file(const string file_name) const;
+	void close_file(ifstream& opened_file) const;
 };
 
 FileAccessController *FileAccessController::pinstance_{nullptr};
-std::mutex FileAccessController::mutex_;
+mutex FileAccessController::mutex_;
 
 FileAccessController *FileAccessController::GetInstance()
 {
-	std::lock_guard<std::mutex> lock(mutex_);
+	lock_guard<mutex> lock(mutex_);
 	if (pinstance_ == nullptr)
 	{
 		pinstance_ = new FileAccessController();
@@ -52,30 +54,40 @@ FileAccessController *FileAccessController::GetInstance()
 
 void FileAccessController::__write_to_file__(const string file_name)
 {
-	fstream input(file_name);
-}
-
-/*
-Function for creating temporary file.
-*/
-void FileAccessController::create_tmp_file(const string file_name)
-{
 	//
 }
 
 /*
-Method for creating object file
+Function for creating temporary file with given name.
+*/
+ifstream FileAccessController::create_tmp_file(const string file_name)
+{
+	try
+	{
+		cout << "Temporary file created.";
+		ifstream input(file_name);
+		return input;
+	}
+	catch (const exception& e)
+	{
+		cerr << e.what() << endl;
+	}
+}
+
+/*
+Method for creating object file with given name.
 */
 ifstream FileAccessController::create_object_file(const string file_name)
 {
 	try
 	{
-		std::cout << "Object file created.";
-		return ifstream input(file_name + OBJECT_EXT);
+		cout << "Object file created.";
+		ifstream input(file_name + OBJECT_EXT);
+		return input;
 	}
-	catch (const std::exception &e)
+	catch (const exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		cerr << e.what() << endl;
 	}
 }
 
@@ -83,51 +95,121 @@ ifstream FileAccessController::create_assembly_file(const string file_name)
 {
 	try
 	{
-		std::cout << "Assembly file created.";
-		return ifstream input(file_name + ASSEMBLY_EXT);
+		cout << "Assembly file created.";
+		ifstream input(file_name + ASSEMBLY_EXT);
+		return input;
 	}
-	catch (const std::exception &e)
+	catch (const exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		cerr << e.what() << endl;
 	}
 }
 
 /*
-Function for opening file.
+Define macros method only for unix like systems;
 */
-ifstream FileAccessController::open_file(const string file_name)
+#if defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+	#define create_block_file "\
+	ifstream create_block_file(const char* file_name);\
+	ifstream FileAccessController::create_block_file(const char* file_name)\
+		{\
+			int fd = -1;\
+			while (fd == -1) {\
+				fd = open(file_name, O_CREAT | O_EXCL | O_WRONLY, 0500);\
+			}\
+			char pid[6];\
+			itoa(getpid(), pid, 10);\
+			write(fd, pid, strlen(pid));\
+			close(fd);\
+			int mainfd = open("somefile", O_WRONLY, 0500);\
+			close(mainfd);\
+			unlink("somefile.lock");\
+		}"
+#endif
+
+/*
+Delete file by file controller.
+*/
+bool FileAccessController::delete_file(const char* file_to_delete) const
 {
-	if (check_file_ext(file_name))
+	try {
+		cout << file_to_delete << " - file deleted.";
+		int res = remove(file_to_delete);
+		return res;
+	}
+	catch (std::exception& e) {
+		cerr << e.what() << endl;
+	}
+}
+
+/*
+Method for coping one file strings into another file.
+Input - which file you want to add (file name).
+Output_file - into which file you want to add (file name).
+Return - link on input file.
+*/
+ofstream* FileAccessController::copy_file(string file_name_to_include, string output_file) const
+{
+	ifstream infile;
+	ofstream outfile;
+
+	try {
+		infile.open(file_name_to_include);
+		outfile.open(output_file);
+
+		char buffer[1000];
+
+		while (!infile.eof())
+		{
+			infile.getline(buffer, sizeof(buffer));
+			outfile << buffer << endl;
+		}
+	}
+	catch (std::exception& e) {
+		cerr << e.what() << endl;
+	}
+	infile.close();
+	return &outfile;
+}
+
+/*
+Method for opening .cp file.
+Throws error if file of wrong extension.
+*/
+ifstream* FileAccessController::open_file(string file_name) const
+{
+	if (utility::contains(file_name, CPLUS_EXT))
 	{
 		try
 		{
-			ifstream out;		 // поток для записи
-			out.open(file_name); // окрываем файл для записи
-			file_to_compile = out;
+			cout << "File opened.";
+			ifstream out;
+			out.open(file_name);
+			return &out;
 		}
 		catch (const exception &e)
 		{
-			cerr << e.what() << '\n';
+			cerr << e.what() << endl;
 		}
 	}
 	else
 	{
 		throw "File of wrong extesion";
 	}
-	return nullptr;
 }
 
 /*
 Methor that responsible for closing file.
 */
-void FileAccessController::close_file()
+void FileAccessController::close_file(ifstream& opened_file) const
 {
 	try
 	{
-		file_to_compile.close();
+		cout << "File closed.";
+		opened_file.close();
 	}
-	catch (const std::exception &e)
+	catch (const exception &e)
 	{
-		std::cerr << e.what() << '\n';
+		cerr << e.what() << endl;
 	}
 }

@@ -1,6 +1,6 @@
 #include <BaseException.hpp>
 
-class PreprocessorException : public BaseException {
+class PreprocessorException : BaseException {
 
 public:
 void WrongDirective();

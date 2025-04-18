@@ -1,10 +1,8 @@
 #include <BaseException.hpp>
 
-class CompilerModeException : public BaseException
+class CompilerModeException :  BaseException
 {
 public:
-    CompilerModeException(/* args */) {}
-    ~CompilerModeException() {}
     void failedToCompileFile();
 };
 

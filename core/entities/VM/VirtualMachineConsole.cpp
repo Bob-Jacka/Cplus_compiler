@@ -1,15 +1,17 @@
+/*
+UI app
+Console that represents virtual machine parameters and execution path.
+*/
 
 #include <mutex>
 
-/*
-UI app
-Console that represents virtual machine parameters.
-*/
 class VirtualMachineConsole
 {
 private:
     static VirtualMachineConsole *pinstance_;
     static std::mutex mutex_;
+
+    void __updateUI() const;
 
 protected:
     VirtualMachineConsole() {};
@@ -19,10 +21,17 @@ public:
     VirtualMachineConsole(VirtualMachineConsole &other) = delete;
     void operator=(const VirtualMachineConsole &) = delete;
     static VirtualMachineConsole *GetInstance();
+
+    void drawUI() const;
 };
 
 VirtualMachineConsole *VirtualMachineConsole::pinstance_{nullptr};
 std::mutex VirtualMachineConsole::mutex_;
+
+void VirtualMachineConsole::__updateUI() const
+{
+    //
+}
 
 VirtualMachineConsole *VirtualMachineConsole::GetInstance()
 {
@@ -32,4 +41,9 @@ VirtualMachineConsole *VirtualMachineConsole::GetInstance()
         pinstance_ = new VirtualMachineConsole();
     }
     return pinstance_;
+}
+
+void VirtualMachineConsole::drawUI() const
+{
+    //
 }

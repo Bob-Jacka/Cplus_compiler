@@ -1,7 +1,8 @@
 #include <iostream>
+#include <mutex>
 
 /*
-Class, that used fro memory actions.
+Class, that used for memory actions.
 */
 class MemoryController
 {
@@ -10,10 +11,10 @@ private:
     static std::mutex mutex_;
 
 protected:
-    MemoryController(/* args */) {}
-    ~MemoryController() {}
+    MemoryController() {}
     
 public:
+    ~MemoryController() {}
     MemoryController(MemoryController &other) = delete;
     void operator=(const MemoryController &) = delete;
     static MemoryController *GetInstance();

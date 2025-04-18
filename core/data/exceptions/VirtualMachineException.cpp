@@ -1,11 +1,8 @@
 #include <BaseException.hpp>
 
-class VirtualMachineException : public BaseException
+class VirtualMachineException : BaseException
 {
 public:
-    VirtualMachineException() {}
-    ~VirtualMachineException() {}
-
     void vm_death();
     void vm_out_of_memory();
     void vm_failed_to_start();

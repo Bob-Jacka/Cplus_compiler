@@ -25,6 +25,7 @@ void CompileStrategy::doAlgorithm(string file_name) const
     Linker* linker;
     Preprocessor* preprocessor;
     Lexer* lexer;
+    Parser* parser;
     Assembly_generator* asm_gen;
     Binary_generator* bin_generator;
     std::ifstream entry_file; // main entry point of the program on C+ language.
@@ -38,6 +39,7 @@ void CompileStrategy::doAlgorithm(string file_name) const
         linker = program_entites->getLinker();
         preprocessor = program_entites->getPreprocessor();
         lexer = program_entites->getLexer();
+        parser;
         asm_gen = program_entites->getAssemblyGenerator();
         bin_generator = program_entites->getBinaryGenerator();
     }
@@ -54,8 +56,18 @@ void CompileStrategy::doAlgorithm(string file_name) const
     
     program_file = controllers->file_controller.create_tmp_file(TMP_FILE_NAME); //create tmp file
     controllers->file_controller.copy_file(file_name, TMP_FILE_NAME); //copy all lines into tmp file from main file of the cp program
+
     linker->link_import_directives(program_file); //copy all include directives into tmp file.
-    preprocessor->preprocess();
+
+    preprocessor->preprocess(); //include all directives
+
+    lexer; //lex analyze
+
+    parser; //parse lexemes
+
+    asm_gen;  //generation of the assembly representation.
+
+    bin_generator; //generation of the binary representation.
 
     //Compiler teardown block.
     {

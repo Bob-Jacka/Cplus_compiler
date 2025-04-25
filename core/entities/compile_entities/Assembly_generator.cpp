@@ -23,8 +23,6 @@ private:
 
     static Assembly_generator *pinstance_;
     static std::mutex mutex_;
-
-protected:
     Assembly_generator() {}
 
 public:

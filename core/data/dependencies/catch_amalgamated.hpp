@@ -4270,9 +4270,9 @@ namespace Catch {
             // Wraps a token coming from a token stream. These may not directly
             // correspond to strings as a single string may encode an option +
             // its argument if the : or = form is used
-            enum class TokenType { Option, Argument };
+            enum class TokenEnum { Option, Argument };
             struct Token {
-                TokenType type;
+                TokenEnum type;
                 StringRef token;
             };
 

@@ -76,15 +76,15 @@
                 </p>
 
                 <code>
-                    #include <iostream.hpp>
-                        <br>
-                        using namespace std
-                        <br>
-                        public function main() -> undefined
-                        <br>
-                        {
-                        <p class="tabulated">print("Hello World")</p>
-                        }
+                    #include 'IO.cp'
+                    <br>
+                    using namespace std
+                    <br>
+                    public function main() -> undefined
+                    <br>
+                    {
+                    <p class="tabulated">print("Hello World")</p>
+                    }
                 </code>
 
                 <h4>Short description:</h4>
@@ -116,7 +116,7 @@
                     so that no other part of the code can
                     access this data except that function.
 
-                    *But in C+ we do not use object oriented sh*t. Only structs with nested functions.
+                    But in C+ we do not use object oriented sh*t. Only structs with nested functions.
                 </p>
                 <b>Structures: </b>
                 <code>
@@ -141,24 +141,33 @@
                         <li>
                             <b>Numerical types:</b><br>
                             <ul>
-                                <li>1. int - 32 bit number.</li>
-                                <li>2. double - 64 bit float point number.</li>
-                                <li>3. float - 32 bit float point number.<br>
+                                <li>0. short - 16 bit number,</li>
+                                <li>1. int - 32 bit number,</li>
+                                <li>2. extented int - 64 bit number,</li>
+                                <li>3. extented extented int - 128 bit number,</li>
+                                <li>4. extented extented extented int - 256 bit number,</li>
+                                <li>5. extented extented extented extented int - 512 bit number,</li>
+                                <li>6. extented extented extented extented extented int - 1024 bit number,</li>
+                                <li>7. float - 32 bit float point number,</li>
+                                <li>8. double - 64 bit float point number,</li>
+                                <li>9. boolean - 1 bit value,</li>
                             </ul>
-
+                            <p>*Maximum count of 'extented' word is 5</p>
+                            <p>**Word 'extented' can only be applies to int< type/p>
+                            <p>***Extented types - 128, 256, 512 and 1024 bits - available only in virtual machine mode</p>
                         <li>
                             <b>String types</b><br>
                             <ul>
-                                <li>4. string - string value in "" or '' quotes.</li>
-                                <li>5. char - 1 byte symbol, requieres only one symbol.</li>
+                                <li>10. string - string value in "" or '' quotes,</li>
+                                <li>11. char - 1 byte symbol, requieres only one symbol,</li>
                             </ul>
                         </li>
 
                         <li>
                             <b>Other type</b><br>
                             <ul>
-                                <li>6. undefined - type for unknown value.</li>
-                                <li>7. func - type for functions</li>
+                                <li>12. undefined - type for unknown value (like 'void' type in C/C++/java),</li>
+                                <li>13. func - type for functions.</li>
                             </ul>
                         </li>
 
@@ -173,16 +182,7 @@
                         </li>
                     </ul>
 
-                    <b>Function visibility modifiers:</b><br>
-                    <ul>
-                        <li>1. public - visible everywhere</li>
-                        <li>2. private - visible only in one file</li>
-                        <li>3. package - visible only in package where file stored</li>
-                        <li>4. inherit - visible only in inheritance</li>
-                    </ul>
-
-
-                    <b>Values visibility modifiers:</b><br>
+                    <b>Function and value visibility modifiers:</b><br>
                     <ul>
                         <li>1. public - visible everywhere</li>
                         <li>2. private - visible only in one file</li>
@@ -192,9 +192,9 @@
 
                     <b>Value modifiers:</b><br>
                     <ul>
-                        <li>1. nosign - only for numeric types</li>
-                        <li>2. const - can be applied for strings or numerics</li>
-                        <li>3. extended - for high capacity values</li>
+                        <li>1. nosign - only for numeric types (int, float, double and short)</li>
+                        <li>2. const - can be applied for strings or numerics. Set constant value.</li>
+                        <li>3. extended - for high capacity values, only in numerical type int</li>
                     </ul>
                 </p>
             </section>
@@ -243,7 +243,7 @@
                     <br>
                     Example:
                     <br>
-                    <p>int nubmer = 5</p>
+                    <p>int number = 5</p>
                     <p>do {</p>
                     <p class="tabulated">number--</p>
                     <p class="tabulated">print(number)</p>
@@ -271,7 +271,7 @@
                     <br>
                     Example:
                     <br>
-                    <p>int nubmer = 5</p>
+                    <p>int number = 5</p>
                     <p>while (number != 1) {</p>
                     <p class="tabulated">number--</p>
                     <p class="tabulated">print(number)</p>
@@ -284,8 +284,6 @@
                     <p class="tabulated">2</p>
                     <p class="tabulated">1</p>
                 </code>
-
-                </p>
 
                 <p>
                     <div>
@@ -322,7 +320,7 @@
 
                         Output: You're right!
                     </code>
-
+                    <!--Yes, I'm not a frontend developer, so do not blame me...-->
                     <div>
                         <h4>Operator branch</h4>
                         <h5>2.</h5>
@@ -357,8 +355,9 @@
                     <code>
                         as - for type convertion.<br>
                         = - for value assign.<br>
-                        typeof - for type define.<br>
-                        using - for namespaces.
+                        typedef - for define type. If you want to reduce count of "extented" word.<br>
+                        using - for namespaces, ex. using std - for stantandart namespace.<br>
+                        by - inheritance operator.
                     </code>
 
                     <div>
@@ -378,7 +377,7 @@
                 </header>
 
                 <div>
-                    <h4>Fuction examples:</h4>
+                    <h4>Function examples:</h4>
                 </div>
                 <code>
                     <div>private function not_main_function_example1() -> int {</div>
@@ -401,16 +400,43 @@
                     <code>
                         int num_value = 3<br>
                         val compile_time_value = 6<br>
-                        val error_value // There will be error in compile time, because no value.<br>
+                        nosign val error_value = -1 //will be error<br>
+                        const string name = "Valery" //const string value<br>
+                        extented extented extented int ultra_high_capacity = 100000000000000 //actually, i do not know how many numbers will be in extented extented extented number<br>
+                        val error_value // There will be error in compile time, because no value is given.<br>
                     </code>
                 </p>
             </section>
 
+            <section>
+                <h4>Structure with methods example:</h4>
+                <code>
+                    <br>public structure person {
+                    <p class="tabulated">const string name</p>
+                    <p class="tabulated">const string second_name</p>
+                    <p class="tabulated">const string surname</p>
+                    <p class="tabulated">nosign int age</p>
+                    <p class="tabulated">nosign int family_count</p>
+                    <br>
+                    public function kill_someone_in_family() {
+                    <p class="tabulated">this.family_count--</p>
+                    }
+                    <br>
+                    private function escape_from_police() {
+                    <p class="tabulated">print("Run away")</p>
+                    }
+                    <br>
+                    <br>
+                    }
+                </code>
+            </section>
+            
             <section class="ide" id="Ide_section">
                 <header>
                     C+ IDE information:
                 </header>
                 <p class="tabulated">
+                    Coming soon<br>
                     Will be in progress after finishing C+ compiler.
                 </p>
                 <br>
@@ -418,9 +444,10 @@
 
             <section class="ai" id="AI_section">
                 <header>
-                    AI in c+ information:
+                    AI in C+ information:
                 </header>
                 <p class="tabulated">
+                    Coming soon<br>
                     Will be in progress after finishing C+ compiler.
                 </p>
                 <br>
@@ -439,7 +466,8 @@
                         <li>4. There are no semicolons after statements,</li>
                         <li>5. There are no classes at all, only structs with functions,</li>
                         <li>6. Compile time value exists. (val type),</li>
-                        <li>7. Strings can be implemented with double quotes ("") or with single quotes ('')</li>
+                        <li>7. Extented value types 128, 256, 512 and 1024 bits available,</li>
+                        <li>8. Strings can be implemented with double quotes ("") or with single quotes ('')</li>
                     </ul>
                 </p>
             </section>
@@ -448,7 +476,7 @@
                 <header>
                     Compiler architecture:
                 </header>
-                <img src="CplusArchitecture.drawio.png" alt="There is a picture here" width="970px" height="500px">
+                <img src="CplusArchitecture.drawio.png" alt="There is a picture here" width="1200px" height="500px">
             </section>
         </main>
     </div>

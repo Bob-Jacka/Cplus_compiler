@@ -11,10 +11,11 @@
 #include <functional/strategies/Strategy_context.cpp>
 
 //Include compiler entities.
-#include <entities/Lexer.cpp>
-#include <entities/Linker.cpp>
-#include <entities/Preprocessor.cpp>
-#include <entities/Assembly_generator.cpp>
+#include <Lexer.cpp>
+#include <Linker.cpp>
+#include <Preprocessor.cpp>
+#include <Assembly_generator.cpp>
+#include <Parser.cpp>
 #include <Binary_generator.cpp>
 
 //Structure with controllers.
@@ -80,15 +81,17 @@ struct Compiler_entities
 {
 private:
 	Lexer *lexer;
+	Parser *parser;
 	Linker *linker;
 	Preprocessor *preprocessor;
 	Assembly_generator *asm_gen;
-	Binary_generator* bin_gen;
+	Binary_generator *bin_gen;
 
 	Strategy_context *s_context;
 
 public:
 	Lexer* getLexer() const;
+	Parser* getParser() const;
 	Linker* getLinker() const;
 	Preprocessor* getPreprocessor() const;
 	Assembly_generator* getAssemblyGenerator() const;
@@ -99,6 +102,7 @@ public:
 	{
 		try {
 			this->lexer = Lexer::GetInstance();
+			this->parser = Parser::GetInstance();
 			this->linker = Linker::GetInstance();
 			this->preprocessor = Preprocessor::GetInstance();
 			this->asm_gen = Assembly_generator::GetInstance();
@@ -119,6 +123,7 @@ public:
 	{
 		try {
 			delete this->lexer;
+			delete this->parser;
 			delete this->linker;
 			delete this->preprocessor;
 			delete this->asm_gen;
@@ -138,6 +143,16 @@ public:
 		}
 		catch (std::exception& e) {
 			colored_txt_output("Error in return lexer", Color::red);
+			throw e;
+		}
+	}
+
+	Parser* Compiler_entities::getParser() const {
+		try {
+			return parser;
+		}
+		catch (std::exception& e) {
+			colored_txt_output("Error in return parser", Color::red);
 			throw e;
 		}
 	}

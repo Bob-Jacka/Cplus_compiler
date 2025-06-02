@@ -3,21 +3,24 @@
 class LexerException : BaseException {
 
 public:
-    void WrongValueType();
-    void WrongFunctionType();
-    void ErrorInOpenFile();
+    static int WrongValueType();
+    static int WrongFunctionType();
+    static int ErrorInOpenFile();
 };
 
-void LexerException::WrongValueType()
+int LexerException::WrongValueType()
 {
     std::cerr << "Wrong type error occurred";
+    return 0;
 }
 
-void LexerException::WrongFunctionType()
+int LexerException::WrongFunctionType()
 {
     std::cerr << "Wrong function type error occurred";
+    return 0;
 }
 
-void LexerException::ErrorInOpenFile() {
+int LexerException::ErrorInOpenFile() {
     std::cerr << "Error in opening file for analyze";
+    return 0;
 }

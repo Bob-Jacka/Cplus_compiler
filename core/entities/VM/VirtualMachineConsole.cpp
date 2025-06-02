@@ -13,9 +13,8 @@ private:
 
     void __updateUI() const;
 
-protected:
-    VirtualMachineConsole() {};
-    ~VirtualMachineConsole() {};
+    VirtualMachineConsole();
+    ~VirtualMachineConsole();
 
 public:
     VirtualMachineConsole(VirtualMachineConsole &other) = delete;
@@ -24,6 +23,15 @@ public:
 
     void drawUI() const;
 };
+
+//Constructor and destructor
+VirtualMachineConsole::VirtualMachineConsole() {
+	//
+}
+
+VirtualMachineConsole::~VirtualMachineConsole() {
+	//
+}
 
 VirtualMachineConsole *VirtualMachineConsole::pinstance_{nullptr};
 std::mutex VirtualMachineConsole::mutex_;

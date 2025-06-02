@@ -3,27 +3,31 @@
 class VirtualMachineException : BaseException
 {
 public:
-    void vm_death();
-    void vm_out_of_memory();
-    void vm_failed_to_start();
-    void failedToInstanceVM();
+    static int vm_death();
+    static int vm_out_of_memory();
+    static int vm_failed_to_start();
+    static int failedToInstanceVM();
 };
 
-void VirtualMachineException::vm_death()
+int VirtualMachineException::vm_death()
 {
     std::cerr << "Virtual machine has died.";
+    return 0;
 }
 
-void VirtualMachineException::vm_out_of_memory()
+int VirtualMachineException::vm_out_of_memory()
 {
     std::cerr << "Virtual machine running out of memory.";
+    return 0;
 }
 
-void VirtualMachineException::vm_failed_to_start()
+int VirtualMachineException::vm_failed_to_start()
 {
     std::cerr << "Virtual machine has failed to start working.";
+    return 0;
 }
 
-void VirtualMachineException::failedToInstanceVM() {
+int VirtualMachineException::failedToInstanceVM() {
     std::cerr << "Error occurred in starting virtual machine";
+    return 0;
 }

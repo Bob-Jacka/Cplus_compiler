@@ -4,26 +4,26 @@
 #define MAIN_TYPES .HPP
 
 // Controllers dependencies.
-#include <functional/FileAccessController.cpp>
-#include <functional/MemoryController.cpp>
+#include "functional/FileAccessController.cpp"
+#include "functional/MemoryController.cpp"
 
 //Strategies
-#include <functional/strategies/Strategy_context.cpp>
+#include "core/functional/strategies/Strategy_context.cpp"
 
 //Include compiler entities.
-#include <Lexer.cpp>
-#include <Linker.cpp>
-#include <Preprocessor.cpp>
-#include <Assembly_generator.cpp>
-#include <Parser.cpp>
-#include <Binary_generator.cpp>
+#include "core/entities/compile_entities/Lexer.cpp"
+#include "core/entities/compile_entities/Linker.cpp"
+#include "core/entities/compile_entities/Preprocessor.cpp"
+#include "core/entities/compile_entities/Assembly_generator.cpp"
+#include "core/entities/compile_entities/Parser.cpp"
+#include "core/entities/compile_entities/Binary_generator.cpp"
 
 //Structure with controllers.
 struct Controllers
 {
 private:
-	FileAccessController *file_controller;
-	MemoryController *mem_controller;
+	FileAccessController* file_controller;
+	MemoryController* mem_controller;
 
 public:
 	FileAccessController* getFileController() const;
@@ -236,7 +236,7 @@ enum Compile_mode {
 	RELEASE = 3, //compiles program with optimizations.
 };
 
-//Структура для параметров загрузки.
+//Structure for load time parameters of the compiler.
 struct Load_compiler_parameter
 {
 	bool is_vm = false; //(Mode) Enters virtual machine mode.

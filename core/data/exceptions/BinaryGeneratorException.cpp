@@ -3,10 +3,11 @@
 class BinaryGeneratorException : BaseException {
 
 public:
-    void ErrorInBinaryGeneration();
+    static int ErrorInBinaryGeneration(); //general exception
 };
 
-void BinaryGeneratorException::ErrorInBinaryGeneration()
+int BinaryGeneratorException::ErrorInBinaryGeneration()
 {
     std::cerr << "Error occurred in binary generation process";
+    return 0;
 }

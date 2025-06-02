@@ -27,7 +27,8 @@ public:
 	void operator=(const Parser&) = delete;
 
 	static Parser* GetInstance();
-	void build_tree();
+	void build_tree() const;
+	std::vector<Token> * parse_tokens(std::vector<Token> *) const; //Entry point of the Parser
 };
 
 Parser* Parser::pinstance_{ nullptr };
@@ -49,9 +50,9 @@ Parser* Parser::GetInstance()
 }
 
 /*
-method that agregates syntax tree actions
+Мethod that agregates syntax tree actions
 */
-void Parser::build_tree()
+void Parser::build_tree() const
 {
 	//
 }
@@ -101,5 +102,12 @@ Method that reacts on value identifier token
 */
 void Parser::react_on_identifier() const
 {
+	//
+}
+
+/*
+Entry point of the parser
+*/
+std::vector<Token> * Parser::parse_tokens(std::vector<Token> *) const {
 	//
 }

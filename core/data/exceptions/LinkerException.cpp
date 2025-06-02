@@ -6,15 +6,17 @@
 class LinkerException : BaseException {
 
 public:
-    void linkageError();
-    void failedAddFileError();
+    static int linkageError();
+    static int failedAddFileError();
 };
 
-void LinkerException::linkageError()
+int LinkerException::linkageError()
 {
-    throw "Error occurred in linkage process";
+    std::cerr <<  "Error occurred in linkage process";
+    return 0;
 }
 
-void LinkerException::failedAddFileError() {
+int LinkerException::failedAddFileError() {
     std::cerr << "Error occurred in adding file process";
+    return 0;
 }

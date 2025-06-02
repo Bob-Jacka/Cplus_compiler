@@ -1,12 +1,22 @@
 #include <BaseException.hpp>
 
+/*
+Exception class for assembly generator
+*/
 class AssemblyGeneratorException : BaseException {
 
 public:
-    void ErrorInAssemblyGeneration();
+    static int errorInAssemblyGeneration(); //general exception in assembly generator
+    static int wrongAssemblyLine();
 };
 
-void AssemblyGeneratorException::ErrorInAssemblyGeneration()
+int AssemblyGeneratorException::errorInAssemblyGeneration()
 {
     std::cerr << "Error in assembly generation occurred";
+    return 0;
+}
+
+int AssemblyGeneratorException::wrongAssemblyLine()
+{
+    return 0;
 }

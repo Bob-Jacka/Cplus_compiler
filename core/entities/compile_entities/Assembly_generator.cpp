@@ -3,6 +3,7 @@ This class needs for assembly generate.
 */
 
 #include <data/exceptions/AssemblyGeneratorException.cpp>
+#include "static/UtilFuncs.hpp"
 #include <mutex>
 
 class Assembly_generator
@@ -21,17 +22,23 @@ private:
     void sub();
     void inc();
 
+    int nextRegister = 0;
+    const string registers[4] = {"R0", "R1", "R2", "R3"}; //Registers available.
+
+    string get_next_register();
+    string get_assembly_line(string token_line) const;
     static Assembly_generator *pinstance_;
     static std::mutex mutex_;
-    Assembly_generator() {}
+    Assembly_generator();
 
 public:
     Assembly_generator(Assembly_generator * another_obj) = delete;
+    ~Assembly_generator() {}
 
     void operator=(const Assembly_generator &) = delete;
 
     static Assembly_generator *GetInstance();
-    ~Assembly_generator() {}
+    void generate_asm(std::vector<string>& tokens) const noexcept;
 };
 
 Assembly_generator *Assembly_generator::pinstance_{nullptr};
@@ -120,4 +127,50 @@ void Assembly_generator::sub()
 void Assembly_generator::inc()
 {
     //
+}
+
+string Assembly_generator::get_next_register()
+{
+    return registers[nextRegister++ % registers->length()];
+}
+
+/*
+Proceed token line into assembly line.
+*/
+string Assembly_generator::get_assembly_line(string token_line) const
+{
+    string assemblyCode;
+    string* splitted = utility::line_splitter(token_line); //splitted token line.
+    if (splitted->size() == 3) {
+        string a = splitted[0];
+        string op = splitted[1];
+        string b = splitted[2];
+
+        string reg = get_next_register();
+        assemblyCode += "LOAD " + a + " " + reg + "\n";
+        if (op == "+") {
+            assemblyCode += "ADD " + b + " " + reg + "\n";
+        } else if (op == "-") {
+            assemblyCode += "SUB " + b + " " + reg + "\n";
+        } else if (op == "*") {
+            assemblyCode += "MUL " + b + " " + reg + "\n";
+        } else if (op == "/") {
+            assemblyCode += "DIV " + b + " " + reg + "\n";
+        }
+        assemblyCode += "STORE " + reg + " RESULT\n";
+    } else {
+        assemblyCode = "ERROR: Неверное выражение\n";
+        throw AssemblyGeneratorException::ErrorInAssemblyGeneration();
+    }
+    return assemblyCode;
+}
+
+
+/*
+Main entry point in Assembly generator
+*/
+void Assembly_generator::generate_asm(std::vector<string>& tokens) const noexcept {
+    for (string token_line: tokens) {
+        get_assembly_line(token_line);
+    }
 }

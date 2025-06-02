@@ -4,8 +4,6 @@
 class Binary_generator
 {
 private:
-    void generate_binary();
-
     static Binary_generator *pinstance_;
     static std::mutex mutex_;
     Binary_generator() {}
@@ -13,6 +11,8 @@ private:
 public:
     Binary_generator() {};
     ~Binary_generator() {};
+
+    void generate_binary();
 
     Binary_generator(Binary_generator &other) = delete;
     void operator=(const Binary_generator &) = delete;
@@ -23,9 +23,7 @@ Binary_generator *Binary_generator::pinstance_{nullptr};
 std::mutex Binary_generator::mutex_;
 
 /**
- * The first time we call GetInstance we will lock the storage location
- *      and then we make sure again that the variable is null and then we
- *      set the value. RU:
+ * Main entry point of the Binary generator entity
  */
 void Binary_generator::generate_binary()
 {

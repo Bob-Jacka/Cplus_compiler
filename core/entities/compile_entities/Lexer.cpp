@@ -49,7 +49,7 @@ struct Lang_struct
 using namespace std;
 typedef const regex const_reg; //define constant regex value type.
 
-//Enum class to define different types of tokens
+//Enum class to define different types of p_tokens
 enum class TokenEnum {
     KEYWORD, //for lang inner word, ex. structure word
     IDENTIFIER, //for ex. value or function name
@@ -86,6 +86,7 @@ private:
     string file_name;
     size_t position;
     LexerException exceptions;
+    vector<Token>* p_tokens; //Inner representation of the tokens.
 
     static Lexer* pinstance_;
     static std::mutex mutex_;
@@ -103,7 +104,10 @@ private:
     string getNextNumber();
 
 public:
-    vector<Token> tokenize();
+    vector<Token>* tokenize();
+    static void printp_Tokens(const vector<Token>& p_tokens);
+    static string Lexer::getTokenTypeName(TokenEnum type);
+    vector<Token>* getTokenVector();
 
     static Lexer* GetInstance();
 
@@ -150,37 +154,37 @@ void Lexer::initKeywords()
     keywords["return"] = TokenEnum::KEYWORD;
 }
 
-//Function to check if a character is whitespace
+//Private function to check if a character is whitespace
 bool Lexer::isWhitespace(char c)
 {
     return c == ' ' || c == '\t' || c == '\n' || c == '\r';
 }
 
-//Function to check if a character is alphabetic
+//Private function to check if a character is alphabetic
 bool Lexer::isAlpha(char c)
 {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
 }
 
-//Function to check if a character is a digit
+//Private function to check if a character is a digit
 bool Lexer::isDigit(char c) {
     return c >= '0' && c <= '9';
 }
 
-//Function to check if a character is alphanumeric
+//Private function to check if a character is alphanumeric
 bool Lexer::isAlphaNumeric(char c)
 {
     return isAlpha(c) || isDigit(c);
 }
 
-//Function to check if next symbol is quote.
+//Private function to check if next symbol is quote.
 bool Lexer::isQuoteNext(char c)
 {
     return false;
 }
 
 /*
-Function to get the next word (identifier or keyword)
+Private function to get the next word (identifier or keyword)
 from the input
 */
 string Lexer::getNextWord()
@@ -193,7 +197,7 @@ string Lexer::getNextWord()
 }
 
 /*
-Function to get the next number (integer or float)
+Private function to get the next number (integer or float)
 from the input
 */
 string Lexer::getNextNumber()
@@ -211,10 +215,12 @@ string Lexer::getNextNumber()
     return line.substr(start, position - start);
 }
 
-//Main function to tokenize the input string.
-vector<Token> Lexer::tokenize()
+/*
+Main function to tokenize the input string.
+Entry point of the lexer.
+*/
+vector<Token>* Lexer::tokenize()
 {
-    vector<Token> tokens;
     std::ifstream in(file_name); //open file for read.
 
     if (in.is_open()) {
@@ -234,10 +240,10 @@ vector<Token> Lexer::tokenize()
                     string word = getNextWord();
                     if (keywords.find(word) != keywords.end())
                     {
-                        tokens.emplace_back(TokenEnum::KEYWORD, word);
+                        this->p_tokens->emplace_back(TokenEnum::KEYWORD, word);
                     }
                     else {
-                        tokens.emplace_back(TokenEnum::IDENTIFIER, word);
+                        this->p_tokens->emplace_back(TokenEnum::IDENTIFIER, word);
                     }
                 }
 
@@ -245,28 +251,28 @@ vector<Token> Lexer::tokenize()
                 else if (isDigit(currentChar)) {
                     string number = getNextNumber();
                     if (number.find('.') != string::npos) {
-                        tokens.emplace_back(TokenEnum::FLOAT_LITERAL, number);
+                        this->p_tokens->emplace_back(TokenEnum::FLOAT_LITERAL, number);
                     }
                     else {
-                        tokens.emplace_back(TokenEnum::INTEGER_LITERAL, number);
+                        this->p_tokens->emplace_back(TokenEnum::INTEGER_LITERAL, number);
                     }
                 }
 
                 //Identify operators
                 else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
-                    tokens.emplace_back(TokenEnum::OPERATOR, string(1, currentChar));
+                    this->p_tokens->emplace_back(TokenEnum::OPERATOR, string(1, currentChar));
                     position++;
                 }
 
                 //Identify punctuators
                 else if (currentChar == '(' || currentChar == ')' || currentChar == '{' || currentChar == '}') {
-                    tokens.emplace_back(TokenEnum::PUNCTUATOR, string(1, currentChar));
+                    this->p_tokens->emplace_back(TokenEnum::PUNCTUATOR, string(1, currentChar));
                     position++;
                 }
 
                 //Handle unknown characters
                 else {
-                    tokens.emplace_back(TokenEnum::UNKNOWN, string(1, currentChar));
+                    this->p_tokens->emplace_back(TokenEnum::UNKNOWN, string(1, currentChar));
                     position++;
                 }
             }
@@ -276,11 +282,18 @@ vector<Token> Lexer::tokenize()
         exceptions.ErrorInOpenFile();
     }
     in.close(); //close file
-    return tokens;
+    return this->p_tokens;
+}
+
+/*
+Method for returning inner vector representation of tokens.
+*/
+vector<Token>* Lexer::getTokenVector() {
+    return this->p_tokens;
 }
 
 //Function to convert TokenType to string for printing
-static string getTokenTypeName(TokenEnum type)
+string Lexer::getTokenTypeName(TokenEnum type)
 {
     switch (type) {
     case TokenEnum::KEYWORD:
@@ -306,10 +319,10 @@ static string getTokenTypeName(TokenEnum type)
     }
 }
 
-//Function to print all tokens in inner vector container
-static void printTokens(const vector<Token>& tokens)
+//Function to print all p_tokens in inner vector container
+void Lexer::printp_Tokens(const vector<Token>& p_tokens)
 {
-    for (const auto& token : tokens) {
+    for (const auto& token : p_tokens) {
         cout << "Type: " << getTokenTypeName(token.type) << endl << "Value: " << token.value << endl;
     }
 }

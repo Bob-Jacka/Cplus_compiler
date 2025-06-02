@@ -9,7 +9,7 @@
 
 namespace utility {
 
-    static enum class Color {
+    enum class Color {
         white,
         red,
         blue,
@@ -116,7 +116,7 @@ namespace utility {
     /*
     Function for splitting string into array of strings.
     */
-    static string * line_splitter(const_string to_split, const_string delim) {
+    static string * line_splitter(const_string to_split, const_string delim = "") {
         regex del(delim);
         sregex_token_iterator it(to_split.begin(), to_split.end(), del, -1);
         sregex_token_iterator end;

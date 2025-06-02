@@ -3,16 +3,20 @@ Collector with parallel execution.
 Will execute with program.
 */
 
-#include <IGarbageCollector.cpp>
+#include "IGarbageCollector.cpp"
 #include <mutex>
 
 class ParallelCollector : IGarbageCollector {
 private:
 	static ParallelCollector * pinstance_;
 	static std::mutex mutex_;
+    ParallelCollector();
 public:
+    ~ParallelCollector();
     ParallelCollector(ParallelCollector& other) = delete;
+
 	void operator=(const ParallelCollector&) = delete;
+
 	static ParallelCollector* GetInstance();
     void collectors_pass();
     void collect_garbage();
@@ -20,6 +24,16 @@ public:
 
 ParallelCollector* ParallelCollector::pinstance_{ nullptr };
 std::mutex ParallelCollector::mutex_;
+
+//Constructor and destructor
+ParallelCollector::ParallelCollector() {
+    //
+}
+
+ParallelCollector::~ParallelCollector()
+{
+    //
+}
 
 ParallelCollector* ParallelCollector::GetInstance()
 {

@@ -1,6 +1,7 @@
 #include <data/Variables.hpp>
 #include <UtilFuncs.hpp>
 #include <mutex>
+#include "core/entities/Logger.hpp"
 
 #define CPLUS_EXT ".cp"
 #define ASSEMBLY_EXT ".asm"
@@ -16,9 +17,10 @@ class FileAccessController
 private:
 	static FileAccessController *pinstance_;
 	static mutex mutex_;
+	Logger* logger; //local instance of logger in file contoller.
 
 	void __write_to_file__(const string file_name);
-	FileAccessController() {}
+	FileAccessController();
 	
 public:
 	~FileAccessController() {}
@@ -41,6 +43,15 @@ public:
 
 FileAccessController *FileAccessController::pinstance_{nullptr};
 mutex FileAccessController::mutex_;
+
+//Constructor and destructor
+FileAccessController::FileAccessController() {
+	this->logger = new Logger();
+}
+
+FileAccessController::~FileAccessController() {
+	delete logger;
+}
 
 FileAccessController *FileAccessController::GetInstance()
 {
@@ -70,6 +81,8 @@ ifstream FileAccessController::create_tmp_file(const string file_name)
 	}
 	catch (const exception& e)
 	{
+		this->logger->log("Error in create tmp file");
+		this->logger->log(e.what());
 		cerr << e.what() << endl;
 	}
 }
@@ -87,6 +100,8 @@ ifstream FileAccessController::create_object_file(const string file_name)
 	}
 	catch (const exception &e)
 	{
+		this->logger->log("Error in create object file");
+		this->logger->log(e.what());
 		cerr << e.what() << endl;
 	}
 }
@@ -101,6 +116,8 @@ ifstream FileAccessController::create_assembly_file(const string file_name)
 	}
 	catch (const exception &e)
 	{
+		this->logger->log("Error in assembly file");
+		this->logger->log(e.what());
 		cerr << e.what() << endl;
 	}
 }
@@ -137,7 +154,10 @@ bool FileAccessController::delete_file(const char* file_to_delete) const
 		int res = remove(file_to_delete);
 		return res;
 	}
-	catch (std::exception& e) {
+	catch (std::exception& e) 
+	{
+		this->logger->log("Error in deleting file");
+		this->logger->log(e.what());
 		cerr << e.what() << endl;
 	}
 }
@@ -165,7 +185,10 @@ ofstream* FileAccessController::copy_file(string file_name_to_include, string ou
 			outfile << buffer << endl;
 		}
 	}
-	catch (std::exception& e) {
+	catch (std::exception& e) 
+	{
+		this->logger->log("Error in copy file");
+		this->logger->log(e.what());
 		cerr << e.what() << endl;
 	}
 	infile.close();
@@ -174,6 +197,7 @@ ofstream* FileAccessController::copy_file(string file_name_to_include, string ou
 
 /*
 Method for opening .cp file.
+file_name - name of the file to open.
 Throws error if file of wrong extension.
 */
 ifstream* FileAccessController::open_file(string file_name) const
@@ -182,13 +206,15 @@ ifstream* FileAccessController::open_file(string file_name) const
 	{
 		try
 		{
-			cout << "File opened.";
 			ifstream out;
 			out.open(file_name);
+			cout << "File opened.";
 			return &out;
 		}
 		catch (const exception &e)
 		{
+			this->logger->log("Error in open file");
+			this->logger->log(e.what());
 			cerr << e.what() << endl;
 		}
 	}
@@ -210,6 +236,8 @@ void FileAccessController::close_file(ifstream& opened_file) const
 	}
 	catch (const exception &e)
 	{
+		this->logger->log("Error in closing file");
+		this->logger->log(e.what());
 		cerr << e.what() << endl;
 	}
 }

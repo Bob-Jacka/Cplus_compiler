@@ -5,7 +5,8 @@ This file represents virtual machine in c+ language.
 #include <Variables.hpp>
 #include <data/exceptions/VirtualMachineException.cpp>
 #include <mutex>
-#include <CollectorWithStop.cpp>
+#include "core/entities/VM/GarbageCollector/CollectorWithStop.cpp"
+#include "core/entities/Logger.hpp"
 
 struct VM_settings
 {
@@ -14,8 +15,18 @@ struct VM_settings
     long mem_allocate = 0;
     long long vm_memory;
 
+    void VM_settings::generate_vm_name();
+    int VM_settings::operator=(const VM_settings& other_settings);
     IGarbageCollector* garbageCollector;
 };
+
+/*
+Generates name of the virtual machine
+*/
+void VM_settings::generate_vm_name()
+{
+    this->name = "VM" + rand();
+}
 
 int VM_settings::operator=(const VM_settings& other_settings) {
     //
@@ -24,7 +35,7 @@ int VM_settings::operator=(const VM_settings& other_settings) {
 /*
 Registers of the virtual machine.
 */
-static struct VM_registers {
+struct VM_registers {
     string register_1 = "VM001";
     string register_2 = "VM002";
     string register_3 = "VM003";
@@ -88,21 +99,22 @@ private:
     static std::mutex mutex_;
     static VM_settings* vm_settings;
 
+    Logger* logger;
+
     bool vm_running = false;
 
+    VirtualMachine(VM_settings*);
     void proceed_line();
-    void __generate_vm_name();
-    void __create_threads();
-    void __main_cycle();
+    void __create_threads(); //method for creating threads in virtual machine
+    void main_cycle();
 
-protected:
-    VirtualMachine(VM_settings settings) {};
+    VirtualMachine(VM_settings* settings);
 
 public:
     ~VirtualMachine();
     VirtualMachine(VirtualMachine &other) = delete;
     
-    static VirtualMachine *GetInstance(VM_settings settings);
+    static VirtualMachine *GetInstance(VM_settings* settings);
     static VM_settings* get_machine_settings();
     void start_vm();
     void shutdown_vm();
@@ -118,18 +130,28 @@ public:
 VirtualMachine *VirtualMachine::pinstance_{nullptr};
 std::mutex VirtualMachine::mutex_;
 
+//Constructor and destructor
+VirtualMachine::VirtualMachine(VM_settings* settings) {
+    this->vm_settings = settings;
+    this->logger = new Logger();
+    if (settings->is_multi_thread) {
+        this->__create_threads();
+    }
+}
+
 VirtualMachine::~VirtualMachine()
 {
     delete& vm_settings;
     delete& mutex_;
+    delete& logger;
 }
 
-VirtualMachine *VirtualMachine::GetInstance(VM_settings settings)
+VirtualMachine *VirtualMachine::GetInstance(VM_settings* settings)
 {
     std::lock_guard<std::mutex> lock(mutex_);
     if (pinstance_ == nullptr)
     {
-        vm_settings = new VM_settings();
+        vm_settings = settings;
         pinstance_ = new VirtualMachine(settings);
     }
     return pinstance_;
@@ -140,19 +162,46 @@ VM_settings* VirtualMachine::get_machine_settings()
     return vm_settings;
 }
 
+/*
+Method for starting virtual machine entity
+*/
 void VirtualMachine::start_vm()
 {
-    vm_running = true;
+    try {
+        vm_running = true;
+    }
+    catch(const exception& e) {
+        this->logger->log("Error occurred in starting virtual machine");
+        this->logger->log(e.what());
+        cerr << e.what() << endl;
+    }
 }
 
+/*
+Method for shutdown virtual machine entity
+*/
 void VirtualMachine::shutdown_vm()
 {
-    vm_running = false;
+    try {
+     vm_running = false;   
+    }
+    catch(const exception& e) {
+        this->logger->log("Error occurred in virtual machine shutdown");
+        this->logger->log(e.what());
+        cerr << e.what() << endl;
+    }
 }
 
 void VirtualMachine::assign_garbage_collector_strategy()
 {
-    //
+    try {
+
+    }
+    catch(const exception& e) {
+        this->logger->log("Error occurred in assign garbage collector");
+        this->logger->log(e.what());
+        cerr << e.what() << endl;
+    }
 }
 
 void VirtualMachine::proceed_line()
@@ -160,21 +209,23 @@ void VirtualMachine::proceed_line()
     //
 }
 
-void VirtualMachine::__generate_vm_name()
-{
-    VirtualMachine::vm_settings->name = "VM" + rand();
-}
-
 void VirtualMachine::__create_threads()
 {
-    //
+    try {
+
+    }
+    catch(const exception& e) {
+        this->logger->log("Error occurred in creating threads in virtual machine");
+        this->logger->log(e.what());
+        cerr << e.what() << endl;
+    }
 }
 
 /*
 Main cycle of the virtual machine execution.
 Runs program by vm operations.
 */
-void VirtualMachine::__main_cycle()
+void VirtualMachine::main_cycle()
 {
     { Load Arguments, 12 }
     { Setup, 12 }
@@ -194,55 +245,90 @@ void VirtualMachine::__main_cycle()
         switch (op)
         {
         case VM_instructions::OP_ADD:
-        { ADD, 6 }
-        break;
+            { 
+                ADD, 6 
+            }
+            break;
         case VM_instructions::OP_AND:
-        { AND, 7 }
-        break;
+            { 
+                AND, 7 
+            }
+            break;
         case VM_instructions::OP_NOT:
-        { NOT, 7 }
-        break;
+            { 
+                NOT, 7 
+            }
+            break;
         case VM_instructions::OP_BR:
-        { BR, 7 }
-        break;
+            { 
+                BR, 7 
+            }
+            break;
         case VM_instructions::OP_JMP:
-        { JMP, 7 }
-        break;
+            { 
+                JMP, 7 
+            }
+            break;
         case VM_instructions::OP_JSR:
-        { JSR, 7 }
-        break;
+            { 
+                JSR, 7 
+            }
+            break;
         case VM_instructions::OP_LD:
-        { LD, 7 }
-        break;
+            { 
+                LD, 7 
+            }
+            break;
         case VM_instructions::OP_LDI:
-        { LDI, 6 }
-        break;
+            { 
+                LDI, 6 
+            }
+            break;
         case VM_instructions::OP_LDR:
-        { LDR, 7 }
-        break;
+            { 
+                LDR, 7 
+            }
+            break;
         case VM_instructions::OP_LEA:
-        { LEA, 7 }
-        break;
+            { 
+                LEA, 7 
+                }
+            break;
         case VM_instructions::OP_ST:
-        { ST, 7 }
-        break;
+            { 
+                ST, 7 
+            }
+            break;
         case VM_instructions::OP_STI:
-        { STI, 7 }
-        break;
+            { 
+                STI, 7
+            }
+            break;
         case VM_instructions::OP_STR:
-        { STR, 7 }
-        break;
+            { 
+                STR, 7 
+            }
+            break;
         case VM_instructions::OP_TRAP:
-        { TRAP, 8 }
-        break;
+            { 
+                TRAP, 8 
+            }
+            break;
         case VM_instructions::OP_RES:
+        {
+
+        }
         case VM_instructions::OP_RTI:
-        default:
-        { BAD OPCODE, 7 }
-        break;
+        {
+
+        }
+        default: 
+            { 
+                BAD OPCODE, 7 
+            }
+            break;
         }
     }
-    shutdown_vm();
 }
 
 /*

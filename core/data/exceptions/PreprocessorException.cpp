@@ -3,10 +3,12 @@
 class PreprocessorException : BaseException {
 
 public:
-void WrongDirective();
+    static int wrongDirective(); //if directive is not defined by compiler
+    static int wrongDirectiveLine();
 };
 
-void PreprocessorException::WrongDirective()
+int PreprocessorException::wrongDirective()
 {
     std::cerr << "Wrong preprocessor directive found";
+    return 0;
 }

@@ -22,12 +22,14 @@ public:
 Binary_generator *Binary_generator::pinstance_{nullptr};
 std::mutex Binary_generator::mutex_;
 
+#define OBJECT_FILE_NAME "object"
+
 /**
  * Main entry point of the Binary generator entity
  */
 void Binary_generator::generate_binary()
 {
-    //
+    controllers->getFileController()->create_object_file(OBJECT_FILE_NAME);
 }
 
 Binary_generator *Binary_generator::GetInstance()

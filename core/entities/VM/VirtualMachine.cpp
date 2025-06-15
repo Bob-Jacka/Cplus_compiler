@@ -12,20 +12,20 @@ struct VM_settings
 {
     string name = "";
     bool is_multi_thread = false;
-    long mem_allocate = 0;
     long long vm_memory;
 
-    void VM_settings::generate_vm_name();
+    IGarbageCollector* garbage_collector;
+
+    static std::string VM_settings::generate_vm_name();
     int VM_settings::operator=(const VM_settings& other_settings);
-    IGarbageCollector* garbageCollector;
 };
 
 /*
 Generates name of the virtual machine
 */
-void VM_settings::generate_vm_name()
+std::string VM_settings::generate_vm_name()
 {
-    this->name = "VM" + rand();
+    return "VM" + rand();
 }
 
 int VM_settings::operator=(const VM_settings& other_settings) {

@@ -14,9 +14,10 @@ private:
     void __updateUI() const;
 
     VirtualMachineConsole();
-    ~VirtualMachineConsole();
+    
 
 public:
+    ~VirtualMachineConsole();
     VirtualMachineConsole(VirtualMachineConsole &other) = delete;
     void operator=(const VirtualMachineConsole &) = delete;
     static VirtualMachineConsole *GetInstance();

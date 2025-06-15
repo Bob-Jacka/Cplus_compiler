@@ -76,6 +76,7 @@ ifstream FileAccessController::create_tmp_file(const string file_name)
 	try
 	{
 		cout << "Temporary file created.";
+		this->logger->log("Temporary file created.");
 		ifstream input(file_name);
 		return input;
 	}
@@ -95,6 +96,7 @@ ifstream FileAccessController::create_object_file(const string file_name)
 	try
 	{
 		cout << "Object file created.";
+		this->logger->log("Object file created.");
 		ifstream input(file_name + OBJECT_EXT);
 		return input;
 	}
@@ -111,6 +113,7 @@ ifstream FileAccessController::create_assembly_file(const string file_name)
 	try
 	{
 		cout << "Assembly file created.";
+		this->logger->log("Assembly file created.");
 		ifstream input(file_name + ASSEMBLY_EXT);
 		return input;
 	}

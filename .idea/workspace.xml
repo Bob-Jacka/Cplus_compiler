@@ -10,35 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3a672ed4-28c4-49d5-bb28-be2aa64b4bf8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/query/client-vscode/query.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/cache-v2-95beffc35362f3cb6289.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/cmakeFiles-v1-9584cf45b7bb080a3366.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/codemodel-v2-97f9512d95665a6d7e38.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/directory-.-Debug-f5ebdc15457944623624.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/index-2025-02-09T13-43-47-0751.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/index-2025-03-09T14-29-52-0658.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/target-Test_runner-Debug-83ef66551feacfa53727.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/.cmake/api/v1/reply/toolchains-v1-ae0dcfe439ae603ba4f8.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.31.3/CMakeCXXCompiler.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.31.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.31.3/CMakeSystem.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.31.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/3.31.3/CompilerIdCXX/a.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/cmake.check_cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeFiles/rules.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/build.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/compile_commands.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/data/Global_data.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/data/Main_types.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/Main_types.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/data/exceptions/CompilerModeException.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/exceptions/CompilerModeException.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/VM/GarbageCollector/CollectorWithStop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/VM/GarbageCollector/CollectorWithStop.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/VM/GarbageCollector/IGarbageCollector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/VM/GarbageCollector/IGarbageCollector.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/VM/GarbageCollector/ParallelCollector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/VM/GarbageCollector/ParallelCollector.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/entities/VM/VirtualMachine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/VM/VirtualMachine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/entities/compile_entities/Assembly_generator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/compile_entities/Assembly_generator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/VM/VirtualMachineConsole.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/VM/VirtualMachineConsole.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/entities/compile_entities/Binary_generator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/compile_entities/Binary_generator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/entities/compile_entities/Lexer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/compile_entities/Lexer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/entities/compile_entities/Parser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/compile_entities/Parser.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/entities/compile_entities/Linker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/entities/compile_entities/Linker.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/functional/FileAccessController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/functional/FileAccessController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/functional/strategies/CompileStrategy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/functional/strategies/CompileStrategy.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/functional/strategies/Strategy_context.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/functional/strategies/Strategy_context.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/functional/strategies/VMStrategy.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/core/functional/strategies/VMStrategy.cpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,6 +40,7 @@
   </component>
   <component name="ProjectId" id="2xoR0VUDGtu7qIViTNRWCG7x0yY" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -81,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748602216922</updated>
       <workItem from="1748602218240" duration="17000" />
+      <workItem from="1749909830711" duration="49000" />
     </task>
     <servers />
   </component>
@@ -92,7 +79,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

@@ -7,10 +7,10 @@ Strategy that runs program one line by one.
 */
 class VMStrategy : Strategy
 {
-public:
-    VMStrategy() {}
-    ~VMStrategy() {}
-    void doAlgorithm(string file_name);
+    public:
+        VMStrategy() {}
+        ~VMStrategy() {}
+        void doAlgorithm(string file_name);
 };
 
 /*
@@ -20,20 +20,18 @@ void VMStrategy::doAlgorithm(string file_name)
 {
     VM_settings *p_settings;
     VirtualMachine* p_vm_instance;
-    GarbageCollector* p_g_collector;
     VirtualMachineConsole* p_console;
 
     //Virtual machine strategy set up.
     {
-        p_settings = {
-        .name = VM_settings::generate_vm_name(),
-        .is_multi_thread = false,
-        .vm_memory = 1000000,
-        .garbageCollector = CollectorWithStop(),
-        }
+        *p_settings = VM_settings {
+            .name = VM_settings::generate_vm_name(),
+            .is_multi_thread = false,
+            .vm_memory = 1000000,
+            .garbage_collector = CollectorWithStop::GetInstance(),
+        };
         
         p_vm_instance = VirtualMachine::GetInstance(p_settings);
-        p_g_collector = GarbageCollectro::GetInstance();
         p_console = VirtualMachineConsole::GetInstance();
     }
     
@@ -48,7 +46,6 @@ void VMStrategy::doAlgorithm(string file_name)
     //End of the virtual machine strategy
     {
         delete p_vm_instance;
-        delete p_g_collector;
         delete p_console;
         delete p_settings;
     }

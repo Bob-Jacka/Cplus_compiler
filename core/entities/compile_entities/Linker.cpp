@@ -6,7 +6,6 @@ This class needs for linkega stage.
 #include <mutex>
 #include <data/Variables.hpp>
 #include <functional/FileAccessController.cpp>
-#include <Global_data.hpp>
 #include <CplusModel.hpp>
 
 class Linker

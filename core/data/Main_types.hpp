@@ -29,6 +29,9 @@ public:
 	FileAccessController* getFileController() const;
 	MemoryController* getMemoryController() const;
 
+	~Controllers() = default;
+	Controllers() = default;
+
 	void init_controllers()
 	{
 		try {
@@ -98,6 +101,9 @@ public:
 	Binary_generator* Compiler_entities::getBinaryGenerator() const;
 	Strategy_context* getStrategyContext() const;
 
+	Compiler_entities() = default;
+	~Compiler_entities() = default;
+
 	void init_entities()
 	{
 		try {
@@ -108,7 +114,7 @@ public:
 			this->asm_gen = Assembly_generator::GetInstance();
 			this->bin_gen = Binary_generator::GetInstance();
 
-			this->s_context = new Strategy_context();
+			this->s_context = new Strategy_context(nullptr);
 		}
 		catch (std::exception& e) {
 			colored_txt_output("Error in initializing global compiler entities.", Color::red);

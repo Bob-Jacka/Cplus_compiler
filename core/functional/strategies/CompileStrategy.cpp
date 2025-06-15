@@ -1,5 +1,4 @@
 #include "core/functional/strategies/IStrategy.cpp"
-#include "core/data/Global_data.hpp"
 #include "core/data/Main_types.hpp"
 #include "core/data/exceptions/CompilerModeException.cpp"
 #include <fstream>
@@ -14,8 +13,17 @@ public:
     CompileStrategy() {};
     ~CompileStrategy() {};
     void doAlgorithm(string file_name) const;
+
 private:
-    //
+    Load_compiler_parameter* load_parameter = new Load_compiler_parameter{}; //Global instance of load parameters.
+    Compiler_params* compile_params = new Compiler_params(); //Global instance of compiler params.
+
+    Compiler_entities* program_entites = new Compiler_entities(); //Programm entities for actions.
+    Controllers* controllers = new Controllers(); //Global instance of controllers entities.
+
+    Logger* logger = new Logger(); //Global instance of logger in cp compiler
+
+    string TMP_FILE_NAME = "prog_tmp"; //tmp file for temporary information.
 };
 
 /*
@@ -25,12 +33,13 @@ Params - program entry point name;
 void CompileStrategy::doAlgorithm(string file_name) const
 {
     //Compiler strategy entities.
-    Linker* linker;
-    Preprocessor* preprocessor;
-    Lexer* lexer;
-    Parser* parser;
-    Assembly_generator* asm_gen;
-    Binary_generator* bin_generator;
+    unique_ptr<Linker> linker;
+    unique_ptr<Preprocessor> preprocessor;
+    unique_ptr<Lexer> lexer;
+    unique_ptr<Parser> parser;
+    unique_ptr<Assembly_generator> asm_gen;
+    unique_ptr<Binary_generator> bin_generator;
+    
     std::ifstream entry_file; // main entry point of the program on C+ language.
     std::ifstream program_file; // main entry point of the program on C+ language.
 
@@ -49,11 +58,9 @@ void CompileStrategy::doAlgorithm(string file_name) const
         bin_generator = program_entites->getBinaryGenerator();
     }
 
-    #define TMP_FILE_NAME "prog_tmp" //tmp file for temporary information.
-
     //Algorithm flow
     /*
-        file_name -> entry_file -> program_file
+       file_name -> entry_file -> program_file
     */
     
     if (file_name == MAIN_FILE_NAME) {
@@ -62,21 +69,34 @@ void CompileStrategy::doAlgorithm(string file_name) const
     else {
         throw CompilerModeException::mainNotFound();
     }
-    
-    program_file = controllers->getFileController()->create_tmp_file(TMP_FILE_NAME); //create tmp file
-    controllers->getFileController()->copy_file(file_name, TMP_FILE_NAME); //copy all lines into tmp file from main file of the cp program
 
-    linker->link_import_directives(program_file); //copy all include directives into tmp file.
+    try
+    {
+        program_file = controllers->getFileController()->create_tmp_file(TMP_FILE_NAME); //create tmp file
 
-    preprocessor->preprocess(); //include all directives, ex. import directive
+        controllers->getFileController()->copy_file(file_name, TMP_FILE_NAME); //copy all lines into tmp file from main file of the cp program
 
-    auto tokens = lexer->tokenize(); //lex analyze of the program text and tokenize
+        linker->link_import_directives(program_file); //copy all include directives into tmp file.
 
-    auto parsed_tokens = parser->parse_tokens(tokens); //parse lexemes and build tree
+        logger->log("Directives imported");
 
-    asm_gen->generate_asm(parsed_tokens);  //generation of the assembly representation.
+        preprocessor->preprocess(); //include all directives, ex. import define
 
-    bin_generator->generate_binary(); //generation of the binary representation.
+        logger->log("Preprocessor finished work");
+
+        auto tokens = lexer->tokenize(); //lex analyze of the program text and tokenize
+
+        logger->log("Tokenizer finished work");
+
+        auto parsed_tokens = parser->parse_tokens(tokens); //parse lexemes and build tree
+
+        asm_gen->generate_asm(parsed_tokens);  //generation of the assembly representation.
+
+        bin_generator->generate_binary(); //generation of the binary representation.
+    }
+    catch(exception& e) {
+        throw CompileModeException::errorInCompileStrategy();
+    }
 
     //Compiler teardown block.
     {

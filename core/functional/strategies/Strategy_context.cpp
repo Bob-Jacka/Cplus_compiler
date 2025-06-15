@@ -8,6 +8,7 @@ class Strategy_context
 {
 private:
     unique_ptr<Strategy> strategy_;
+    
 public:
     Strategy_context() {};
     ~Strategy_context() {};

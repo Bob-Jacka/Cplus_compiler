@@ -1,0 +1,8 @@
+.vs
+.vscode
+.idea
+
+cmake-build-debug
+build
+CPP.HINT
+CppProperties.json

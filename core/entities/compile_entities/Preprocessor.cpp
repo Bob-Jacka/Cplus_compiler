@@ -2,30 +2,31 @@
 This class used for preprocessing file with code.
 */
 
-#include <data/exceptions/PreprocessorException.cpp>
-#include <data/Variables.hpp>
 #include <mutex>
+#include "core/data/Variables.hpp"
+#include "core/data/exceptions/PreprocessorException.cpp"
 
-class Preprocessor
-{
-private:
-    string list_of_directives[5] = {"pragma", "define", "ifdef", "ifndef", "endif"};
+class Preprocessor {
+    string list_of_directives[] = {"pragma", "define", "ifdef", "ifndef", "endif"};
     static Preprocessor *pinstance_;
     static std::mutex mutex_;
-    Preprocessor() {};
 
-    void __scan_file_for_directives(std::ifstream file) const;
-    void distribute() const; //function for distibute.
+    Preprocessor() = default;
+
+    void _scan_file_for_directives(std::ifstream file) const;
+
+    void distribute() const; //function for distribute.
 
 public:
     ~Preprocessor();
+
     Preprocessor(Preprocessor &other) = delete;
 
     void operator=(const Preprocessor &) = delete;
 
     static Preprocessor *GetInstance();
 
-    void preprocess() const; //Main function of the Preprocessor entitie.
+    void preprocess() const; //Main function of the Preprocessor entities.
 };
 
 /**
@@ -36,32 +37,26 @@ Preprocessor *Preprocessor::pinstance_{nullptr};
 std::mutex Preprocessor::mutex_;
 
 /**
- * The first time we call GetInstance we will lock the storage location
- *      and then we make sure again that the variable is null and then we
+ * The first time we call GetInstance we will lock the storage location,
+ *      and then we make sure again that the variable is null, and then we
  *      set the value. RU:
  */
-Preprocessor *Preprocessor::GetInstance()
-{
+Preprocessor *Preprocessor::GetInstance() {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (pinstance_ == nullptr)
-    {
+    if (pinstance_ == nullptr) {
         pinstance_ = new Preprocessor();
     }
     return pinstance_;
 }
 
-Preprocessor::Preprocessor()
-{
-    //
+Preprocessor::~Preprocessor() {
+    delete&mutex_;
+    delete&pinstance_;
+    delete[] pinstance_;
+    delete[] list_of_directives;
 }
 
-Preprocessor::~Preprocessor()
-{
-    delete& mutex_;
-}
-
-void Preprocessor::__scan_file_for_directives(std::ifstream file) const
-{
+void Preprocessor::_scan_file_for_directives(std::ifstream file) const {
     //for (string line : file) {
     //    if (starts_with_directive(line)) {
     //        distribute(line);
@@ -69,15 +64,13 @@ void Preprocessor::__scan_file_for_directives(std::ifstream file) const
     //}
 }
 
-void Preprocessor::distribute() const
-{
+void Preprocessor::distribute() const {
     //
 }
 
 /*
-Main function of the preprocessor entitie. Makes preprocess action.
+Main function of the preprocessor entities. Makes preprocess action.
 */
-void Preprocessor::preprocess() const
-{
-    
+void Preprocessor::preprocess() const {
+    throw PreprocessorException();
 }

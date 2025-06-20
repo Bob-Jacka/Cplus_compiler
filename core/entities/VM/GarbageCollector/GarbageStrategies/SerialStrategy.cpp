@@ -1,12 +1,13 @@
-#include <ICollector.cpp>
+#include "ICollector.cpp"
 
-class SerialStrategy : CollectorStrategy
-{
+class SerialStrategy final : CollectorStrategy {
 public:
-	SerialStrategy() {};
+    SerialStrategy() {
+    }
 
-	~SerialStrategy() {};
+    ~SerialStrategy() override {
+    }
 
 private:
-	//
+    //
 };

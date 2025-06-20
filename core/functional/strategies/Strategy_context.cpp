@@ -1,33 +1,44 @@
-#include "IStrategy.cpp"
+#include "IStrategies.cpp"
 #include <memory>
-#include <string>
 
+class Logger;
 using namespace std;
 
-class Strategy_context
-{
-private:
-    unique_ptr<Strategy> strategy_;
-    
+class Strategy_context {
+    unique_ptr<IStrategy> strategy_;
+
 public:
-    Strategy_context() {};
-    ~Strategy_context() {};
+    Strategy_context() = default;
 
-    Strategy_context(unique_ptr<Strategy>&& strategy = {}) : strategy_(std::move(strategy)) {};
+    ~Strategy_context() = default;
 
-    void set_strategy(unique_ptr<Strategy> &&strategy);
-    void doLogic(string entry_point_name) const;
-    };
+    explicit Strategy_context(unique_ptr<IStrategy> &&strategy = {}) : strategy_(std::move(strategy)) {
+    }
 
-void Strategy_context::set_strategy(unique_ptr<Strategy> &&strategy)
-{
+    void set_strategy(unique_ptr<IStrategy> &&strategy);
+
+    void doLogic(const string &entry_point_name,
+                 Controllers *controllers,
+                 Compiler_entities *compiler_entities,
+                 Logger *logger) const;
+};
+
+void Strategy_context::set_strategy(unique_ptr<IStrategy> &&strategy) {
     this->strategy_ = move(strategy);
 }
 
-void Strategy_context::doLogic(string entry_point_name) const
-{
+/*
+ *Function for do logic with given strategy in strategy_ param.
+ */
+void Strategy_context::doLogic(const string &entry_point_name,
+                               Controllers *controllers,
+                               Compiler_entities *compiler_entities,
+                               Logger *logger) const {
     if (strategy_) {
-        strategy_->doAlgorithm(entry_point_name);
+        strategy_->doAlgorithm(entry_point_name,
+                               controllers,
+                               compiler_entities,
+                               logger);
     } else {
         cout << "Context: Strategy isn't set\n";
     }

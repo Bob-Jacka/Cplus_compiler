@@ -1,22 +1,24 @@
 ﻿#include <mutex>
 
 class Analyzer {
-
-private:
-    static Analyzer* pinstance_;
+    static Analyzer *pinstance_;
     static std::mutex mutex_;
-    Analyzer() {};
+
+    Analyzer() = default;
 
 public:
-    Analyzer(Analyzer* another_obj) = delete;
+    explicit Analyzer(Analyzer *another_obj) = delete;
 
-    void operator=(const Analyzer&) = delete;
+    void operator=(const Analyzer &) = delete;
 
-    static Analyzer* GetInstance();
-    ~Analyzer() {}
+    static Analyzer *GetInstance();
+
+    ~Analyzer() {
+        delete pinstance_;
+    }
 };
 
-Analyzer* Analyzer::pinstance_{ nullptr };
+Analyzer *Analyzer::pinstance_{nullptr};
 std::mutex Analyzer::mutex_;
 
 /**
@@ -24,11 +26,9 @@ std::mutex Analyzer::mutex_;
  *      and then we make sure again that the variable is null and then we
  *      set the value. RU:
  */
-Analyzer* Analyzer::GetInstance()
-{
+Analyzer *Analyzer::GetInstance() {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (pinstance_ == nullptr)
-    {
+    if (pinstance_ == nullptr) {
         pinstance_ = new Analyzer();
     }
     return pinstance_;

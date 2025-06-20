@@ -7,7 +7,7 @@
 
 //operators
 #define IMPORT "#include"
-#define DEFINE "#define" // directive for defining some macroses
+#define DEFINE "#define" // directive for defining some macros
 
 //Branching operators
 #define IF "if"

@@ -1,11 +1,10 @@
-#include <BaseTest.hpp>
-#include <static/UtilFuncs.hpp>
+#include "BaseTest.hpp"
 
-class NegativeTests : BaseTest
-{
-private:
-    //
-public:
-    NegativeTests() {};
-    ~NegativeTests() {};
-};
+const FileAccessController *fileAccessController = FileAccessController::GetInstance();
+const MemoryController *memoryController = MemoryController::GetInstance();
+
+using namespace utility;
+
+TEST_CASE("should not contain int in another string", "[contains]") {
+    REQUIRE(utility::contains(utility::contains(1, "gtbvt")));
+}

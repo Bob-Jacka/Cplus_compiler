@@ -1,6 +1,0 @@
-/home/kirill/Downloads/clion/CLion-2019.2/clion-2019.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/gcc -G "CodeBlocks - Unix Makefiles" /home/kirill/Downloads/Cplus_compiler
-CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
-  CMake 3.28 or higher is required.  You are running version 3.14.5
-
-
--- Configuring incomplete, errors occurred!

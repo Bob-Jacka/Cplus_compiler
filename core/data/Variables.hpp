@@ -4,7 +4,6 @@
 #define VARIABLES .HPP
 
 #include <string>
-#include <fstream>
 
 //Some user defined types.
 
@@ -14,7 +13,7 @@ typedef std::ostream out_file;
 typedef std::string string;
 typedef const std::string const_string;
 
-typedef char* c_string;
-typedef const char* cconst_string;
+typedef char *c_string;
+typedef const char *cconst_string;
 
 #endif VARIABLES.HPP

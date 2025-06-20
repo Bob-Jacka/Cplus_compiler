@@ -4,33 +4,32 @@
 #define BASE_EXCEPTION .HPP
 
 #include <exception>
-#include <Variables.hpp>
+#include "Variables.hpp"
+#include <utility>
 #include <iostream>
 
-class BaseException : std::exception
-{
-public:
-    BaseException() {};
-    virtual ~BaseException() {};
-
-private:
-    string message;
+class BaseException : std::exception {
+protected:
+    string exc_message;
     string calling_class;
 
 public:
+    BaseException() = default;
 
-    BaseException(const string &msg, const string &call_class) : message(msg), calling_class(call_class) {}
+    ~BaseException() override = default;
+
+    BaseException(string msg, string call_class) : exc_message(std::move(msg)), calling_class(std::move(call_class)) {
+    }
 
     /*
        Base method for receiving message about error.
     */
-    string message() const noexcept
-    {
-        return message.c_str();
+    [[nodiscard]] string message() const noexcept {
+        return exc_message;
     }
 
     /*
-        Method for getting calling class of exeption.
+        Method for getting calling class of exception.
     */
     string get_calling_class() {
         return calling_class;

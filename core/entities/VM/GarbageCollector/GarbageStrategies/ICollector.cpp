@@ -1,11 +1,13 @@
-#include <Variables.hpp>
+#include "core/data/Variables.hpp"
 
-class CollectorStrategy
-{
+class CollectorStrategy {
 public:
-	virtual ~CollectorStrategy() = default;
-	virtual void doAlgorithm(string entry_point_name) const = 0;
+    virtual ~CollectorStrategy() = default;
 
-private:
-	//
+    CollectorStrategy() = default;
+
+    virtual void doAlgorithm(string entry_point_name) const = 0;
+
+public:
+    //
 };

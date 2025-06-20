@@ -1,28 +1,30 @@
+#pragma once
 //Test dependencies
-#include <data/dependencies/catch_amalgamated.hpp>
+
 #include <iostream>
+#include "../data/dependencies/catch_amalgamated.hpp"
 
 //Static dependencies
-#include <static/UtilFuncs.hpp>
-#include <functional/FileAccessController.cpp>
-#include <functional/MemoryController.cpp>
+#include "../functional/FileAccessController.cpp"
+#include "../functional/MemoryController.cpp"
+#include "../../static/UtilFuncs.hpp"
 
 //Compiler entities to test
-#include <entities/Assembly_generator.cpp>
-#include <entities/Binary_generator.cpp>
-#include <entities/Lexer.cpp>
-#include <entities/Linker.cpp>
-#include <entities/Preprocessor.cpp>
+#include "../entities/compile_entities/Assembly_generator.cpp"
+#include "../entities/compile_entities/Binary_generator.cpp"
+#include "../entities/compile_entities/Lexer.cpp"
+#include "../entities/compile_entities/Linker.cpp"
+#include "../entities/compile_entities/Preprocessor.cpp"
 
 /*
-Base class of the tests.
+Base class of the unit tests.
+Encapsulate all dependencies
 */
-class BaseTest
-{
+class BaseTest {
 public:
-	BaseTest() {};
-	virtual ~BaseTest() {};
+    BaseTest() {
+    }
 
-private:
-	//
+    virtual ~BaseTest() {
+    }
 };

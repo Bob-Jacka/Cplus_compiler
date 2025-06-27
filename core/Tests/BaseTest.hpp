@@ -18,13 +18,6 @@
 
 /*
 Base class of the unit tests.
-Encapsulate all dependencies
+Encapsulate all dependencies, so you not need to include all the dependencies
 */
-class BaseTest {
-public:
-    BaseTest() {
-    }
-
-    virtual ~BaseTest() {
-    }
-};
+inline class BaseTest final;

@@ -1,11 +1,13 @@
 #pragma once
 
-#ifndef UTILFUNCS.HPP
-#define UTILFUNCS .HPP
+#ifndef UTILFUNCS_HPP
+#define UTILFUNCS_HPP
 
 #include "core/data/Variables.hpp"
 #include "core/data/dependencies/termcolor.hpp"
 #include <regex>
+
+using cstr = const string;
 
 namespace utility {
     enum class Color {
@@ -16,6 +18,16 @@ namespace utility {
     };
 
     using namespace std;
+
+    template<typename T>
+    void println(const T &value) {
+        cout << value << "\n";
+    }
+
+    template<typename T>
+    void print(const T &value, string separator = " ") {
+        cout << value << separator;
+    }
 
     [[maybe_unused]] inline bool contains(const string &source, const string &string_if_contains) {
         return source.find(string_if_contains);
@@ -93,7 +105,7 @@ namespace utility {
     Function for replacing symbol c1 with c2.
     Returns string value with replacing symbols.
     */
-    [[maybe_unused]] static string replace(const_string &s, const char c1, const char c2) {
+    [[maybe_unused]] static string replace(string &s, const char c1, const char c2) {
         const int l = s.length();
         for (int i = 0; i < l; i++) {
             if (s[i] == c1)
@@ -167,14 +179,6 @@ namespace utility {
         }
         return s;
     }
-
-    /*
-    Function for checking if elem in 
-    */
-    template<typename elem>
-    [[maybe_unused]] bool elem_in() {
-        return false;
-    }
 }
 
-#endif UTILFUNCS.HPP
+#endif UTILFUNCS_HPP

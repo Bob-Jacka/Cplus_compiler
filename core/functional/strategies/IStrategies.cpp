@@ -1,5 +1,3 @@
-#include "core/data/Main_types.hpp"
-
 struct Compiler_entities;
 struct Controllers;
 
@@ -14,7 +12,7 @@ public:
                              Controllers *controllers,
                              Compiler_entities *compiler_entities,
                              Logger *logger
-    ) const;
+    ) const = 0;
 
     IStrategy(const IStrategy &) = delete;
 

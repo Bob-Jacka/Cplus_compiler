@@ -1,10 +1,10 @@
 #pragma once
 
-#ifndef BASE_EXCEPTION.HPP
-#define BASE_EXCEPTION .HPP
+#ifndef BASE_EXCEPTION_HPP
+#define BASE_EXCEPTION_HPP
 
 #include <exception>
-#include "Variables.hpp"
+#include "../Variables.hpp"
 #include <utility>
 #include <iostream>
 
@@ -36,4 +36,4 @@ public:
     }
 };
 
-#endif BASE_EXCEPTION.HPP
+#endif BASE_EXCEPTION_HPP

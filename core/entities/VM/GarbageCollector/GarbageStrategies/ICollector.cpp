@@ -8,6 +8,4 @@ public:
 
     virtual void doAlgorithm(string entry_point_name) const = 0;
 
-public:
-    //
 };

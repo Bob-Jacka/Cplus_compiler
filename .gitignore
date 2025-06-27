@@ -3,6 +3,11 @@
 .idea
 
 cmake-build-debug
-build
+cmake-build-release
+cmake-build-relwithdebinfo
+cmake-build-default
+cmake-build-minsizerel
+build/
 CPP.HINT
 CppProperties.json
+/build/

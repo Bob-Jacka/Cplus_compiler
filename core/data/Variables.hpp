@@ -1,19 +1,13 @@
 #pragma once
 
-#ifndef VARIABLES.HPP
-#define VARIABLES .HPP
-
 #include <string>
 
 //Some user defined types.
 
-typedef std::ifstream file;
-typedef std::ostream out_file;
+using file = std::ifstream;
+using out_file = std::ofstream;
+using string = std::string;
+using const_string = const std::string;
 
-typedef std::string string;
-typedef const std::string const_string;
-
-typedef char *c_string;
-typedef const char *cconst_string;
-
-#endif VARIABLES.HPP
+using c_string = char *;
+using cconst_string = const char *;

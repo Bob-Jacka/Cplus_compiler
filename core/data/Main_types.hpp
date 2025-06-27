@@ -1,18 +1,12 @@
 #pragma once
 
-#ifndef MAIN_TYPES.HPP
-#define MAIN_TYPES.HPP
-
 // Controllers dependencies.
-#include "core/functional/FileAccessController.cpp"
 #include "core/functional/MemoryController.cpp"
 
 //Strategies
 #include "core/functional/strategies/Strategy_context.cpp"
 
 //Include compiler entities.
-#include <exception>
-
 #include "core/entities/compile_entities/Lexer.cpp"
 #include "core/entities/compile_entities/Linker.cpp"
 #include "core/entities/compile_entities/Preprocessor.cpp"
@@ -27,9 +21,15 @@ private:
     MemoryController *mem_controller;
 
 public:
-    ~Controllers() = default;
+    Controllers::Controllers() {
+        file_controller = nullptr;
+        mem_controller = nullptr;
+    }
 
-    Controllers() = default;
+    Controllers::~Controllers() {
+        delete file_controller;
+        delete mem_controller;
+    }
 
     void init_controllers() {
         try {
@@ -99,7 +99,7 @@ public:
             this->s_context = new Strategy_context;
         } catch (std::exception &e) {
             colored_txt_output("Error in initializing global compiler entities.", Color::red);
-            throw e.what();
+            throw e;
         }
     };
 
@@ -241,8 +241,6 @@ struct Load_compiler_parameter {
         this->is_ai = false;
         this->is_assembler = false;
         this->is_binary = false;
-        this->compiler_mode = Compile_mode::DEBUG;
+        this->compiler_mode = DEBUG;
     }
 };
-
-#endif MAIN_TYPES.HPP

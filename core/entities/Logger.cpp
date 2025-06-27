@@ -11,6 +11,6 @@ void Logger::create_logger_name() {
 
 template<typename T>
 void Logger::log(T val) {
-    auto time = std::chrono::system_clock::now();
-    std::cout << time + val << std::endl;
+    const auto time = std::chrono::system_clock::now();
+    std::cout << time.time_since_epoch() << val << std::endl;
 }

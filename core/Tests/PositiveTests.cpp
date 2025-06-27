@@ -1,5 +1,3 @@
-#include <fstream>
-
 #include "BaseTest.hpp"
 
 const static FileAccessController *fileAccessController = FileAccessController::GetInstance();

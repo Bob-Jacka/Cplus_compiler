@@ -2,11 +2,10 @@
 #include <string>
 #include <iostream>
 
-
 /*
 Class for logging info and warns and critical errors
 */
-class Logger {
+class Logger final {
     std::string logger_name;
     std::ifstream *log_file;
 

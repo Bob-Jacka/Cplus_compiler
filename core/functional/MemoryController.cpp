@@ -6,10 +6,9 @@
 Class, that used for memory actions.
 */
 class MemoryController {
-private:
     static MemoryController *pinstance_;
     static std::mutex mutex_;
-    Logger *logger; //local instance of logger in file contoller.
+    Logger *logger; //local instance of logger in file controller.
 
     MemoryController();
 
@@ -22,9 +21,9 @@ public:
 
     static MemoryController *GetInstance();
 
-    int **create_2d_array(size_t a, size_t b);
+    [[nodiscard]] int **create_2d_array(size_t a, size_t b) const;
 
-    void MemoryController::kill_2d_array(int **m);
+    void MemoryController::kill_2d_array(int **m) const;
 };
 
 //Constructor and destructor
@@ -50,9 +49,9 @@ MemoryController *MemoryController::GetInstance() {
 /*
 Method for creating 2d array by effective way.
 */
-int **MemoryController::create_2d_array(size_t a, size_t b) {
+int **MemoryController::create_2d_array(const size_t a, const size_t b) const {
     try {
-        int **m = new int *[a];
+        const auto m = new int *[a];
         m[0] = new int[a * b];
         for (size_t i = 1; i != a; i++) {
             m[i] = m[i - 1] + b;
@@ -63,12 +62,13 @@ int **MemoryController::create_2d_array(size_t a, size_t b) {
         this->logger->log(e.what());
         cerr << e.what() << endl;
     }
+    return nullptr;
 }
 
 /*
 Method for deleting 2d array by given link.
 */
-void MemoryController::kill_2d_array(int **m) {
+void MemoryController::kill_2d_array(int **m) const {
     try {
         delete [] m[0];
         delete [] m;

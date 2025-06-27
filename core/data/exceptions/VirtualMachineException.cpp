@@ -11,6 +11,8 @@ public:
     static int failedToInstanceVM();
 
     static int failed_to_instance_AI(); //throws if AI cannot be instantiated
+
+    static int leak_of_memory();
 };
 
 int VirtualMachineException::vm_death() {
@@ -35,5 +37,10 @@ int VirtualMachineException::failedToInstanceVM() {
 
 int VirtualMachineException::failed_to_instance_AI() {
     std::cerr << "Error occurred in starting AI";
+    return 0;
+}
+
+int VirtualMachineException::leak_of_memory() {
+    std::cerr << "Virtual machine has leaked memory.";
     return 0;
 }

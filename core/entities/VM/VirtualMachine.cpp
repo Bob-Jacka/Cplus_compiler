@@ -12,7 +12,7 @@ struct VM_settings {
     string name = "";
     bool is_multi_thread = false;
     bool is_ai_enabled = false;
-    long long vm_memory;
+    long long vm_memory = 0;
 
     IGarbageCollector *VM_settings::garbage_collector;
 
@@ -33,8 +33,12 @@ std::string VM_settings::generate_vm_name() {
 }
 
 VM_settings &VM_settings::operator=(const VM_settings &other_settings) {
-    //
-    return;
+    return VM_settings {
+        name = other_settings.name,
+        is_multi_thread = other_settings.is_multi_thread,
+        is_ai_enabled = other_settings.is_ai_enabled,
+        vm_memory = other_settings.vm_memory,
+    };
 }
 
 /*
@@ -98,7 +102,6 @@ enum VM_instructions {
 Virtual Machine runs one line of code one by one.
 */
 class VirtualMachine {
-private:
     static VirtualMachine *pinstance_;
     static std::mutex mutex_;
     static VM_settings *vm_settings;
@@ -111,7 +114,7 @@ private:
 
     void proceed_line();
 
-    void _create_threads(); //method for creating threads in virtual machine
+    void _create_threads() const; //method for creating threads in virtual machine
     void main_cycle();
 
 public:
@@ -129,7 +132,7 @@ public:
 
     void shutdown_vm();
 
-    void assign_garbage_collector_strategy();
+    void assign_garbage_collector_strategy() const;
 
     [[nodiscard]] bool is_start_machine() const;
 
@@ -207,7 +210,7 @@ void VirtualMachine::shutdown_vm() {
     }
 }
 
-void VirtualMachine::assign_garbage_collector_strategy() {
+void VirtualMachine::assign_garbage_collector_strategy() const {
     try {
     } catch (const exception &e) {
         this->logger->log("Error occurred in assign garbage collector");
@@ -220,7 +223,7 @@ void VirtualMachine::proceed_line() {
     //
 }
 
-void VirtualMachine::_create_threads() {
+void VirtualMachine::_create_threads() const {
     try {
     } catch (const exception &e) {
         this->logger->log("Error occurred in creating threads in virtual machine");
@@ -328,23 +331,23 @@ void VirtualMachine::main_cycle() { {
 }
 
 /*
-Method for cheching if virtual machine switching on.
+Method for checking if virtual machine switching on.
 */
 bool VirtualMachine::is_start_machine() const {
     return this->vm_running;
 }
 
 /*
-Method for cheching if virtual machine switching off.
+Method for checking if virtual machine switching off.
 */
 bool VirtualMachine::is_exit_machine() const {
-    return !this->vm_running;
+    return !vm_running;
 }
 
 bool VirtualMachine::is_ai_enabled() const {
-    return this->vm_settings->is_ai_enabled();
+    return vm_settings->is_ai_enabled();
 }
 
 bool VirtualMachine::is_multithread() const {
-    return this->vm_settings->is_multi_thread;
+    return vm_settings->is_multi_thread;
 }

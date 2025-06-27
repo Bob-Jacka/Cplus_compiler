@@ -4,15 +4,12 @@ Will execute with program.
 */
 
 #include "IGarbageCollector.cpp"
-#include <mutex>
 
 class ParallelCollector final : IGarbageCollector {
-private:
     static ParallelCollector *pinstance_;
     static std::mutex mutex_;
 
-    ParallelCollector() {
-    };
+    ParallelCollector();
 
     void collectors_pass() const override;
 
@@ -32,12 +29,16 @@ ParallelCollector *ParallelCollector::pinstance_{nullptr};
 std::mutex ParallelCollector::mutex_;
 
 //Constructor and destructor
+ParallelCollector::ParallelCollector() {
+    //
+}
+
 ParallelCollector::~ParallelCollector() {
     //
 }
 
 ParallelCollector *ParallelCollector::GetInstance() {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::lock_guard lock(mutex_);
     if (pinstance_ == nullptr) {
         pinstance_ = new ParallelCollector();
     }

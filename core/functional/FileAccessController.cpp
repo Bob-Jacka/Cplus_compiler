@@ -1,12 +1,13 @@
+#include <fstream>
 #include <mutex>
 #include "core/data/Variables.hpp"
 #include "core/entities/Logger.hpp"
 #include "static/UtilFuncs.hpp"
 #include "core/data/exceptions/FileAccessControllerException.cpp"
 
-#define CPLUS_EXT ".cp"
-#define ASSEMBLY_EXT ".asm"
-#define OBJECT_EXT ".o"
+constexpr string CPLUS_EXT = ".cp";
+constexpr string ASSEMBLY_EXT = ".asm";
+constexpr string OBJECT_EXT = ".o";
 
 #define TMP_FILE "tmp.txt"
 
@@ -20,7 +21,7 @@ class FileAccessController {
     static mutex mutex_;
     Logger *logger = nullptr; //local instance of logger in file controller.
 
-    void __write_to_file__(const string &file_name) const;
+    void _write_to_file(cstr &) const;
 
     FileAccessController() {
         this->logger = new Logger();
@@ -29,23 +30,23 @@ class FileAccessController {
 public:
     ~FileAccessController();
 
-    FileAccessController(FileAccessController &other) = delete;
+    FileAccessController(FileAccessController &) = delete;
 
     void operator=(const FileAccessController &) = delete;
 
     static FileAccessController *GetInstance();
 
     //Create different types of files.
-    [[nodiscard]] ifstream create_tmp_file(const string &file_name) const;
+    [[nodiscard]] ifstream create_tmp_file(cstr &) const;
 
-    [[nodiscard]] ifstream create_object_file(const string &file_name) const;
+    [[nodiscard]] ifstream create_object_file(cstr &) const;
 
-    [[nodiscard]] ifstream create_assembly_file(const string &file_name) const;
+    [[nodiscard]] ifstream create_assembly_file(cstr &) const;
 
     //Crud operations on files.
     bool delete_file(const char *file_to_delete) const;
 
-    [[nodiscard]] ofstream *copy_file(string input, string output_file) const;
+    [[nodiscard]] ofstream *copy_file(cstr &, cstr &) const;
 
     [[nodiscard]] ifstream *open_file(string file_name) const;
 
@@ -70,16 +71,16 @@ FileAccessController *FileAccessController::GetInstance() {
     return pinstance_;
 }
 
-void FileAccessController::__write_to_file__(const string &file_name) const {
+void FileAccessController::_write_to_file(cstr &file_name) const {
     //
 }
 
 /*
 Function for creating temporary file with given name.
 */
-ifstream FileAccessController::create_tmp_file(const string &file_name) const {
+ifstream FileAccessController::create_tmp_file(cstr &file_name) const {
     try {
-        cout << "Temporary file created.";
+        utility::println("Temporary file created.");
         this->logger->log("Temporary file created");
         ifstream input(file_name);
         return input;
@@ -94,9 +95,9 @@ ifstream FileAccessController::create_tmp_file(const string &file_name) const {
 /*
 Method for creating object file with given name.
 */
-ifstream FileAccessController::create_object_file(const string &file_name) const {
+ifstream FileAccessController::create_object_file(cstr &file_name) const {
     try {
-        cout << "Object file created.";
+        utility::println("Object file created.");
         this->logger->log("Object file created.");
         ifstream input(file_name + OBJECT_EXT);
         return input;
@@ -108,9 +109,9 @@ ifstream FileAccessController::create_object_file(const string &file_name) const
     return nullptr;
 }
 
-ifstream FileAccessController::create_assembly_file(const string &file_name) const {
+ifstream FileAccessController::create_assembly_file(cstr &file_name) const {
     try {
-        cout << "Assembly file created.";
+        utility::println("Assembly file created.");
         this->logger->log("Assembly file created.");
         ifstream input(file_name + ASSEMBLY_EXT);
         return input;
@@ -126,7 +127,7 @@ ifstream FileAccessController::create_assembly_file(const string &file_name) con
 Define macros method only for unix like systems;
 */
 #if defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
-	#define create_block_file "\
+	#define create_block_file " \
 	ifstream create_block_file(const char* file_name);\
 	ifstream FileAccessController::create_block_file(const char* file_name)\
 		{\
@@ -166,7 +167,7 @@ Input - which file you want to add (file name).
 Output_file - into which file you want to add (file name).
 Return - link on input file.
 */
-ofstream *FileAccessController::copy_file(string file_name_to_include, string output_file) const {
+ofstream *FileAccessController::copy_file(cstr &file_name_to_include, cstr &output_file) const {
     ifstream infile;
     ofstream outfile;
 
@@ -199,7 +200,7 @@ ifstream *FileAccessController::open_file(string file_name) const {
         try {
             ifstream out;
             out.open(file_name);
-            cout << "File opened.";
+            utility::println("File opened.");
             return &out;
         } catch (const exception &e) {
             this->logger->log("Error in open file");
@@ -217,7 +218,7 @@ Method that responsible for closing file.
 */
 void FileAccessController::close_file(ifstream &opened_file) const {
     try {
-        cout << "File closed.";
+        utility::println("File closed.");
         opened_file.close();
     } catch (const exception &e) {
         this->logger->log("Error in closing file");

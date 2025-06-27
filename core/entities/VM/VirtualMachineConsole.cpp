@@ -18,11 +18,11 @@ public:
 
     VirtualMachineConsole(VirtualMachineConsole &other) = delete;
 
-    void operator=(const VirtualMachineConsole &) = delete;
-
     static VirtualMachineConsole *GetInstance();
 
     void drawUI() const;
+
+    void operator=(const VirtualMachineConsole &) = delete;
 };
 
 //Constructor and destructor

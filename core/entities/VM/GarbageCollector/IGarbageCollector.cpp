@@ -1,8 +1,10 @@
 /*
 Abstract class for garbage collection process.
 */
+
+#include <mutex>
+
 class IGarbageCollector {
-private:
     //One collector pass on objects alive
     virtual void collectors_pass() const = 0;
 

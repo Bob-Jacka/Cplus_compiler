@@ -2,7 +2,6 @@
 This class used for preprocessing file with code.
 */
 
-#include <mutex>
 #include "core/data/Variables.hpp"
 #include "core/data/exceptions/PreprocessorException.cpp"
 

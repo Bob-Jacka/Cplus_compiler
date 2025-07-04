@@ -1,6 +1,4 @@
-#include "BaseException.hpp"
-
-class PreprocessorException final : BaseException {
+class PreprocessorException final : public BaseException {
 public:
     static int wrongDirective(); //if directive is not defined by compiler
     static int wrongDirectiveLine();

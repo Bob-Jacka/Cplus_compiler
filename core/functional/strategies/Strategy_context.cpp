@@ -1,4 +1,4 @@
-#include "IStrategies.cpp"
+#include "IStrategies.hpp"
 #include <memory>
 
 class Logger;
@@ -24,7 +24,7 @@ public:
 };
 
 void Strategy_context::set_strategy(unique_ptr<IStrategy> &&strategy) {
-    this->strategy_ = move(strategy);
+    this->strategy_ = std::move(strategy);
 }
 
 /*

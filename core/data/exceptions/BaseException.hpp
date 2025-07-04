@@ -1,13 +1,17 @@
 #pragma once
 
 #ifndef BASE_EXCEPTION_HPP
+
 #define BASE_EXCEPTION_HPP
 
 #include <exception>
 #include "../Variables.hpp"
 #include <utility>
-#include <iostream>
+#include <ostream>
 
+/*
+ Base class for exceptions in C+ compiler
+ */
 class BaseException : std::exception {
 protected:
     string exc_message;

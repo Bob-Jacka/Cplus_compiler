@@ -1,3 +1,5 @@
+#pragma once
+
 struct Compiler_entities;
 struct Controllers;
 
@@ -8,11 +10,11 @@ class IStrategy {
 public:
     virtual ~IStrategy() = default;
 
-    virtual void doAlgorithm(const string &entry_point_name,
-                             Controllers *controllers,
-                             Compiler_entities *compiler_entities,
-                             Logger *logger
-    ) const = 0;
+    virtual void doAlgorithm(const string &,
+                             Controllers *,
+                             Compiler_entities *,
+                             Logger *
+    ) = 0;
 
     IStrategy(const IStrategy &) = delete;
 

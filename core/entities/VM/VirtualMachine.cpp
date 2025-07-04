@@ -13,17 +13,51 @@ struct VM_settings {
     bool is_multi_thread = false;
     bool is_ai_enabled = false;
     long long vm_memory = 0;
+    IGarbageCollector *garbage_collector = nullptr;
 
-    IGarbageCollector *VM_settings::garbage_collector;
+    //functions
+    static std::string generate_vm_name();
 
-    static std::string VM_settings::generate_vm_name();
+    VM_settings &operator=(const VM_settings &other_settings);
 
-    VM_settings &VM_settings::operator=(const VM_settings &other_settings);
+    VM_settings::VM_settings(const string &name,
+                             bool is_multi_thread,
+                             bool is_ai_enabled,
+                             long long vm_memory,
+                             IGarbageCollector *garbage_collector);
 
-    VM_settings::VM_settings() = default;
+    VM_settings::VM_settings(const string &name, bool is_multi_thread, bool is_ai_enabled, long long vm_memory);
+
+    VM_settings::VM_settings() = delete;
 
     VM_settings::~VM_settings() = default;
 };
+
+VM_settings::VM_settings(const string &name,
+                         const bool is_multi_thread,
+                         const bool is_ai_enabled,
+                         const long long vm_memory,
+                         IGarbageCollector *garbage_collector) {
+    this->name = name;
+    this->is_multi_thread = is_multi_thread;
+    this->is_ai_enabled = is_ai_enabled;
+    this->vm_memory = vm_memory;
+
+    this->garbage_collector = garbage_collector;
+}
+
+VM_settings::VM_settings(const string &name,
+                         const bool is_multi_thread,
+                         const bool is_ai_enabled,
+                         const long long vm_memory) {
+    this->name = name;
+    this->is_multi_thread = is_multi_thread;
+    this->is_ai_enabled = is_ai_enabled;
+    this->vm_memory = vm_memory;
+
+    this->garbage_collector = nullptr;
+}
+
 
 /*
 Generates name of the virtual machine
@@ -33,12 +67,13 @@ std::string VM_settings::generate_vm_name() {
 }
 
 VM_settings &VM_settings::operator=(const VM_settings &other_settings) {
-    return VM_settings {
-        name = other_settings.name,
-        is_multi_thread = other_settings.is_multi_thread,
-        is_ai_enabled = other_settings.is_ai_enabled,
-        vm_memory = other_settings.vm_memory,
+    auto res = VM_settings{
+        .name = other_settings.name,
+        .is_multi_thread = other_settings.is_multi_thread,
+        .is_ai_enabled = other_settings.is_ai_enabled,
+        .vm_memory = other_settings.vm_memory,
     };
+    return res;
 }
 
 /*
@@ -185,7 +220,7 @@ void VirtualMachine::start_vm() {
     } catch (const exception &e) {
         this->logger->log("Error occurred in starting virtual machine");
         this->logger->log(e.what());
-        cerr << e.what() << endl;
+        cerr << e.what() << "\n";
     }
 }
 
@@ -206,7 +241,7 @@ void VirtualMachine::shutdown_vm() {
     } catch (const exception &e) {
         this->logger->log("Error occurred in virtual machine shutdown");
         this->logger->log(e.what());
-        cerr << e.what() << endl;
+        cerr << e.what() << "\n";
     }
 }
 
@@ -215,7 +250,7 @@ void VirtualMachine::assign_garbage_collector_strategy() const {
     } catch (const exception &e) {
         this->logger->log("Error occurred in assign garbage collector");
         this->logger->log(e.what());
-        cerr << e.what() << endl;
+        cerr << e.what() << "\n";
     }
 }
 
@@ -228,7 +263,7 @@ void VirtualMachine::_create_threads() const {
     } catch (const exception &e) {
         this->logger->log("Error occurred in creating threads in virtual machine");
         this->logger->log(e.what());
-        cerr << e.what() << endl;
+        cerr << e.what() << "\n";
     }
 }
 

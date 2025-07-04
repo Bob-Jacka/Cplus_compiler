@@ -1162,6 +1162,7 @@ namespace Catch {
 #include <chrono>
 #include <iosfwd>
 #include <string>
+#include <utility>
 #include <vector>
 
 namespace Catch {
@@ -1644,7 +1645,8 @@ namespace Catch {
             void measure(Fun &&fun, std::true_type) {
                 Detail::optimizer_barrier();
                 impl->start();
-                for (int i = 0; i < repeats; ++i) invoke_deoptimized(fun, i);
+                for (int i = 0; i < repeats; ++i)
+                    invoke_deoptimized(fun, i);
                 impl->finish();
                 Detail::optimizer_barrier();
             }
@@ -3351,7 +3353,7 @@ namespace Catch {
         SourceLineInfo() = delete;
 
         constexpr SourceLineInfo(char const *_file, std::size_t _line) noexcept: file(_file),
-            line(_line) {
+                                                                                 line(_line) {
         }
 
         bool operator ==(SourceLineInfo const &other) const noexcept;
@@ -4544,7 +4546,8 @@ namespace Catch {
                 }
 
                 ResultValueBase &operator=(ResultValueBase &&other) {
-                    if (m_type == ResultType::Ok) m_value.~T();
+                    if (m_type == ResultType::Ok)
+                        m_value.~T();
                     ResultBase::operator=(other);
                     if (m_type == ResultType::Ok)
                         new(&m_value) T(CATCH_MOVE(other.m_value));
@@ -4832,13 +4835,13 @@ namespace Catch {
             public:
                 virtual ~ParserBase() = default;
 
-                virtual auto validate() const -> Result { return Result::ok(); }
+                [[nodiscard]] virtual auto validate() const -> Result { return Result::ok(); }
 
-                virtual auto parse(std::string const &exeName,
+                [[nodiscard]] virtual auto parse(std::string const &exeName,
                                    TokenStream tokens) const
                     -> InternalParseResult = 0;
 
-                virtual size_t cardinality() const;
+                [[nodiscard]] virtual size_t cardinality() const;
 
                 InternalParseResult parse(Args const &args) const;
             };
@@ -4904,11 +4907,11 @@ namespace Catch {
                     return static_cast<DerivedT &>(*this);
                 }
 
-                auto isOptional() const -> bool {
+                [[nodiscard]] auto isOptional() const -> bool {
                     return m_optionality == Optionality::Optional;
                 }
 
-                auto cardinality() const -> size_t override {
+                [[nodiscard]] auto cardinality() const -> size_t override {
                     if (m_ref->isContainer())
                         return 0;
                     else
@@ -4926,7 +4929,7 @@ namespace Catch {
             using ParserRefImpl::ParserRefImpl;
             using ParserBase::parse;
 
-            Detail::InternalParseResult
+            [[nodiscard]] Detail::InternalParseResult
             parse(std::string const &,
                   Detail::TokenStream tokens) const override;
         };
@@ -4972,15 +4975,15 @@ namespace Catch {
 
             Detail::HelpColumns getHelpColumns() const;
 
-            bool isMatch(StringRef optToken) const;
+            [[nodiscard]] bool isMatch(StringRef optToken) const;
 
             using ParserBase::parse;
 
-            Detail::InternalParseResult
+            [[nodiscard]] Detail::InternalParseResult
             parse(std::string const &,
                   Detail::TokenStream tokens) const override;
 
-            Detail::Result validate() const override;
+            [[nodiscard]] Detail::Result validate() const override;
         };
 
         // Specifies the name of the executable
@@ -5000,11 +5003,11 @@ namespace Catch {
 
             // The exe name is not parsed out of the normal tokens, but is
             // handled specially
-            Detail::InternalParseResult
+            [[nodiscard]] Detail::InternalParseResult
             parse(std::string const &,
                   Detail::TokenStream tokens) const override;
 
-            std::string const &name() const { return *m_name; }
+            [[nodiscard]] std::string const &name() const { return *m_name; }
 
             Detail::ParserResult set(std::string const &newName);
         };
@@ -5085,13 +5088,13 @@ namespace Catch {
             // Helper constructor for testing
             Args(std::initializer_list<StringRef> args);
 
-            StringRef exeName() const { return m_exeName; }
+            [[nodiscard]] StringRef exeName() const { return m_exeName; }
         };
 
 
         // Convenience wrapper for option parser that specifies the help option
         struct Help : Opt {
-            Help(bool &showHelpFlag);
+            explicit Help(bool &showHelpFlag);
         };
 
         // Result type for parser operation
@@ -5185,7 +5188,7 @@ namespace Catch {
 
 namespace Catch {
     struct TagAlias {
-        TagAlias(std::string const &_tag, SourceLineInfo _lineInfo): tag(_tag),
+        TagAlias(std::string _tag, SourceLineInfo _lineInfo): tag(std::move(_tag)),
                                                                      lineInfo(_lineInfo) {
         }
 
@@ -5250,18 +5253,17 @@ namespace Catch {
 
 #include <type_traits>
 
-namespace Catch {
-    namespace Detail {
+namespace Catch::Detail {
 #if defined( __GNUC__ ) && !defined( __clang__ )
 #    pragma GCC diagnostic push
-        // GCC likes to complain about comparing bool with 0, in the decltype()
-        // that defines the comparable traits below.
+    // GCC likes to complain about comparing bool with 0, in the decltype()
+    // that defines the comparable traits below.
 #    pragma GCC diagnostic ignored "-Wbool-compare"
-        // "ordered comparison of pointer with integer zero" same as above,
-        // but it does not have a separate warning flag to suppress
+    // "ordered comparison of pointer with integer zero" same as above,
+    // but it does not have a separate warning flag to suppress
 #    pragma GCC diagnostic ignored "-Wextra"
-        // Did you know that comparing floats with `0` directly
-        // is super-duper dangerous in unevaluated context?
+    // Did you know that comparing floats with `0` directly
+    // is super-duper dangerous in unevaluated context?
 #    pragma GCC diagnostic ignored "-Wfloat-equal"
 #endif
 
@@ -5288,18 +5290,18 @@ namespace Catch {
                                   void_t<decltype( std::declval<T>() op 0 )>> \
         : std::true_type {};
 
-        // We need all 6 pre-spaceship comparison ops: <, <=, >, >=, ==, !=
-        CATCH_DEFINE_COMPARABLE_TRAIT(lt, <)
+    // We need all 6 pre-spaceship comparison ops: <, <=, >, >=, ==, !=
+    CATCH_DEFINE_COMPARABLE_TRAIT(lt, <)
 
-        CATCH_DEFINE_COMPARABLE_TRAIT(le, <=)
+    CATCH_DEFINE_COMPARABLE_TRAIT(le, <=)
 
-        CATCH_DEFINE_COMPARABLE_TRAIT(gt, >)
+    CATCH_DEFINE_COMPARABLE_TRAIT(gt, >)
 
-        CATCH_DEFINE_COMPARABLE_TRAIT(ge, >=)
+    CATCH_DEFINE_COMPARABLE_TRAIT(ge, >=)
 
-        CATCH_DEFINE_COMPARABLE_TRAIT(eq, ==)
+    CATCH_DEFINE_COMPARABLE_TRAIT(eq, ==)
 
-        CATCH_DEFINE_COMPARABLE_TRAIT(ne, !=)
+    CATCH_DEFINE_COMPARABLE_TRAIT(ne, !=)
 
 #undef CATCH_DEFINE_COMPARABLE_TRAIT
 
@@ -5309,8 +5311,7 @@ namespace Catch {
 #if defined( __clang__ )
 #    pragma clang diagnostic pop
 #endif
-    } // namespace Detail
-} // namespace Catch
+}
 
 #endif // CATCH_COMPARE_TRAITS_HPP_INCLUDED
 
@@ -5320,13 +5321,12 @@ namespace Catch {
 
 #include <type_traits>
 
-namespace Catch {
-    namespace Detail {
+namespace Catch::Detail {
 #if defined( __cpp_lib_logical_traits ) && __cpp_lib_logical_traits >= 201510
 
-        using std::conjunction;
-        using std::disjunction;
-        using std::negation;
+    using std::conjunction;
+    using std::disjunction;
+    using std::negation;
 
 #else
 
@@ -5346,8 +5346,7 @@ namespace Catch {
     struct negation : std::integral_constant<bool, !bool(B::value)> {};
 
 #endif
-    } // namespace Detail
-} // namespace Catch
+}
 
 #endif // CATCH_LOGICAL_TRAITS_HPP_INCLUDED
 
@@ -5456,7 +5455,7 @@ namespace Catch {
 #if defined(CATCH_CPP20_OR_GREATER) && __has_include(<compare>)
 #  include <compare>
 #    if defined( __cpp_lib_three_way_comparison ) && \
-            __cpp_lib_three_way_comparison >= 201907L
+__cpp_lib_three_way_comparison >= 201907L
 #      define CATCH_CONFIG_CPP20_COMPARE_OVERLOADS
 #    endif
 #endif
@@ -5478,12 +5477,17 @@ namespace Catch {
     };
 
 #if defined( CATCH_CONFIG_CPP20_COMPARE_OVERLOADS )
-    template <>
-    struct capture_by_value<std::strong_ordering> : std::true_type {};
-    template <>
-    struct capture_by_value<std::weak_ordering> : std::true_type {};
-    template <>
-    struct capture_by_value<std::partial_ordering> : std::true_type {};
+    template<>
+    struct capture_by_value<std::strong_ordering> : std::true_type {
+    };
+
+    template<>
+    struct capture_by_value<std::weak_ordering> : std::true_type {
+    };
+
+    template<>
+    struct capture_by_value<std::partial_ordering> : std::true_type {
+    };
 #endif
 
     template<typename T>
@@ -5498,10 +5502,10 @@ namespace Catch {
         ~ITransientExpression() = default;
 
     public:
-        constexpr auto isBinaryExpression() const -> bool { return m_isBinaryExpression; }
-        constexpr auto getResult() const -> bool { return m_result; }
+        [[nodiscard]] constexpr auto isBinaryExpression() const -> bool { return m_isBinaryExpression; }
+        [[nodiscard]] constexpr auto getResult() const -> bool { return m_result; }
 
-        //! This function **has** to be overriden by the derived class.
+        //! This function **has** to be overridden by the derived class.
         virtual void streamReconstructedExpression(std::ostream &os) const;
 
         constexpr ITransientExpression(bool isBinaryExpression, bool result)
@@ -5905,6 +5909,7 @@ namespace Catch {
         } INTERNAL_CATCH_CATCH( catchAssertionHandler ) \
         catchAssertionHandler.complete(); \
     } while( (void)0, (false) && static_cast<const bool&>( !!(__VA_ARGS__) ) ) // the expression here is never evaluated at runtime but it forces the compiler to give it a look
+
 
 // The double negation silences MSVC's C4800 warning, the static_cast forces short-circuit evaluation if the type has overloaded &&.
 
@@ -7917,15 +7922,18 @@ namespace Catch {
                                  CATCH_INTERNAL_LINEINFO, \
                                  [ ]{ using namespace Catch::Generators; return makeGenerators( __VA_ARGS__ ); } ) //NOLINT(google-build-using-namespace)
 
+
 #define GENERATE_COPY( ... ) \
     Catch::Generators::generate( CATCH_INTERNAL_GENERATOR_STRINGIZE(INTERNAL_CATCH_UNIQUE_NAME(generator)), \
                                  CATCH_INTERNAL_LINEINFO, \
                                  [=]{ using namespace Catch::Generators; return makeGenerators( __VA_ARGS__ ); } ) //NOLINT(google-build-using-namespace)
 
+
 #define GENERATE_REF( ... ) \
     Catch::Generators::generate( CATCH_INTERNAL_GENERATOR_STRINGIZE(INTERNAL_CATCH_UNIQUE_NAME(generator)), \
                                  CATCH_INTERNAL_LINEINFO, \
                                  [&]{ using namespace Catch::Generators; return makeGenerators( __VA_ARGS__ ); } ) //NOLINT(google-build-using-namespace)
+
 
 
 #endif // CATCH_GENERATORS_HPP_INCLUDED
@@ -13217,14 +13225,14 @@ namespace Catch {
 
         class StartsWithMatcher final : public StringMatcherBase {
         public:
-            StartsWithMatcher(CasedString const &comparator);
+            explicit StartsWithMatcher(CasedString const &comparator);
 
             bool match(std::string const &source) const override;
         };
 
         class EndsWithMatcher final : public StringMatcherBase {
         public:
-            EndsWithMatcher(CasedString const &comparator);
+            explicit EndsWithMatcher(CasedString const &comparator);
 
             bool match(std::string const &source) const override;
         };

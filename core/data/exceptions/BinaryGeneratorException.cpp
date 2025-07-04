@@ -1,6 +1,4 @@
-#include "BaseException.hpp"
-
-class BinaryGeneratorException final : BaseException {
+class BinaryGeneratorException final : public BaseException {
 public:
     static int ErrorInBinaryGeneration(); //general exception
 };

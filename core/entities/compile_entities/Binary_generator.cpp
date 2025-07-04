@@ -1,18 +1,15 @@
-#include "core/data/exceptions/BinaryGeneratorException.cpp"
-#include <mutex>
+#include "../data/exceptions/BinaryGeneratorException.cpp"
 
 class Binary_generator {
-private:
     static Binary_generator *pinstance_;
     static std::mutex mutex_;
 
-    Binary_generator() {
-    }
+    Binary_generator() = default;
 
 public:
-    ~Binary_generator() = default;
+    ~Binary_generator();
 
-    void generate_binary();
+    void generate_binary(const FileAccessController *f_controller);
 
     Binary_generator(Binary_generator &other) = delete;
 
@@ -29,12 +26,12 @@ std::mutex Binary_generator::mutex_;
 /**
  * Main entry point of the Binary generator entity
  */
-void Binary_generator::generate_binary() {
-    controllers->getFileController()->create_object_file(OBJECT_FILE_NAME);
+void Binary_generator::generate_binary(const FileAccessController *f_controller) {
+    f_controller->create_object_file(OBJECT_FILE_NAME);
 }
 
 Binary_generator *Binary_generator::GetInstance() {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::lock_guard lock(mutex_);
     if (pinstance_ == nullptr) {
         pinstance_ = new Binary_generator();
     }

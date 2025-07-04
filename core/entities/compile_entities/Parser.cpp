@@ -3,8 +3,6 @@ Class used for building syntax tree.
 Get stream from lexer and build syntax tree;
 */
 
-#include <mutex>
-
 class Parser {
     static Parser *pinstance_;
     static std::mutex mutex_;
@@ -36,6 +34,8 @@ public:
     void build_tree() const;
 
     std::vector<Token> *parse_tokens(std::vector<Token> *) const; //Entry point of the Parser
+
+    friend class ParserTest;
 };
 
 Parser *Parser::pinstance_{nullptr};

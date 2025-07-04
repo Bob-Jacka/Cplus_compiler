@@ -1,9 +1,8 @@
 #include <fstream>
 #include <mutex>
-#include "core/data/Variables.hpp"
-#include "core/entities/Logger.hpp"
-#include "static/UtilFuncs.hpp"
-#include "core/data/exceptions/FileAccessControllerException.cpp"
+#include "../../../static/UtilFuncs.hpp"
+#include "../../data/exceptions/FileAccessControllerException.cpp"
+#include "../../entities/Logger.hpp"
 
 constexpr string CPLUS_EXT = ".cp";
 constexpr string ASSEMBLY_EXT = ".asm";
@@ -25,7 +24,7 @@ class FileAccessController {
 
     FileAccessController() {
         this->logger = new Logger();
-    };
+    }
 
 public:
     ~FileAccessController();
@@ -37,7 +36,7 @@ public:
     static FileAccessController *GetInstance();
 
     //Create different types of files.
-    [[nodiscard]] ifstream create_tmp_file(cstr &) const;
+    [[nodiscard]] ifstream *create_tmp_file(cstr &) const;
 
     [[nodiscard]] ifstream create_object_file(cstr &) const;
 
@@ -46,7 +45,7 @@ public:
     //Crud operations on files.
     bool delete_file(const char *file_to_delete) const;
 
-    [[nodiscard]] ofstream *copy_file(cstr &, cstr &) const;
+    [[nodiscard]] ifstream *copy_file(cstr &, cstr &) const;
 
     [[nodiscard]] ifstream *open_file(string file_name) const;
 
@@ -78,12 +77,12 @@ void FileAccessController::_write_to_file(cstr &file_name) const {
 /*
 Function for creating temporary file with given name.
 */
-ifstream FileAccessController::create_tmp_file(cstr &file_name) const {
+ifstream *FileAccessController::create_tmp_file(cstr &file_name) const {
     try {
         utility::println("Temporary file created.");
         this->logger->log("Temporary file created");
         ifstream input(file_name);
-        return input;
+        return &input;
     } catch (const exception &e) {
         this->logger->log("Error in create tmp file");
         this->logger->log(e.what());
@@ -167,9 +166,9 @@ Input - which file you want to add (file name).
 Output_file - into which file you want to add (file name).
 Return - link on input file.
 */
-ofstream *FileAccessController::copy_file(cstr &file_name_to_include, cstr &output_file) const {
+ifstream *FileAccessController::copy_file(cstr &file_name_to_include, cstr &output_file) const {
     ifstream infile;
-    ofstream outfile;
+    ifstream outfile;
 
     try {
         infile.open(file_name_to_include);
@@ -207,10 +206,8 @@ ifstream *FileAccessController::open_file(string file_name) const {
             this->logger->log(e.what());
             throw FileAccessControllerExceptions::error_to_open_file();
         }
-    } else {
-        throw FileAccessControllerExceptions::wrong_extension();
     }
-    return nullptr;
+    throw FileAccessControllerExceptions::wrong_extension();
 }
 
 /*

@@ -1,6 +1,4 @@
-#include "BaseException.hpp"
-
-class VirtualMachineException final : BaseException {
+class VirtualMachineException final : public BaseException {
 public:
     static int vm_death();
 

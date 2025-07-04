@@ -1,7 +1,6 @@
-#include "core/data/Variables.hpp"
-#include "core/entities/VM/VirtualMachine.cpp"
-#include "core/entities/VM/VirtualMachineConsole.cpp"
-#include "core/functional/strategies/IStrategies.cpp"
+#include "../../entities/VM/VirtualMachineConsole.cpp"
+#include "../../entities/VM/VirtualMachine.cpp"
+#include "../../data/Main_types_compile.hpp"
 
 class VirtualMachineConsole;
 struct VM_settings;
@@ -16,30 +15,28 @@ public:
         this->p_logger = p_logger;
         this->p_console = p_console;
 
-        this->log_file = new std::ofstream();
-    };
+        this->log_file = new ofstream();
+    }
 
-    ~VMStrategy() = default;
+    void doAlgorithm(const string &, Controllers *, Compiler_entities *, Logger *) override;
 
-    void doAlgorithm(string entry_point_name,
-                     Controllers *controllers,
-                     Compiler_entities *compiler_entities,
-                     Logger *logger);
+    ~VMStrategy() override = default;
 
 private:
     VM_settings *p_settings = nullptr;
     VirtualMachine *p_vm_instance = nullptr;
     VirtualMachineConsole *p_console = nullptr;
     Logger *p_logger = nullptr;
+    ofstream *log_file;
 };
 
 /*
 Algorithm of the virtual machine strategy.
 */
-void VMStrategy::doAlgorithm(string entry_point_name,
+void VMStrategy::doAlgorithm(const string &entry_point_name,
                              Controllers *controllers,
                              Compiler_entities *compiler_entities,
-                             Logger *logger) {
+                             Logger *logger) override {
     //Virtual machine strategy set up.
     {
         *p_settings = VM_settings{
@@ -47,7 +44,6 @@ void VMStrategy::doAlgorithm(string entry_point_name,
             .is_multi_thread = false,
             .is_ai_enabled = false,
             .vm_memory = 1000000,
-            .garbage_collector = CollectorWithStop::GetInstance(),
         };
 
         p_vm_instance = VirtualMachine::GetInstance(p_settings);

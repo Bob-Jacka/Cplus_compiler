@@ -2,9 +2,8 @@
 This class needs for assembly generate.
 */
 
-#include "core/data/exceptions/AssemblyGeneratorException.cpp"
-#include "static/UtilFuncs.hpp"
-#include <mutex>
+#include "../../data/exceptions/AssemblyGeneratorException.cpp"
+#include "../../static/UtilFuncs.hpp"
 
 class Assembly_generator {
     void movl();
@@ -50,7 +49,7 @@ public:
 
     static Assembly_generator *GetInstance();
 
-    void generate_asm(const std::vector<string> *tokens) noexcept;
+    void generate_asm(const std::vector<Token> *tokens) noexcept;
 };
 
 Assembly_generator *Assembly_generator::pinstance_{nullptr};
@@ -146,7 +145,7 @@ string Assembly_generator::get_assembly_line(const string &token_line) {
         assemblyCode += "STORE " + reg + " RESULT\n";
     } else {
         assemblyCode = "ERROR: Неверное выражение\n";
-        throw AssemblyGeneratorException::errorInAssemblyGeneration();
+        throw AssemblyGeneratorException::error_in_assembly_generation();
     }
     return assemblyCode;
 }
@@ -154,7 +153,7 @@ string Assembly_generator::get_assembly_line(const string &token_line) {
 /*
 Main entry point in Assembly generator
 */
-void Assembly_generator::generate_asm(const std::vector<string> *tokens) noexcept {
+void Assembly_generator::generate_asm(const std::vector<Token> *tokens) noexcept {
     for (const string token_line: tokens) {
         get_assembly_line(token_line);
     }

@@ -1,6 +1,6 @@
 #include "BaseException.hpp"
 
-class FileAccessControllerExceptions final : public BaseException {
+class FileAccessControllerExceptions final : BaseException {
 public:
     static int error_to_open_file();
 

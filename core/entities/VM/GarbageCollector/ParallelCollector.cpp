@@ -3,7 +3,7 @@ Collector with parallel execution.
 Will execute with program.
 */
 
-#include "IGarbageCollector.cpp"
+#include "IGarbage_collector.hpp"
 
 class ParallelCollector final : IGarbageCollector {
     static ParallelCollector *pinstance_;

@@ -1,6 +1,8 @@
 from collections import OrderedDict
-from typing import Iterator, Literal
-
+from core.functional.Settings import (
+    leaky_relu_value,
+)
+from core.functional.Utils import print_error, print_success
 from torch import Tensor
 from torch.nn import (
     Conv2d,
@@ -12,11 +14,7 @@ from torch.nn import (
     Parameter,
     Module
 )
-
-from core.functional.Settings import (
-    leaky_relu_value,
-)
-from core.functional.Utils import print_error, print_success
+from typing import Iterator, Literal
 
 
 class Neuro_block(Module):
@@ -47,7 +45,8 @@ class Neuro_block(Module):
     Inner structure of neuro block.
     """
 
-    def __init__(self, sizes: tuple[int, int] | list[int, int], input_dropout_rate: float, class_to_create: Literal['Conv2d', 'Linear', 'Dense'], kernel_size: int = 3,
+    def __init__(self, sizes: tuple[int, int] | list[int, int], input_dropout_rate: float,
+                 class_to_create: Literal['Conv2d', 'Linear', 'Dense'], kernel_size: int = 3,
                  padding: int = 1, stride: int = 1, bias: bool = True, *args, **kwargs):
         """
         Constructor for neuro block with different layers.
@@ -83,9 +82,11 @@ class Neuro_block(Module):
                 percentage_to_reduce=1
             )
         else:
-            print_error(f'Error occurred, expecting types Conv2d, Linear or Dense, got {type(class_to_create)} instead.')
+            print_error(
+                f'Error occurred, expecting types Conv2d, Linear or Dense, got {type(class_to_create)} instead.')
 
-    def __create_conv_layer__(self, input_count: int, output_count: int, kernel_size: int, stride: int, padding: int, bias: bool, dropout_rate: float):
+    def __create_conv_layer__(self, input_count: int, output_count: int, kernel_size: int, stride: int, padding: int,
+                              bias: bool, dropout_rate: float):
         """
         *Private method of class*.
         Creates convolutional network with given parameters.
@@ -97,7 +98,9 @@ class Neuro_block(Module):
         """
         self.inner_structure = Sequential(
             OrderedDict([
-                ('input_conv', Conv2d(in_channels=input_count, out_channels=output_count, kernel_size=kernel_size, padding=padding, stride=stride, bias=bias)),
+                ('input_conv',
+                 Conv2d(in_channels=input_count, out_channels=output_count, kernel_size=kernel_size, padding=padding,
+                        stride=stride, bias=bias)),
                 ('l_relu', LeakyReLU(leaky_relu_value)),
                 ('maxPool_layer', MaxPool2d(kernel_size=kernel_size + 1, stride=stride)),
                 ('drop_layer', Dropout2d(p=dropout_rate))
@@ -105,7 +108,8 @@ class Neuro_block(Module):
         )
         print_success('Conv network created.')
 
-    def __create_linear_layer__(self, input_count: int, output_count: int, bias: bool, dropout_rate: float, percentage_to_reduce: int):
+    def __create_linear_layer__(self, input_count: int, output_count: int, bias: bool, dropout_rate: float,
+                                percentage_to_reduce: int):
         """
         *Private method of class*.
         Creates Linear network with given parameters.

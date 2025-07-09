@@ -1,5 +1,6 @@
 #include "Logger.hpp"
 #include <chrono>
+#include <iostream>
 
 void Logger::create_log_file() {
     //

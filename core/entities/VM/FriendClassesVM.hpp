@@ -1,7 +1,7 @@
-#pragma once
-
 #ifndef FRIENDCLASSESVM_HPP
 #define FRIENDCLASSESVM_HPP
+
+#include "../data/Main_types_vm.hpp"
 
 class VirtualMachine;
 
@@ -9,10 +9,10 @@ class VirtualMachineTest {
     VirtualMachine *priv_param = VirtualMachine::GetInstance();
 
 public:
-    //
+    auto do_test();
 };
 
-class VirtualMachineConsole {
+class VirtualMachineConsoleTest {
     VirtualMachineConsole *priv_param = VirtualMachineConsole::GetInstance();
 
 public:

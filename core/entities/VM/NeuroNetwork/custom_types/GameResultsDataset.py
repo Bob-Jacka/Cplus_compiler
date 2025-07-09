@@ -1,14 +1,12 @@
-from typing import Any
-
 import pandas as pd
+from core.functional.Utils import *
 from torch.utils.data import (
     Dataset,
     ConcatDataset
 )
 from torch.utils.data.dataset import _T_co
 from torchvision.transforms import Compose
-
-from core.functional.Utils import *
+from typing import Any
 
 
 class GameResultsDataset(Dataset):

@@ -1,6 +1,7 @@
-#pragma once
+#ifndef LOGGER_HPP
+#define LOGGER_HPP
+
 #include <string>
-#include <iostream>
 
 /*
 Class for logging info and warns and critical errors
@@ -21,3 +22,5 @@ public:
 
     Logger() = default;
 };
+
+#endif

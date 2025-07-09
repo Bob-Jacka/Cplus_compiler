@@ -3,7 +3,7 @@ Collector with stop.
 Will stop program execution during garbage collection process.
 */
 
-#include "IGarbageCollector.cpp"
+#include "IGarbage_collector.hpp"
 
 class CollectorWithStop final : IGarbageCollector {
     static CollectorWithStop *pinstance_;

@@ -1,5 +1,5 @@
 #include "../BaseTest.hpp"
-#include "../../entities/compile_entities/FriendClassesCompile.hpp"
+#include "../../entities/compile_entities/Friend_classes_compile.hpp"
 
 
 //Assembly generator tests

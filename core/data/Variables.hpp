@@ -1,12 +1,12 @@
+#ifndef VARIABLES_HPP
+#define VARIABLES_HPP
+
 /*
  Header file with useful aliases
+ Some user defined types.
  */
 
-#pragma once
-
 #include <string>
-
-//Some user defined types.
 
 using file = std::ifstream;
 using out_file = std::ofstream;
@@ -17,3 +17,5 @@ using cstr = const std::string;
 
 using c_string = char *;
 using cconst_string = const char *;
+
+#endif

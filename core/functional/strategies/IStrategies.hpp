@@ -1,4 +1,7 @@
-#pragma once
+#ifndef ISTRATEGIES_HPP
+#define ISTRATEGIES_HPP
+
+#include "../../entities/Logger.hpp"
 
 struct Compiler_entities;
 struct Controllers;
@@ -25,3 +28,5 @@ public:
 protected:
     IStrategy() = default;
 };
+
+#endif

@@ -5,18 +5,7 @@ Include settings for neuro model.
 import csv
 import os
 import stat
-from enum import Enum
-from os import PathLike
-from os.path import exists
-
 from PIL import Image
-from matplotlib import pyplot as mpl
-from matplotlib.image import imread
-from termcolor import colored
-from torch import Tensor
-from torch.utils.data import DataLoader
-from torchvision import transforms
-
 from core.functional.Settings import (
     input_img_size,
     success_img_indicator,
@@ -25,6 +14,15 @@ from core.functional.Settings import (
     user_input_cursor
 )
 from core.functional.custom_types.GameResultsDataset import GameResultsDataset
+from enum import Enum
+from matplotlib import pyplot as mpl
+from matplotlib.image import imread
+from os import PathLike
+from os.path import exists
+from termcolor import colored
+from torch import Tensor
+from torch.utils.data import DataLoader
+from torchvision import transforms
 
 transform_func_train = transforms.Compose([
     transforms.ColorJitter(brightness=0.3, contrast=0.4),
@@ -191,7 +189,9 @@ def update_labels(labels_dir_path: str | PathLike, images_dir_name: str = 'image
                     row.append(file_name)
                     row.append(label)
                 else:
-                    raise RuntimeError(colored(f'Unknown image identifier. Expected image ending with {success_img_indicator} or {failure_img_indicator}.', 'red'))
+                    raise RuntimeError(colored(
+                        f'Unknown image identifier. Expected image ending with {success_img_indicator} or {failure_img_indicator}.',
+                        'red'))
                 csvwriter.writerow(row)
                 row = list()
         csvfile.close()

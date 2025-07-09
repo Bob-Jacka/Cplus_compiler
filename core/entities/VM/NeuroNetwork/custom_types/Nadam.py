@@ -1,10 +1,8 @@
-from typing import Any
-
 import torch
+from core.functional.Utils import print_error
 from torch import Tensor
 from torch.optim import Optimizer
-
-from core.functional.Utils import print_error
+from typing import Any
 
 
 class Nadam(Optimizer):

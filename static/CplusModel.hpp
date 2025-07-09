@@ -1,7 +1,5 @@
-#pragma once
-
-#ifndef CPLUSLANGMODEL.HPP
-#define CPLUSLANGMODEL.HPP
+#ifndef CPLUSMODEL_HPP
+#define CPLUSMODEL_HPP
 
 #define MAIN_FILE_NAME "main.cp"
 

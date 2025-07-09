@@ -1,8 +1,5 @@
-#pragma once
-
-#ifndef PROCESSOR_REGISTERS.HPP
-
-#define PROCESSOR_REGISTERS .HPP
+#ifndef PROCESSOR_REGISTERS_HPP
+#define PROCESSOR_REGISTERS_HPP
 
 // 8 bit registers.
 #define AL
@@ -54,4 +51,4 @@
 #define RBP
 #define RSI
 
-#endif PROCESSOR_REGISTERS.HPP
+#endif PROCESSOR_REGISTERS_HPP

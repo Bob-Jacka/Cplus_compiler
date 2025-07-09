@@ -1,0 +1,146 @@
+#ifndef VIRTUAL_MACHINE_HPP
+#define VIRTUAL_MACHINE_HPP
+
+/*
+This file represents virtual machine in C+ language.
+*/
+
+#include <mutex>
+#include "../data/Variables.hpp"
+#include "../data/exceptions/VirtualMachineException.hpp"
+#include "../entities/Logger.hpp"
+#include "../entities/VM/GarbageCollector/CollectorWithStop.cpp"
+
+struct VM_settings {
+    string name;
+    bool is_multi_thread = false;
+    bool is_ai_enabled = false;
+    long long vm_memory = 0;
+    IGarbageCollector *garbage_collector = nullptr;
+
+    //functions
+    static std::string generate_vm_name();
+
+    VM_settings &operator=(const VM_settings &other_settings);
+
+    VM_settings(const string &name,
+                bool is_multi_thread,
+                bool is_ai_enabled,
+                long long vm_memory,
+                IGarbageCollector *garbage_collector);
+
+    VM_settings(const string &name, bool is_multi_thread, bool is_ai_enabled, long long vm_memory);
+
+    VM_settings() = delete;
+
+    ~VM_settings() = default;
+};
+
+/*
+Registers of the virtual machine.
+*/
+struct VM_registers {
+    string register_1 = "VM001";
+    string register_2 = "VM002";
+    string register_3 = "VM003";
+    string register_4 = "VM004";
+    string register_5 = "VM005";
+    string register_6 = "VM006";
+    string register_7 = "VM007";
+    string register_8 = "VM008";
+    string register_9 = "VM009";
+    string register_10 = "VM010";
+    string register_11 = "VM011";
+    string register_12 = "VM012";
+    string register_13 = "VM013";
+    string register_14 = "VM014";
+    string register_15 = "VM015";
+    string register_16 = "VM016";
+    string register_17 = "VM017";
+    string register_18 = "VM018";
+    string register_19 = "VM019";
+    string register_20 = "VM020";
+    string register_21 = "VM021";
+    string register_22 = "VM022";
+    string register_23 = "VM023";
+    string register_24 = "VM024";
+    string register_25 = "VM025";
+    string register_26 = "VM026";
+
+    string condition_register_001 = "VM027";
+    string command_register_001 = "VM028";
+};
+
+/*
+Instructions numbers of the virtual machine.
+*/
+enum VM_instructions {
+    OP_BR = 0, /* branch */
+    OP_ADD = 1, /* add  */
+    OP_LD = 2, /* load */
+    OP_ST = 3, /* store */
+    OP_JSR = 4, /* jump to register */
+    OP_AND = 5, /* bitwise and */
+    OP_LDR = 6, /* load register */
+    OP_STR = 7, /* store register */
+    OP_RTI = 8, /* unused */
+    OP_NOT = 9, /* bitwise not */
+    OP_LDI = 10, /* load indirect */
+    OP_STI = 11, /* store indirect */
+    OP_JMP = 12, /* jump */
+    OP_RES = 13, /* reserved (unused) */
+    OP_LEA = 14, /* load effective address */
+    OP_TRAP = 15, /* execute trap */
+};
+
+/*
+Virtual Machine runs one line of code one by one.
+*/
+class VirtualMachine {
+    static VirtualMachine *pinstance_;
+    static std::mutex mutex_;
+    static VM_settings *vm_settings;
+
+    Logger *logger;
+
+    bool vm_running = false;
+
+    explicit VirtualMachine(VM_settings *);
+
+    void proceed_line();
+
+    void _create_threads() const; //method for creating threads in virtual machine
+    void main_cycle();
+
+public:
+    ~VirtualMachine();
+
+    VirtualMachine(VirtualMachine &other) = delete;
+
+    static VirtualMachine *GetInstance(VM_settings *settings);
+
+    static VM_settings *get_machine_settings();
+
+    void start_vm();
+
+    void start_ai() const;
+
+    void shutdown_vm();
+
+    void assign_garbage_collector_strategy() const;
+
+    [[nodiscard]] bool is_start_machine() const;
+
+    [[nodiscard]] bool is_exit_machine() const;
+
+    [[nodiscard]] bool is_ai_enabled() const;
+
+    [[nodiscard]] bool is_multithread() const;
+
+    void operator=(const VirtualMachine &) = delete;
+};
+
+VirtualMachine *VirtualMachine::pinstance_{nullptr};
+std::mutex VirtualMachine::mutex_;
+
+#endif

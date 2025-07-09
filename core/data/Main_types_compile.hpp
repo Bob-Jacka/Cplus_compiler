@@ -1,104 +1,28 @@
-#pragma once
-
 /*
- Header file with compile types included
+Header file with compile types included
  */
 
-// Controllers dependencies.
-#include "../functional/controllers_entities/MemoryController.cpp"
+#ifndef MAIN_TYPES_COMPILE_HPP
+#define MAIN_TYPES_COMPILE_HPP
 
 //Strategies
-#include "../functional/strategies/Strategy_context.cpp"
+#include "functional/strategies/declaration/Strategy_context.hpp"
 
 //Include compiler entities.
-#include "../entities/compile_entities/Lexer.cpp"
-#include "../entities/compile_entities/Linker.cpp"
-#include "../entities/compile_entities/Preprocessor.cpp"
-#include "../entities/compile_entities/Assembly_generator.cpp"
-#include "../entities/compile_entities/Parser.cpp"
-#include "../entities/compile_entities/Binary_generator.cpp"
-#include "../entities/compile_entities/Analyzer.cpp"
+#include "entities/compile_entities/declaration/Lexer.hpp"
+#include "entities/compile_entities/declaration/Linker.hpp"
+#include "entities/compile_entities/declaration/Preprocessor.hpp"
+#include "entities/compile_entities/declaration/Assembly_generator.hpp"
+#include "entities/compile_entities/declaration/Parser.hpp"
+#include "entities/compile_entities/declaration/Binary_generator.hpp"
+#include "entities/compile_entities/declaration/Analyzer.hpp"
 
 using namespace utility;
 
-//Structure with controllers.
-struct Controllers {
-private:
-    FileAccessController *file_controller; //file controller entity
-    MemoryController *mem_controller; //memory controller entity
-
-public:
-    /*
-     Standard controllers constructor
-     */
-    Controllers::Controllers() {
-        file_controller = nullptr;
-        mem_controller = nullptr;
-    }
-
-    /*
-     Standard controllers destructor
-     */
-    Controllers::~Controllers() {
-        delete file_controller;
-        delete mem_controller;
-    }
-
-    /*
-     Method for initializing controllers (file and memory controllers)
-     */
-    void init_controllers() {
-        try {
-            this->file_controller = FileAccessController::GetInstance();
-            this->mem_controller = MemoryController::GetInstance();
-        } catch (std::exception &e) {
-            colored_txt_output("Error in initializing global controller entities.", Color::red);
-            throw e;
-        }
-    }
-
-    /*
-     Method for destroying inner controllers
-     */
-    void destroy_controllers() const {
-        try {
-            delete this->file_controller;
-            delete this->mem_controller;
-        } catch (std::exception &e) {
-            colored_txt_output("Error in destroying global controller entities.", Color::red);
-            throw e;
-        }
-    }
-
-    /*
-     Error safety method for receive file controller
-     */
-    [[nodiscard]] FileAccessController *Controllers::get_file_controller() const {
-        try {
-            return this->file_controller;
-        } catch (std::exception &e) {
-            colored_txt_output("Error in returning file controller", Color::red);
-            throw e;
-        }
-    }
-
-    /*
-     Error safety method for receive memory controller
-     */
-    [[nodiscard]] MemoryController *Controllers::get_memory_controller() const {
-        try {
-            return mem_controller;
-        } catch (std::exception &e) {
-            colored_txt_output("Error in returning memory controller", Color::red);
-            throw e;
-        }
-    }
-};
-
 /*
- Compilator entities structure.
+ Puck of compiler entities
  */
-struct Compiler_entities { //TODO вынести в отдельный файл
+struct Compiler_entities {
 private:
     Lexer *lexer;
     Parser *parser;
@@ -125,7 +49,7 @@ public:
             this->bin_gen = Binary_generator::GetInstance();
             this->analyzer = Analyzer::GetInstance();
 
-            this->s_context = new Strategy_context;
+            this->s_context = new Strategy_context(nullptr);
         } catch (std::exception &e) {
             colored_txt_output("Error in initializing global compiler entities.", Color::red);
             throw e;
@@ -156,7 +80,7 @@ public:
      Error safety method for getting lexer
      Return - lexer
      */
-    [[nodiscard]] Lexer *Compiler_entities::get_lexer() const {
+    [[nodiscard]] auto get_lexer() const -> Lexer * {
         try {
             return lexer;
         } catch (std::exception &e) {
@@ -169,7 +93,7 @@ public:
      Error safety method for getting parser
      Return - parser
      */
-    [[nodiscard]] Parser *Compiler_entities::get_parser() const {
+    [[nodiscard]] auto get_parser() const -> Parser * {
         try {
             return parser;
         } catch (std::exception &e) {
@@ -182,7 +106,7 @@ public:
      Error safety method for getting linker
      Return - linker
      */
-    [[nodiscard]] Linker *Compiler_entities::get_linker() const {
+    [[nodiscard]] auto get_linker() const -> Linker * {
         try {
             return linker;
         } catch (std::exception &e) {
@@ -195,7 +119,7 @@ public:
      Error safety method for getting preprocessor
      Return - preprocessor
      */
-    [[nodiscard]] Preprocessor *Compiler_entities::get_preprocessor() const {
+    [[nodiscard]] auto get_preprocessor() const -> Preprocessor * {
         try {
             return preprocessor;
         } catch (std::exception &e) {
@@ -208,7 +132,7 @@ public:
      Error safety method for getting binary generator
      Return - binary generator
      */
-    [[nodiscard]] Binary_generator *Compiler_entities::get_binary_generator() const {
+    [[nodiscard]] auto get_binary_generator() const -> Binary_generator * {
         try {
             return bin_gen;
         } catch (std::exception &e) {
@@ -221,7 +145,7 @@ public:
      Error safety method for getting Assembly generator
      Return - Assembly generator
      */
-    [[nodiscard]] Assembly_generator *Compiler_entities::get_assembly_generator() const {
+    [[nodiscard]] auto get_assembly_generator() const -> Assembly_generator * {
         try {
             return asm_gen;
         } catch (std::exception &e) {
@@ -234,7 +158,7 @@ public:
      Error safety method for getting Analyzer
      Return - Analyzer
      */
-    [[nodiscard]] Analyzer *Analyzer::get_analyzer() const {
+    [[nodiscard]] auto get_analyzer() const -> Analyzer * {
         try {
             return analyzer;
         } catch (std::exception &e) {
@@ -247,7 +171,7 @@ public:
      Error safety method for getting strategy context
      Return - strategy context
      */
-    [[nodiscard]] Strategy_context *Compiler_entities::get_strategy_context() const {
+    [[nodiscard]] auto get_strategy_context() const -> Strategy_context * {
         try {
             return s_context;
         } catch (std::exception &e) {
@@ -293,12 +217,12 @@ struct Load_compiler_parameter {
 
     mutable Compile_mode compiler_mode; // Debug or release or dev or test.
 
-    Load_compiler_parameter::Load_compiler_parameter(const bool is_vm,
-                                                     const bool is_cplus_only,
-                                                     const bool is_ai,
-                                                     const bool is_assembler,
-                                                     const bool is_binary,
-                                                     const Compile_mode compiler_mode) {
+    Load_compiler_parameter(const bool is_vm,
+                            const bool is_cplus_only,
+                            const bool is_ai,
+                            const bool is_assembler,
+                            const bool is_binary,
+                            const Compile_mode compiler_mode) {
         this->is_vm = is_vm;
         this->is_cplus_only = is_cplus_only;
         this->is_ai = is_ai;
@@ -308,7 +232,7 @@ struct Load_compiler_parameter {
     }
 
     //Empty constructor of load parameters
-    Load_compiler_parameter::Load_compiler_parameter() {
+    Load_compiler_parameter() {
         this->is_vm = false;
         this->is_cplus_only = false;
         this->is_ai = false;
@@ -317,3 +241,5 @@ struct Load_compiler_parameter {
         this->compiler_mode = DEBUG;
     }
 };
+
+#endif

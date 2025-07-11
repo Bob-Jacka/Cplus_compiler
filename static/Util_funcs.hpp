@@ -7,6 +7,7 @@
 
 #include <regex>
 
+#include "Custom_operators.hpp"
 #include "Variables.hpp"
 #include "dependencies/termcolor.hpp"
 
@@ -17,7 +18,7 @@ namespace utility {
     /*
      Enumerate class for compiler colors
      */
-    enum class Color {
+    enum Color {
         white,
         red,
         blue,
@@ -27,7 +28,7 @@ namespace utility {
     /*
      Function for printt value into standard output with next line.
      */
-    template<typename T>
+    generic<typename T>
     void println(const T &value) {
         std::cout << value << "\n";
     }
@@ -35,7 +36,7 @@ namespace utility {
     /*
      Function for print value into standard output without next line.
      */
-    template<typename T>
+    generic<typename T>
     void print(const T &value, string separator = " ") {
         std::cout << value << separator;
     }
@@ -51,7 +52,7 @@ namespace utility {
      color - color value from Color enum
      */
     [[maybe_unused]] inline void colored_txt_output(const_string &str, const Color color = Color::white) {
-        switch (color) {
+        match (color) {
             case Color::white:
                 std::cout << termcolor::white;
                 break;
@@ -143,12 +144,14 @@ namespace utility {
     Returns string value with replacing symbols.
     */
     [[maybe_unused]] static string replace(string &s, const char c1, const char c2) {
-        const auto l = s.length();
+        val2 l = s.length();
         for (int i = 0; i < l; i++) {
-            if (s[i] == c1)
+            if (s[i] == c1) {
                 s[i] = c2;
-            else if (s[i] == c2)
+            }
+            elif (s[i] == c2) {
                 s[i] = c1;
+            }
         }
         return s;
     }
@@ -158,7 +161,7 @@ namespace utility {
     Returns string value with replacing symbols.
     */
     [[maybe_unused]] static string replace(const_string &s, const_string &s1, const_string &s2) {
-        const auto l = s.size();
+        const var3 l = s.size();
         for (int i = 0; i < l; i++) {
             //
         }
@@ -183,7 +186,7 @@ namespace utility {
     /*
     trim some characters at sequence
      */
-    template<typename Sequence, typename Pred>
+    generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim(Sequence &seq, Pred pred) {
         return trim_start(trim_end(seq, pred), pred);
     }
@@ -191,9 +194,9 @@ namespace utility {
     /*
     trim some characters at sequence end
      */
-    template<typename Sequence, typename Pred>
+    generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim_end(Sequence &seq, Pred pred) {
-        auto last = std::find_if_not(seq.rbegin(), seq.rend(), pred);
+        var3 last = std::find_if_not(seq.rbegin(), seq.rend(), pred);
         seq.erase(last.base(), seq.end());
         return seq;
     }
@@ -201,9 +204,9 @@ namespace utility {
     /*
     trim some characters at sequence start
      */
-    template<typename Sequence, typename Pred>
+    generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim_start(Sequence &seq, Pred pred) {
-        auto first = std::find_if_not(seq.begin(), seq.end(), pred);
+        var3 first = std::find_if_not(seq.begin(), seq.end(), pred);
         seq.erase(seq.begin(), first);
         return seq;
     }

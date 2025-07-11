@@ -28,7 +28,7 @@ struct Value {
     }
 
     ~Value() {
-        delete modifier;
+        del modifier;
     }
 };
 
@@ -42,11 +42,11 @@ struct Function {
 
     Function() {
         arguments = new std::vector<string>();
-        visible_mod = nullptr;
+        visible_mod = null;
     }
 
     ~Function() {
-        delete arguments;
+        del arguments;
     }
 };
 
@@ -64,8 +64,8 @@ struct Lang_struct {
     }
 
     ~Lang_struct() {
-        delete[] values;
-        delete[] functions;
+        del[] values;
+        del[] functions;
     }
 };
 
@@ -75,7 +75,7 @@ typedef const regex const_reg; //define constant regex value type.
 /*
  Enum class to define different types of p_tokens
  */
-enum class TokenEnum {
+enum TokenEnum {
     KEYWORD, //for lang inner word, ex. structure word
     IDENTIFIER, //for ex. value or function name
 
@@ -157,7 +157,7 @@ public:
     static Lexer *GetInstance();
 };
 
-Lexer *Lexer::pinstance_{nullptr};
+Lexer *Lexer::pinstance_{null};
 std::mutex Lexer::mutex_;
 
 #endif

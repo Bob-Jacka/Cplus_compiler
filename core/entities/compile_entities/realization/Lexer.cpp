@@ -3,8 +3,8 @@
 #include <fstream>
 
 Lexer::~Lexer() {
-    delete pinstance_;
-    delete[] p_tokens;
+    del pinstance_;
+    del[] p_tokens;
 }
 
 /*
@@ -13,7 +13,7 @@ Lexer::~Lexer() {
  */
 Lexer *Lexer::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new Lexer("");
     }
     return pinstance_;
@@ -213,7 +213,7 @@ vector<Token> *Lexer::get_token_vector() const {
  Function to convert TokenType to string for printing
  */
 string Lexer::get_token_type_name(const TokenEnum type) {
-    switch (type) {
+    match (type) {
         case TokenEnum::KEYWORD:
             return "KEYWORD";
         case TokenEnum::IDENTIFIER:
@@ -241,7 +241,7 @@ string Lexer::get_token_type_name(const TokenEnum type) {
  Function to print all p_tokens in inner vector container
  */
 void Lexer::print_tokens(const vector<Token> &p_tokens) {
-    for (const auto &token: p_tokens) {
+    for (val2 &token: p_tokens) {
         cout << "Type: " << get_token_type_name(token.type) << endl << "Value: " << token.value << endl;
     }
 }

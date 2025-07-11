@@ -31,7 +31,7 @@ void CompileStrategy::doAlgorithm(const string &entry_point_name,
     {
         compiler_entities->init_entities();
         logger->log("Entities initialized");
-        controllers->init_controllers();
+        controllers->init_entities();
         logger->log("Controllers initialized");
 
         linker = compiler_entities->get_linker();
@@ -79,11 +79,11 @@ void CompileStrategy::doAlgorithm(const string &entry_point_name,
         analyzer->proceed_analysis();
 
         //lex analyze of the program text and tokenize
-        const auto tokens = lexer->tokenize(); //return tokens from lexer
+        val2 tokens = lexer->tokenize(); //return tokens from lexer
         logger->log("Tokenizer finished work");
 
         //parse lexemes and build tree
-        const auto parsed_tokens = parser->parse_tokens(tokens); //return tokens into var
+        val2 parsed_tokens = parser->parse_tokens(tokens); //return tokens into var
         logger->log("Tokens parsed");
 
         //generation of the assembly representation.
@@ -102,10 +102,10 @@ void CompileStrategy::doAlgorithm(const string &entry_point_name,
         controllers->get_file_controller()->close_file(*entry_file);
 
         compiler_entities->destroy_entities();
-        controllers->destroy_controllers();
+        controllers->destroy_entities();
 
-        delete compiler_entities;
-        delete controllers;
-        delete logger;
+        del compiler_entities;
+        del controllers;
+        del logger;
     }
 }

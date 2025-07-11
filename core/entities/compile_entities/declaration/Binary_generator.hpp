@@ -3,8 +3,9 @@
 
 #include <mutex>
 
-#include "../../../data/exceptions/BinaryGeneratorException.hpp"
-#include "../../../functional/controllers_entities/declaration/File_access_controller.hpp"
+#include "../data/exceptions/BinaryGeneratorException.hpp"
+#include "../functional/controllers_entities/declaration/File_access_controller.hpp"
+#include "Custom_operators.hpp"
 
 class Binary_generator {
     static Binary_generator *pinstance_;
@@ -12,19 +13,19 @@ class Binary_generator {
 
     Binary_generator();
 
-public:
+global:
     ~Binary_generator();
 
     ifstream generate_binary(const FileAccessController *);
 
-    Binary_generator(Binary_generator &) = delete;
+    Binary_generator(Binary_generator &) = del;
 
-    void operator=(const Binary_generator &) = delete;
+    None operator=(const Binary_generator &) = del;
 
     static Binary_generator *GetInstance();
 };
 
-Binary_generator *Binary_generator::pinstance_{nullptr};
+Binary_generator *Binary_generator::pinstance_{null};
 std::mutex Binary_generator::mutex_;
 
 #endif

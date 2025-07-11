@@ -9,6 +9,7 @@ This class needs for assembly generate.
 #include "Lexer.hpp"
 #include "../../../data/exceptions/AssemblyGeneratorException.hpp"
 #include "../static/Util_funcs.hpp"
+#include "Custom_operators.hpp"
 
 class Assembly_generator {
     void movl();
@@ -45,19 +46,19 @@ class Assembly_generator {
 
     Assembly_generator();
 
-public:
-    explicit Assembly_generator(Assembly_generator *) = delete;
+global:
+    explicit Assembly_generator(Assembly_generator *) = del;
 
     ~Assembly_generator();
 
-    void operator=(const Assembly_generator &) = delete;
+    None operator=(const Assembly_generator &) = del;
 
     static Assembly_generator *GetInstance();
 
-    void generate_asm(const std::vector<Token> *) noexcept;
+    None generate_asm(const std::vector<Token> *) noexcept;
 };
 
-Assembly_generator *Assembly_generator::pinstance_{nullptr};
+Assembly_generator *Assembly_generator::pinstance_{null};
 std::mutex Assembly_generator::mutex_;
 
 #endif

@@ -8,8 +8,7 @@ Link all import directives into file
 
 #include "../../../data/exceptions/LinkerException.hpp"
 #include "../../../functional/controllers_entities/declaration/File_access_controller.hpp"
-
-#include "../static/CplusModel.hpp"
+#include "Custom_operators.hpp"
 
 class Linker {
     Linker() = default;
@@ -18,18 +17,18 @@ class Linker {
     static Linker *pinstance_;
     static std::mutex mutex_;
 
-    [[nodiscard]] string _get_file_name(string &line) const;
+    [[nodiscard]] string _get_file_name(string &) const;
 
-    void _scan_file(ifstream &input_file) const;
+    void _scan_file(ifstream &) const;
 
     friend class LinkerTest;
 
-public:
-    Linker(Linker &other) = delete;
+global:
+    Linker(Linker &) = del;
 
     ~Linker();
 
-    void operator=(const Linker &) = delete;
+    void operator=(const Linker &) = del;
 
     void link_import_directives(ifstream &) const; //Imports all inner files.
 
@@ -40,7 +39,7 @@ public:
     friend class LinkerTest;
 };
 
-Linker *Linker::pinstance_{nullptr};
+Linker *Linker::pinstance_{null};
 std::mutex Linker::mutex_;
 
 #endif

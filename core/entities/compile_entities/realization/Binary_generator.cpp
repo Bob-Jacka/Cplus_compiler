@@ -6,7 +6,7 @@ Binary_generator::Binary_generator() {
 }
 
 Binary_generator::~Binary_generator() {
-    delete&mutex_;
+    del&mutex_;
 }
 
 /**
@@ -18,7 +18,7 @@ ifstream Binary_generator::generate_binary(const FileAccessController *f_control
 
 Binary_generator *Binary_generator::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new Binary_generator();
     }
     return pinstance_;

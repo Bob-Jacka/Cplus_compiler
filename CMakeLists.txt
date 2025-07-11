@@ -23,7 +23,9 @@ function(add_executables target)
     target_sources(${target} PRIVATE ${sources})
 endfunction()
 
-add_executable(Cplus_compiler main.cpp)
+add_executable(Cplus_compiler main.cpp
+        core/data/IMain_types.hpp
+        static/Custom_operators.hpp)
 
 target_include_directories(Cplus_compiler PRIVATE
         ${PROJECT_SOURCE_DIR}/core

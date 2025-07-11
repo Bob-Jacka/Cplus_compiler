@@ -7,43 +7,47 @@ Get stream from lexer and build syntax tree;
 #define PARSER_HPP
 
 #include <mutex>
+#include <vector>
+
+#include "Custom_operators.hpp"
+#include "Lexer.hpp"
 
 class Parser {
     static Parser *pinstance_;
     static std::mutex mutex_;
 
     //methods for react on different tokens
-    void react_on_keyword() const;
+    None react_on_keyword() const;
 
-    void react_on_intval() const;
+    None react_on_intval() const;
 
-    void react_on_stringval() const;
+    None react_on_stringval() const;
 
-    void react_on_floatval() const;
+    None react_on_floatval() const;
 
-    void react_on_operator() const;
+    None react_on_operator() const;
 
-    void react_on_identifier() const;
+    None react_on_identifier() const;
 
-public:
+global:
     Parser() = default;
 
     ~Parser() = default;
 
-    Parser(Parser &other) = delete;
+    Parser(Parser &other) = del;
 
-    void operator=(const Parser &) = delete;
+    None operator=(const Parser &) = del;
 
     static Parser *GetInstance();
 
-    void build_tree() const;
+    None build_tree() const;
 
     std::vector<Token> *parse_tokens(std::vector<Token> *) const; //Entry point of the Parser
 
     friend class ParserTest;
 };
 
-Parser *Parser::pinstance_{nullptr};
+Parser *Parser::pinstance_{null};
 std::mutex Parser::mutex_;
 
 #endif

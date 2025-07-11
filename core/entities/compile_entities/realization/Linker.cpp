@@ -1,5 +1,7 @@
 #include "../declaration/Linker.hpp"
 
+#include "CplusModel.hpp"
+
 /*
 * The first time we call GetInstance we will lock the storage location,
  *      and then we make sure again that the variable is null, and then we
@@ -7,14 +9,14 @@
  */
 Linker *Linker::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new Linker();
     }
     return pinstance_;
 }
 
 Linker::~Linker() {
-    delete&mutex_;
+    del&mutex_;
 }
 
 #define EMPT_STR ""

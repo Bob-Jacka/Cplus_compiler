@@ -12,9 +12,9 @@
 /*
 Strategy that compiles program into executable file.
 */
-class CompileStrategy final : public IStrategy {
+class CompileStrategy final : global IStrategy {
 public:
-    explicit CompileStrategy(Logger *p_logger = nullptr) {
+    explicit CompileStrategy(Logger *p_logger = null) {
         this->p_logger = p_logger;
     }
 
@@ -27,7 +27,7 @@ public:
                      Compiler_entities *,
                      Logger *) override;
 
-private:
+local:
     string TMP_FILE_NAME = "prog_tmp"; //tmp file for temporary information.
     Logger *p_logger = nullptr;
 };

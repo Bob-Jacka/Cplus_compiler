@@ -1,5 +1,7 @@
 #include "../declaration/Analyzer.hpp"
 
+#include "Custom_operators.hpp"
+
 Analyzer::Analyzer() {
     //
 }
@@ -16,7 +18,7 @@ Analyzer::~Analyzer() {
  */
 Analyzer *Analyzer::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new Analyzer();
     }
     return pinstance_;

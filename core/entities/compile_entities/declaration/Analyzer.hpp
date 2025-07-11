@@ -3,6 +3,7 @@
 
 #include <mutex>
 #include "../../../data/exceptions/AnalyzerException.hpp"
+#include "Custom_operators.hpp"
 
 class Analyzer {
     static Analyzer *pinstance_;
@@ -10,19 +11,19 @@ class Analyzer {
 
     Analyzer();
 
-public:
-    explicit Analyzer(Analyzer *) = delete;
+global:
+    explicit Analyzer(Analyzer *) = del;
 
-    void operator=(const Analyzer &) = delete;
+    None operator=(const Analyzer &) = del;
 
     static Analyzer *GetInstance();
 
-    void proceed_analysis();
+    None proceed_analysis();
 
     ~Analyzer();
 };
 
-Analyzer *Analyzer::pinstance_{nullptr};
+Analyzer *Analyzer::pinstance_{null};
 std::mutex Analyzer::mutex_;
 
 #endif

@@ -9,6 +9,7 @@ Header file with compile types included
 #include "functional/strategies/declaration/Strategy_context.hpp"
 
 //Include compiler entities.
+#include "IMain_types.hpp"
 #include "entities/compile_entities/declaration/Lexer.hpp"
 #include "entities/compile_entities/declaration/Linker.hpp"
 #include "entities/compile_entities/declaration/Preprocessor.hpp"
@@ -17,13 +18,11 @@ Header file with compile types included
 #include "entities/compile_entities/declaration/Binary_generator.hpp"
 #include "entities/compile_entities/declaration/Analyzer.hpp"
 
-using namespace utility;
-
 /*
  Puck of compiler entities
  */
-struct Compiler_entities {
-private:
+struct Compiler_entities final : IMainTypes {
+local:
     Lexer *lexer;
     Parser *parser;
     Linker *linker;
@@ -34,24 +33,24 @@ private:
 
     Strategy_context *s_context;
 
-public:
+global:
     Compiler_entities() = default;
 
-    ~Compiler_entities() = default;
+    ~Compiler_entities() override = default;
 
-    void init_entities() {
+    void init_entities() override {
         try {
-            this->lexer = Lexer::GetInstance();
-            this->parser = Parser::GetInstance();
-            this->linker = Linker::GetInstance();
-            this->preprocessor = Preprocessor::GetInstance();
-            this->asm_gen = Assembly_generator::GetInstance();
-            this->bin_gen = Binary_generator::GetInstance();
-            this->analyzer = Analyzer::GetInstance();
+            lexer = Lexer::GetInstance();
+            parser = Parser::GetInstance();
+            linker = Linker::GetInstance();
+            preprocessor = Preprocessor::GetInstance();
+            asm_gen = Assembly_generator::GetInstance();
+            bin_gen = Binary_generator::GetInstance();
+            analyzer = Analyzer::GetInstance();
 
-            this->s_context = new Strategy_context(nullptr);
+            s_context = new Strategy_context(null);
         } catch (std::exception &e) {
-            colored_txt_output("Error in initializing global compiler entities.", Color::red);
+            utility::colored_txt_output("Error in initializing global compiler entities.", utility::Color::red);
             throw e;
         }
     }
@@ -59,19 +58,19 @@ public:
     /*
     Function for destroying created entities.
     */
-    void destroy_entities() const {
+    void destroy_entities() override {
         try {
-            delete this->lexer;
-            delete this->parser;
-            delete this->linker;
-            delete this->preprocessor;
-            delete this->asm_gen;
-            delete this->bin_gen;
-            delete this->analyzer;
+            del lexer;
+            del parser;
+            del linker;
+            del preprocessor;
+            del asm_gen;
+            del bin_gen;
+            del analyzer;
 
-            delete this->s_context;
+            del s_context;
         } catch (std::exception &e) {
-            colored_txt_output("Error in destroying global compiler entities.", Color::red);
+            utility::colored_txt_output("Error in destroying global compiler entities.", utility::Color::red);
             throw e;
         }
     }
@@ -84,7 +83,7 @@ public:
         try {
             return lexer;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return lexer", Color::red);
+            utility::colored_txt_output("Error in return lexer", utility::Color::red);
             throw e;
         }
     }
@@ -97,7 +96,7 @@ public:
         try {
             return parser;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return parser", Color::red);
+            utility::colored_txt_output("Error in return parser", utility::Color::red);
             throw e;
         }
     }
@@ -110,7 +109,7 @@ public:
         try {
             return linker;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return linker", Color::red);
+            utility::colored_txt_output("Error in return linker", utility::Color::red);
             throw e;
         }
     }
@@ -123,7 +122,7 @@ public:
         try {
             return preprocessor;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return preprocessor", Color::red);
+            utility::colored_txt_output("Error in return preprocessor", utility::Color::red);
             throw e;
         }
     }
@@ -136,7 +135,7 @@ public:
         try {
             return bin_gen;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return assembly generator", Color::red);
+            utility::colored_txt_output("Error in return assembly generator", utility::Color::red);
             throw e;
         }
     }
@@ -149,7 +148,7 @@ public:
         try {
             return asm_gen;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return assembly generator", Color::red);
+            utility::colored_txt_output("Error in return assembly generator", utility::Color::red);
             throw e;
         }
     }
@@ -162,7 +161,7 @@ public:
         try {
             return analyzer;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return analyzer", Color::red);
+            utility::colored_txt_output("Error in return analyzer", utility::Color::red);
             throw e;
         }
     }
@@ -175,7 +174,7 @@ public:
         try {
             return s_context;
         } catch (std::exception &e) {
-            colored_txt_output("Error in return strategy context", Color::red);
+            utility::colored_txt_output("Error in return strategy context", utility::Color::red);
             throw e;
         }
     }
@@ -208,6 +207,7 @@ enum Compile_mode {
 
 //Structure for load time parameters of the compiler.
 struct Load_compiler_parameter {
+    global:
     mutable bool is_vm = false; //(Mode) Enters virtual machine mode.
     mutable bool is_cplus_only = false; //(Mode) generates only executable file.
 

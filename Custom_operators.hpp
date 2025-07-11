@@ -1,5 +1,5 @@
 /*
- Header file with my custom operators, like Python or Java
+ Header file with my custom operators, style like Python or Java
  */
 #ifndef CUSTOM_OPERATORS_HPP
 #define CUSTOM_OPERATORS_HPP

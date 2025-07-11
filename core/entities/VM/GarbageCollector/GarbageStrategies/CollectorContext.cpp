@@ -5,29 +5,29 @@
 using namespace std;
 
 class CollectorContext {
-private:
+local:
     unique_ptr<Strategy> strategy_;
 
-public:
+global:
     CollectorContext() {
     };
 
     ~CollectorContext() {
     };
 
-    void set_strategy(unique_ptr<IGarbageCollector> &&strategy);
+    None set_strategy(unique_ptr<IGarbageCollector> &&strategy);
 
-    void doLogic() const;
+    None doLogic() const;
 
     CollectorContext(unique_ptr<IGarbageCollector> &&strategy = {}) : strategy_(std::move(strategy)) {
     };
 };
 
-void CollectorContext::set_strategy(unique_ptr<IGarbageCollector> &&strategy) {
+None CollectorContext::set_strategy(unique_ptr<IGarbageCollector> &&strategy) {
     this->strategy_ = move(strategy);
 }
 
-void CollectorContext::doLogic() const {
+None CollectorContext::doLogic() const {
     if (strategy_) {
         strategy_->doAlgorithm();
     } else {

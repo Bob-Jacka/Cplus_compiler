@@ -17,21 +17,21 @@ Header file with virtual machine types included
  Structure with Virtual machine entities
  */
 struct VM_entities final : IMainTypes {
-private:
+local:
     VirtualMachine *vm;
     VirtualMachineConsole *console;
     IGarbageCollector *gc;
 
     VM_settings *settings;
 
-public:
+global:
     VM_entities(VirtualMachine *_vm, VirtualMachineConsole *_console);
 
     ~VM_entities() override;
 
-    void init_entities() override;
+    None init_entities() override;
 
-    void destroy_entities() override;
+    None destroy_entities() override;
 
     VirtualMachine *get_virtual_machine() const;
 
@@ -51,7 +51,7 @@ inline VirtualMachine *VM_entities::get_virtual_machine() const -> VirtualMachin
         return vm;
     } catch ([[maybe_unused]] std::exception &e) {
         utility::colored_txt_output("Error in initializing global controller entities.", utility::Color::red);
-        throw e;
+        raise e;
     }
     return null;
 }
@@ -61,7 +61,7 @@ inline VirtualMachineConsole *VM_entities::get_vmconsole() const -> VirtualMachi
         return console;
     } catch ([[maybe_unused]] std::exception &e) {
         utility::colored_txt_output("Error in virtual machine console.", utility::Color::red);
-        throw e;
+        raise e;
     }
     return null;
 }
@@ -71,7 +71,7 @@ inline IGarbageCollector *VM_entities::get_gc() const -> IGarbageCollector * {
         return gc;
     } catch ([[maybe_unused]] std::exception &e) {
         utility::colored_txt_output("Error in returning garbage collector.", utility::Color::red);
-        throw e;
+        raise e;
     }
     return null;
 }
@@ -81,7 +81,7 @@ inline VM_settings *VM_entities::get_settings() const -> VM_settings * {
         return settings;
     } catch ([[maybe_unused]] std::exception &e) {
         utility::colored_txt_output("Error in returning virtual machine settings.", utility::Color::red);
-        throw e;
+        raise e;
     }
     return null;
 }
@@ -89,7 +89,7 @@ inline VM_settings *VM_entities::get_settings() const -> VM_settings * {
 /*
  Method for initializing virtual machine entities
  */
-inline void VM_entities::init_entities() override {
+inline None VM_entities::init_entities() override {
     this->settings = new VM_settings("VM_settings", false, false, 0);
     this->vm = VirtualMachine::GetInstance(settings);
     this->console = VirtualMachineConsole::GetInstance();
@@ -98,7 +98,7 @@ inline void VM_entities::init_entities() override {
 /*
  Method for destroying virtual machine entities
  */
-inline void VM_entities::destroy_entities() override {
+inline None VM_entities::destroy_entities() override {
     del this->vm;
     del this->console;
 }

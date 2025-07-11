@@ -6,13 +6,14 @@
 
 #include "../IStrategies.hpp"
 #include "../entities/Logger.hpp"
+#include "../Custom_operators.hpp"
 
 using namespace std;
 
 class Strategy_context {
     unique_ptr<IStrategy> strategy_;
 
-public:
+global:
     Strategy_context();
 
     ~Strategy_context() = default;
@@ -20,9 +21,9 @@ public:
     explicit Strategy_context(unique_ptr<IStrategy> &&strategy = {}) : strategy_(std::move(strategy)) {
     }
 
-    void set_strategy(unique_ptr<IStrategy> &&strategy);
+    None set_strategy(unique_ptr<IStrategy> &&strategy);
 
-    void doLogic(const string &entry_point_name,
+    None doLogic(const string &entry_point_name,
                  Controllers *controllers,
                  Compiler_entities *compiler_entities,
                  Logger *logger) const;

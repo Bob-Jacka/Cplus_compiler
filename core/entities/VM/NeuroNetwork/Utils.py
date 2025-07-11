@@ -163,7 +163,7 @@ def update_labels(labels_dir_path: str | PathLike, images_dir_name: str = 'image
     RULES:
         1. Images names must ends with {success_img_indicator} or {failure_img_indicator}.
         2. labels_file_name must include '.csv' extension.
-        3. labels_dir_path must fill out in main.py file.
+        3. labels_dir_path must fill out in Prepreprocessor.py file.
 
     :param labels_dir_path path where labels are stored.
     :param images_dir_name path where images are stored.

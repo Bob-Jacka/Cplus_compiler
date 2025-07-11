@@ -3,7 +3,7 @@
 
 #include <mutex>
 #include "../../../data/exceptions/AnalyzerException.hpp"
-#include "Custom_operators.hpp"
+#include "../../../../Custom_operators.hpp"
 
 class Analyzer {
     static Analyzer *pinstance_;

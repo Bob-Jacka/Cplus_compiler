@@ -3,19 +3,19 @@
 //Constructor and destructor
 
 FileAccessController::~FileAccessController() {
-    delete logger;
-    delete pinstance_;
+    del logger;
+    del pinstance_;
 }
 
 FileAccessController *FileAccessController::GetInstance() {
     lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new FileAccessController();
     }
     return pinstance_;
 }
 
-void FileAccessController::_write_to_file(cstr &file_name) const {
+None FileAccessController::_write_to_file(cstr &file_name) const {
     //
 }
 
@@ -31,9 +31,9 @@ ifstream *FileAccessController::create_tmp_file(cstr &file_name) const {
     } catch (const exception &e) {
         this->logger->log("Error in create tmp file");
         this->logger->log(e.what());
-        throw FileAccessControllerExceptions::error_in_creating_tmp_file();
+        raise FileAccessControllerExceptions::error_in_creating_tmp_file();
     }
-    return nullptr;
+    return null;
 }
 
 /*
@@ -48,9 +48,9 @@ ifstream FileAccessController::create_object_file(cstr &file_name) const {
     } catch (const exception &e) {
         this->logger->log("Error in create object file");
         this->logger->log(e.what());
-        throw FileAccessControllerExceptions::error_in_object_file();
+        raise FileAccessControllerExceptions::error_in_object_file();
     }
-    return nullptr;
+    return null;
 }
 
 ifstream FileAccessController::create_assembly_file(cstr &file_name) const {
@@ -62,9 +62,9 @@ ifstream FileAccessController::create_assembly_file(cstr &file_name) const {
     } catch (const exception &e) {
         this->logger->log("Error in assembly file");
         this->logger->log(e.what());
-        throw FileAccessControllerExceptions::error_in_assembly_file();
+        raise FileAccessControllerExceptions::error_in_assembly_file();
     }
-    return nullptr;
+    return null;
 }
 
 /*
@@ -92,17 +92,17 @@ Define macros method only for unix like systems;
 /*
 Delete file by file controller.
 */
-bool FileAccessController::delete_file(const char *file_to_delete) const {
+bool FileAccessController::del_file(const char *file_to_del) const {
     try {
-        cout << file_to_delete << " - file deleted.";
-        const int res = remove(file_to_delete);
+        cout << file_to_del << " - file deleted.";
+        const int res = remove(file_to_del);
         return res;
     } catch (std::exception &e) {
         this->logger->log("Error in deleting file");
         this->logger->log(e.what());
-        throw FileAccessControllerExceptions::error_to_delete_file();
+        raise FileAccessControllerExceptions::error_to_del_file();
     }
-    return nullptr;
+    return null;
 }
 
 /*
@@ -128,7 +128,7 @@ ifstream *FileAccessController::copy_file(cstr &file_name_to_include, cstr &outp
     } catch (std::exception &e) {
         this->logger->log("Error in copy file");
         this->logger->log(e.what());
-        throw FileAccessControllerExceptions::error_in_copy_file();
+        raise FileAccessControllerExceptions::error_in_copy_file();
     }
     infile.close();
     return &outfile;
@@ -149,22 +149,22 @@ ifstream *FileAccessController::open_file(cstr &file_name) const {
         } catch (const exception &e) {
             this->logger->log("Error in open file");
             this->logger->log(e.what());
-            throw FileAccessControllerExceptions::error_to_open_file();
+            raise FileAccessControllerExceptions::error_to_open_file();
         }
     }
-    throw FileAccessControllerExceptions::wrong_extension();
+    raise FileAccessControllerExceptions::wrong_extension();
 }
 
 /*
 Method that responsible for closing file.
 */
-void FileAccessController::close_file(ifstream &opened_file) const {
+None FileAccessController::close_file(ifstream &opened_file) const {
     try {
         utility::println("File closed.");
         opened_file.close();
     } catch (const exception &e) {
         this->logger->log("Error in closing file");
         this->logger->log(e.what());
-        throw FileAccessControllerExceptions::error_to_close_file();
+        raise FileAccessControllerExceptions::error_to_close_file();
     }
 }

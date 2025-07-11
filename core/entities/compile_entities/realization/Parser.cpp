@@ -6,7 +6,7 @@
  */
 Parser *Parser::GetInstance() {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new Parser();
     }
     return pinstance_;
@@ -15,49 +15,49 @@ Parser *Parser::GetInstance() {
 /*
 Method that aggregates syntax tree actions
 */
-void Parser::build_tree() const {
+None Parser::build_tree() const {
     //
 }
 
 /*
 Method that reacts on keyword tokens
 */
-void Parser::react_on_keyword() const {
+None Parser::react_on_keyword() const {
     //
 }
 
 /*
 Method that reacts on int val token
 */
-void Parser::react_on_intval() const {
+None Parser::react_on_intval() const {
     //
 }
 
 /*
 Method that reacts on string val token
 */
-void Parser::react_on_stringval() const {
+None Parser::react_on_stringval() const {
     //
 }
 
 /*
 Method that reacts on float val token
 */
-void Parser::react_on_floatval() const {
+None Parser::react_on_floatval() const {
     //
 }
 
 /*
 Method that reacts on operator token
 */
-void Parser::react_on_operator() const {
+None Parser::react_on_operator() const {
     //
 }
 
 /*
 Method that reacts on value identifier token
 */
-void Parser::react_on_identifier() const {
+None Parser::react_on_identifier() const {
     //
 }
 
@@ -66,5 +66,5 @@ Entry point of the parser
 */
 std::vector<Token> *Parser::parse_tokens(std::vector<Token> *) const {
     //
-    return nullptr;
+    return null;
 }

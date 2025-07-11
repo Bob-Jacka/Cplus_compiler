@@ -3,8 +3,8 @@
 
 #include "BaseException.hpp"
 
-class MemoryControllerException final : public BaseException {
-public:
+class MemoryControllerException final : global BaseException {
+global:
     static int error_to_allocate_memory();
 
     static int error_to_free_memory();

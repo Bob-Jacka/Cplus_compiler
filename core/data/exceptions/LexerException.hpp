@@ -2,8 +2,8 @@
 #define LEXER_EXCEPTION_HPP
 #include "BaseException.hpp"
 
-class LexerException final : public BaseException {
-public:
+class LexerException final : global BaseException {
+global:
     static int wrong_value_type();
 
     static int wrong_function_type();

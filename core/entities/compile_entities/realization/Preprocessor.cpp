@@ -7,10 +7,10 @@ Preprocessor::Preprocessor() {
 }
 
 Preprocessor::~Preprocessor() {
-    delete&mutex_;
-    delete&pinstance_;
-    delete[] pinstance_;
-    delete list_of_directives;
+    del&mutex_;
+    del&pinstance_;
+    del[] pinstance_;
+    del list_of_directives;
 }
 
 /**
@@ -20,13 +20,13 @@ Preprocessor::~Preprocessor() {
  */
 Preprocessor *Preprocessor::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new Preprocessor();
     }
     return pinstance_;
 }
 
-void Preprocessor::_scan_file_for_directives(std::ifstream file) const {
+None Preprocessor::_scan_file_for_directives(std::ifstream file) const {
     //for (string line : file) {
     //    if (starts_with_directive(line)) {
     //        distribute(line);
@@ -34,7 +34,7 @@ void Preprocessor::_scan_file_for_directives(std::ifstream file) const {
     //}
 }
 
-void Preprocessor::distribute() const {
+None Preprocessor::distribute() const {
     //
 }
 
@@ -42,6 +42,6 @@ void Preprocessor::distribute() const {
 Main function of the preprocessor entities.
 Makes preprocess action.
 */
-void Preprocessor::preprocess() const {
-    throw PreprocessorException();
+None Preprocessor::preprocess() const {
+    raise PreprocessorException();
 }

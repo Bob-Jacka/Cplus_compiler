@@ -11,21 +11,21 @@ class CollectorWithStop final : IGarbageCollector {
 
     CollectorWithStop();
 
-public:
+global:
     ~CollectorWithStop() override;
 
-    CollectorWithStop(CollectorWithStop &other) = delete;
+    CollectorWithStop(CollectorWithStop &other) = del;
 
-    void operator=(const CollectorWithStop &) = delete;
+    None operator=(const CollectorWithStop &) = del;
 
     static CollectorWithStop *GetInstance();
 
-    void collectors_pass() const override;
+    None collectors_pass() const override;
 
-    void collect_garbage() const override;
+    None collect_garbage() const override;
 };
 
-CollectorWithStop *CollectorWithStop::pinstance_{nullptr};
+CollectorWithStop *CollectorWithStop::pinstance_{null};
 std::mutex CollectorWithStop::mutex_;
 
 //Constructor and destructor
@@ -39,16 +39,16 @@ CollectorWithStop::~CollectorWithStop() {
 
 CollectorWithStop *CollectorWithStop::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new CollectorWithStop();
     }
     return pinstance_;
 }
 
-void CollectorWithStop::collectors_pass() const {
+None CollectorWithStop::collectors_pass() const {
     //
 }
 
-void CollectorWithStop::collect_garbage() const {
+None CollectorWithStop::collect_garbage() const {
     //
 }

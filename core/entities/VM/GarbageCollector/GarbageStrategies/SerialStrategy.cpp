@@ -1,13 +1,13 @@
 #include "ICollector.cpp"
 
 class SerialStrategy final : CollectorStrategy {
-public:
+global:
     SerialStrategy() {
     }
 
     ~SerialStrategy() override {
     }
 
-private:
+local:
     //
 };

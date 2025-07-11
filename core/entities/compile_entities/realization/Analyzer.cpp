@@ -7,7 +7,7 @@ Analyzer::Analyzer() {
 }
 
 Analyzer::~Analyzer() {
-    delete&mutex_;
+    del&mutex_;
 }
 
 
@@ -28,6 +28,6 @@ Analyzer *Analyzer::GetInstance() {
  Main function of the analyzer process.
  Scan file for any errors
  */
-void Analyzer::proceed_analysis() {
+None Analyzer::proceed_analysis() {
     //
 }

@@ -7,8 +7,8 @@
 
 #include "BaseException.hpp"
 
-class LinkerException final : public BaseException {
-public:
+class LinkerException final : global BaseException {
+global:
     static int linkage_error();
 
     static int failed_add_file_error();

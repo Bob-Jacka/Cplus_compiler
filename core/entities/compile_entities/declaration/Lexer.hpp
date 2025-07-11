@@ -11,7 +11,7 @@ This package is for splitting line for lexemes.
 #include <vector>
 
 #include "data/exceptions/LexerException.hpp"
-
+#include "../Custom_operators.hpp"
 #include "../static/Util_funcs.hpp"
 
 /*
@@ -123,7 +123,7 @@ class Lexer {
         _init_keywords();
     }
 
-    void _init_keywords();
+    None _init_keywords();
 
     bool _is_whitespace(char) const;
 
@@ -141,14 +141,14 @@ class Lexer {
 
     friend class LexerTest; //friend class for lexer
 
-public:
+global:
     vector<Token> *tokenize();
 
-    Lexer() = delete;
+    Lexer() = del;
 
     ~Lexer();
 
-    static void print_tokens(const vector<Token> &);
+    static None print_tokens(const vector<Token> &);
 
     static string get_token_type_name(TokenEnum);
 

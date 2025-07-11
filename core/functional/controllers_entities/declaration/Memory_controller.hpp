@@ -16,31 +16,31 @@ class MemoryController {
 
     MemoryController();
 
-public:
+global:
     ~MemoryController();
 
-    MemoryController(MemoryController &other) = delete;
+    MemoryController(MemoryController &other) = del;
 
-    void operator=(const MemoryController &) = delete;
+    None operator=(const MemoryController &) = del;
 
     static MemoryController *GetInstance();
 
     [[nodiscard]] int **create_2d_array(size_t a, size_t b) const;
 
-    void kill_2d_array(int **m) const;
+    None kill_2d_array(int **m) const;
 
     int **create2DArrayInt(int rows, int cols);
 
-    template<class T>
-    void dynamicArrayOutput(T *array, int size, bool reverse, const string &separator);
+    generic<class T>
+    None dynamicArrayOutput(T *array, int size, bool reverse, const string &separator);
 
-    template<class T>
-    void deleteDynamicArray(T *array, int rows);
+    generic<class T>
+    None delDynamicArray(T *array, int rows);
 
-    void lineArrayOutput(const_int *array, int array_size, const_string &separator, bool is_inline);
+    None lineArrayOutput(const_int *array, int array_size, const_string &separator, bool is_inline);
 
-    template<class T>
-    void userInput(T &variableAddress);
+    generic<class T>
+    None userInput(T &variableAddress);
 };
 
 #endif

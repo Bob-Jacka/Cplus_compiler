@@ -8,28 +8,28 @@ class VirtualMachine;
 class VirtualMachineTest {
     VirtualMachine *priv_param = VirtualMachine::GetInstance();
 
-public:
-    auto do_test();
+global:
+    var3 do_test();
 };
 
 class VirtualMachineConsoleTest {
     VirtualMachineConsole *priv_param = VirtualMachineConsole::GetInstance();
 
-public:
+global:
     //
 };
 
 class CollectorWithStopTest {
     CollectorWithStop *priv_param = CollectorWithStop::GetInstance();
 
-public:
+global:
     //
 };
 
 class ParallelCollectorTest {
     ParallelCollector *priv_param = ParallelCollector::GetInstance();
 
-public:
+global:
     //
 };
 

@@ -11,7 +11,7 @@ controllers - puck of controllers entities;
 compiler_entities - puck of compiler_entities;
 logger - logger entity for compile strategy
 */
-void CompileStrategy::doAlgorithm(const string &entry_point_name,
+None CompileStrategy::doAlgorithm(const string &entry_point_name,
                                   Controllers *controllers,
                                   Compiler_entities *compiler_entities,
                                   Logger *logger) override {
@@ -51,7 +51,7 @@ void CompileStrategy::doAlgorithm(const string &entry_point_name,
     if (entry_point_name == MAIN_FILE_NAME) {
         entry_file = controllers->get_file_controller()->open_file(entry_point_name);
     } else {
-        throw CompilerModeException::main_not_found();
+        raise CompilerModeException::main_not_found();
     }
 
     try {
@@ -94,7 +94,7 @@ void CompileStrategy::doAlgorithm(const string &entry_point_name,
         bin_generator->generate_binary(controllers->get_file_controller());
         logger->log("Generated binary");
     } catch ([[maybe_unused]] exception &e) {
-        throw CompilerModeException::error_in_compile_strategy();
+        raise CompilerModeException::error_in_compile_strategy();
     }
     //Compiler teardown block.
     {

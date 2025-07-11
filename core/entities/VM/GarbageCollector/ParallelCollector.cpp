@@ -11,21 +11,21 @@ class ParallelCollector final : IGarbageCollector {
 
     ParallelCollector();
 
-    void collectors_pass() const override;
+    None collectors_pass() const override;
 
-public:
+global:
     ~ParallelCollector() override;
 
-    ParallelCollector(ParallelCollector &other) = delete;
+    ParallelCollector(ParallelCollector &other) = del;
 
-    void operator=(const ParallelCollector &) = delete;
+    None operator=(const ParallelCollector &) = del;
 
     static ParallelCollector *GetInstance();
 
-    void collect_garbage() const override;
+    None collect_garbage() const override;
 };
 
-ParallelCollector *ParallelCollector::pinstance_{nullptr};
+ParallelCollector *ParallelCollector::pinstance_{null};
 std::mutex ParallelCollector::mutex_;
 
 //Constructor and destructor
@@ -39,16 +39,16 @@ ParallelCollector::~ParallelCollector() {
 
 ParallelCollector *ParallelCollector::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new ParallelCollector();
     }
     return pinstance_;
 }
 
-void ParallelCollector::collectors_pass() const {
+None ParallelCollector::collectors_pass() const {
     //
 }
 
-void ParallelCollector::collect_garbage() const {
+None ParallelCollector::collect_garbage() const {
     //
 }

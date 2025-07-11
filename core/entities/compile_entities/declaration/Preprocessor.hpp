@@ -10,7 +10,7 @@ This class used for preprocessing file with code.
 
 #include "data/Variables.hpp"
 #include "data/exceptions/PreprocessorException.hpp"
-#include "Custom_operators.hpp"
+#include "../Custom_operators.hpp"
 
 class Preprocessor {
     std::vector<string> list_of_directives = {"pragma", "define", "ifdef", "ifndef", "endif"};
@@ -23,7 +23,7 @@ class Preprocessor {
 
     None distribute() const; //function for distribute.
 
-public:
+global:
     ~Preprocessor();
 
     Preprocessor(Preprocessor &other) = del;

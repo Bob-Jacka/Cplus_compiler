@@ -3,8 +3,8 @@
 
 #include "BaseException.hpp"
 
-class PreprocessorException final : public BaseException {
-public:
+class PreprocessorException final : global BaseException {
+global:
     static int wrong_directive(); //if directive is not defined by compiler
     static int wrong_directive_line();
 };

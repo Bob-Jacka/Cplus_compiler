@@ -9,30 +9,30 @@ This class needs for assembly generate.
 #include "Lexer.hpp"
 #include "../../../data/exceptions/AssemblyGeneratorException.hpp"
 #include "../static/Util_funcs.hpp"
-#include "Custom_operators.hpp"
+#include "../../../../Custom_operators.hpp"
 
 class Assembly_generator {
-    void movl();
+    None movl();
 
-    void movr();
+    None movr();
 
-    void movz();
+    None movz();
 
-    void jmp();
+    None jmp();
 
-    void neg();
+    None neg();
 
-    void cmp();
+    None cmp();
 
-    void div();
+    None div();
 
-    void push();
+    None push();
 
-    void pushq();
+    None pushq();
 
-    void sub();
+    None sub();
 
-    void inc();
+    None inc();
 
     string get_next_register();
 

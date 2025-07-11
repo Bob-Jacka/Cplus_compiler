@@ -4,9 +4,10 @@
 #include <fstream>
 #include <mutex>
 
-#include "../../../data/exceptions/FileAccessControllerException.hpp"
-#include "../../../entities/Logger.hpp"
+#include "../data/exceptions/FileAccessControllerException.hpp"
+#include "../entities/Logger.hpp"
 #include "../static/Util_funcs.hpp"
+#include "../Custom_operators.hpp"
 
 constexpr string CPLUS_EXT = ".cp"; //extension of the cp file
 constexpr string ASSEMBLY_EXT = ".asm";
@@ -22,20 +23,20 @@ Class, that used for file actions.
 class FileAccessController {
     static FileAccessController *pinstance_;
     static mutex mutex_;
-    Logger *logger = nullptr; //local instance of logger in file controller.
+    Logger *logger = null; //local instance of logger in file controller.
 
-    void _write_to_file(cstr &) const;
+    None _write_to_file(cstr &) const;
 
     FileAccessController() {
         this->logger = new Logger();
     }
 
-public:
+global:
     ~FileAccessController();
 
-    FileAccessController(FileAccessController &) = delete;
+    FileAccessController(FileAccessController &) = del;
 
-    void operator=(const FileAccessController &) = delete;
+    None operator=(const FileAccessController &) = del;
 
     static FileAccessController *GetInstance();
 
@@ -47,16 +48,16 @@ public:
     [[nodiscard]] ifstream create_assembly_file(cstr &) const;
 
     //Crud operations on files.
-    bool delete_file(const char *file_to_delete) const;
+    bool del_file(const char *file_to_del) const;
 
     [[nodiscard]] ifstream *copy_file(cstr &, cstr &) const;
 
     [[nodiscard]] ifstream *open_file(const string &file_name) const;
 
-    void close_file(ifstream &opened_file) const;
+    None close_file(ifstream &opened_file) const;
 };
 
-FileAccessController *FileAccessController::pinstance_{nullptr};
+FileAccessController *FileAccessController::pinstance_{null};
 mutex FileAccessController::mutex_;
 
 #endif

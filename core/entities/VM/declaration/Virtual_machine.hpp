@@ -16,7 +16,7 @@ struct VM_settings {
     bool is_multi_thread = false;
     bool is_ai_enabled = false;
     long long vm_memory = 0;
-    IGarbageCollector *garbage_collector = nullptr;
+    IGarbageCollector *garbage_collector = null;
 
     //functions
     static std::string generate_vm_name();
@@ -31,7 +31,7 @@ struct VM_settings {
 
     VM_settings(const string &name, bool is_multi_thread, bool is_ai_enabled, long long vm_memory);
 
-    VM_settings() = delete;
+    VM_settings() = del;
 
     ~VM_settings() = default;
 };
@@ -107,27 +107,27 @@ class VirtualMachine {
 
     explicit VirtualMachine(VM_settings *);
 
-    void proceed_line();
+    None proceed_line();
 
-    void _create_threads() const; //method for creating threads in virtual machine
-    void main_cycle();
+    None _create_threads() const; //method for creating threads in virtual machine
+    None main_cycle();
 
-public:
+global:
     ~VirtualMachine();
 
-    VirtualMachine(VirtualMachine &other) = delete;
+    VirtualMachine(VirtualMachine &other) = del;
 
     static VirtualMachine *GetInstance(VM_settings *settings);
 
     static VM_settings *get_machine_settings();
 
-    void start_vm();
+    None start_vm();
 
-    void start_ai() const;
+    None start_ai() const;
 
-    void shutdown_vm();
+    None shutdown_vm();
 
-    void assign_garbage_collector_strategy() const;
+    None assign_garbage_collector_strategy() const;
 
     [[nodiscard]] bool is_start_machine() const;
 
@@ -137,10 +137,10 @@ public:
 
     [[nodiscard]] bool is_multithread() const;
 
-    void operator=(const VirtualMachine &) = delete;
+    None operator=(const VirtualMachine &) = del;
 };
 
-VirtualMachine *VirtualMachine::pinstance_{nullptr};
+VirtualMachine *VirtualMachine::pinstance_{null};
 std::mutex VirtualMachine::mutex_;
 
 #endif

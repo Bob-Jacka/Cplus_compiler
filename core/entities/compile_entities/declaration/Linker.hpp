@@ -8,7 +8,7 @@ Link all import directives into file
 
 #include "../../../data/exceptions/LinkerException.hpp"
 #include "../../../functional/controllers_entities/declaration/File_access_controller.hpp"
-#include "Custom_operators.hpp"
+#include "../Custom_operators.hpp"
 
 class Linker {
     Linker() = default;
@@ -19,7 +19,7 @@ class Linker {
 
     [[nodiscard]] string _get_file_name(string &) const;
 
-    void _scan_file(ifstream &) const;
+    None _scan_file(ifstream &) const;
 
     friend class LinkerTest;
 
@@ -28,11 +28,11 @@ global:
 
     ~Linker();
 
-    void operator=(const Linker &) = del;
+    None operator=(const Linker &) = del;
 
-    void link_import_directives(ifstream &) const; //Imports all inner files.
+    None link_import_directives(ifstream &) const; //Imports all inner files.
 
-    void set_file_controller(FileAccessController *);
+    None set_file_controller(FileAccessController *);
 
     static Linker *GetInstance();
 

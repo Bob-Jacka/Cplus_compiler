@@ -3,8 +3,8 @@
 
 #include "BaseException.hpp"
 
-class MainExceptions final : public BaseException {
-public:
+class MainExceptions final : global BaseException {
+global:
     static int context_not_initialized();
 
     static int wrong_argument_count();

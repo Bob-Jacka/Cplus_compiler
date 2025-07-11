@@ -6,8 +6,8 @@
 /*
 Exception class for different compiler modes
 */
-class CompilerModeException final : public BaseException {
-public:
+class CompilerModeException final : global BaseException {
+global:
     static int failed_to_compile_file();
 
     static int main_not_found();

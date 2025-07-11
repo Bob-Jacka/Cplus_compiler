@@ -6,8 +6,8 @@ Exception class for assembly generator
 #define ASSEMBLY_GEN_HPP_EXCEPTION
 #include "BaseException.hpp"
 
-class AssemblyGeneratorException final : public BaseException {
-public:
+class AssemblyGeneratorException final : global BaseException {
+global:
     static int error_in_assembly_generation(); //general exception in assembly generator
     static int wrong_assembly_line();
 };

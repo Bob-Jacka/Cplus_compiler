@@ -22,7 +22,7 @@ Lexer *Lexer::GetInstance() {
 /*
  Private function to initialize the keywords map
  */
-void Lexer::_init_keywords() {
+None Lexer::_init_keywords() {
     //Types words
     keywords["int"] = TokenEnum::KEYWORD; //default int, just like in C++
     keywords["float"] = TokenEnum::KEYWORD; //default float, just like in C++
@@ -34,11 +34,11 @@ void Lexer::_init_keywords() {
     keywords["if"] = TokenEnum::KEYWORD;
     keywords["elif"] = TokenEnum::KEYWORD; //same as elif in Python
     keywords["else"] = TokenEnum::KEYWORD; //same as else in C++
-    keywords["branch"] = TokenEnum::KEYWORD; //same as switch in C++
+    keywords["branch"] = TokenEnum::KEYWORD; //same as match in C++
 
     //Visibility modifiers
-    keywords["public"] = TokenEnum::KEYWORD; //default public
-    keywords["private"] = TokenEnum::KEYWORD; //default private
+    keywords["global"] = TokenEnum::KEYWORD; //default global
+    keywords["local"] = TokenEnum::KEYWORD; //default local
     keywords["inherit"] = TokenEnum::KEYWORD; //only if inherit
     keywords["package"] = TokenEnum::KEYWORD; //visibility in package
 
@@ -161,7 +161,7 @@ vector<Token> *Lexer::tokenize() {
                 }
 
                 //Identify integer or float literals
-                else if (_is_digit(currentChar)) {
+                elif (_is_digit(currentChar)) {
                     string number = _get_next_number();
                     if (number.find('.') != string::npos) {
                         this->p_tokens->emplace_back(TokenEnum::FLOAT_LITERAL, number);
@@ -171,13 +171,13 @@ vector<Token> *Lexer::tokenize() {
                 }
 
                 //Identify operators
-                else if (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
+                elif (currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/') {
                     this->p_tokens->emplace_back(TokenEnum::OPERATOR, string(1, currentChar));
                     position++;
                 }
 
                 //Identify punctuators
-                else if (currentChar == '(' || currentChar == ')' || currentChar == '{' || currentChar == '}') {
+                elif (currentChar == '(' || currentChar == ')' || currentChar == '{' || currentChar == '}') {
                     this->p_tokens->emplace_back(TokenEnum::PUNCTUATOR, string(1, currentChar));
                     position++;
                 }
@@ -186,12 +186,12 @@ vector<Token> *Lexer::tokenize() {
                 else {
                     this->p_tokens->emplace_back(TokenEnum::UNKNOWN, string(1, currentChar));
                     position++;
-                    throw LexerException::unknown_word_type();
+                    raise LexerException::unknown_word_type();
                 }
             }
         }
     } else {
-        throw LexerException::error_in_open_file();
+        raise LexerException::error_in_open_file();
     }
     in.close(); //close file
     return this->p_tokens;
@@ -204,8 +204,8 @@ vector<Token> *Lexer::get_token_vector() const {
     if (!this->p_tokens->empty()) {
         return this->p_tokens;
     } else {
-        utility::println("Token vector is empty, return nullptr");
-        return nullptr;
+        utility::println("Token vector is empty, return null");
+        return null;
     }
 }
 
@@ -240,7 +240,7 @@ string Lexer::get_token_type_name(const TokenEnum type) {
 /*
  Function to print all p_tokens in inner vector container
  */
-void Lexer::print_tokens(const vector<Token> &p_tokens) {
+None Lexer::print_tokens(const vector<Token> &p_tokens) {
     for (val2 &token: p_tokens) {
         cout << "Type: " << get_token_type_name(token.type) << endl << "Value: " << token.value << endl;
     }

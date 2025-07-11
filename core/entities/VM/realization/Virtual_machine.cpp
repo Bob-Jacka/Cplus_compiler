@@ -10,14 +10,14 @@ VirtualMachine::VirtualMachine(VM_settings *settings) {
 }
 
 VirtualMachine::~VirtualMachine() {
-    delete&vm_settings;
-    delete&mutex_;
-    delete&logger;
+    del&vm_settings;
+    del&mutex_;
+    del&logger;
 }
 
 VirtualMachine *VirtualMachine::GetInstance(VM_settings *settings) {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         vm_settings = settings;
         pinstance_ = new VirtualMachine(settings);
     }
@@ -31,7 +31,7 @@ VM_settings *VirtualMachine::get_machine_settings() {
 /*
 Method for starting virtual machine entity
 */
-void VirtualMachine::start_vm() {
+None VirtualMachine::start_vm() {
     try {
         vm_running = true;
     } catch (const exception &e) {
@@ -44,7 +44,7 @@ void VirtualMachine::start_vm() {
 /*
  *Method for starting AI functionality
  */
-void VirtualMachine::start_ai() const {
+None VirtualMachine::start_ai() const {
     this->logger->log("Starting ai");
     VirtualMachine::vm_settings->is_ai_enabled = true;
 }
@@ -52,7 +52,7 @@ void VirtualMachine::start_ai() const {
 /*
 Method for shutdown virtual machine entity
 */
-void VirtualMachine::shutdown_vm() {
+None VirtualMachine::shutdown_vm() {
     try {
         vm_running = false;
     } catch (const exception &e) {
@@ -62,7 +62,7 @@ void VirtualMachine::shutdown_vm() {
     }
 }
 
-void VirtualMachine::assign_garbage_collector_strategy() const {
+None VirtualMachine::assign_garbage_collector_strategy() const {
     try {
     } catch (const exception &e) {
         this->logger->log("Error occurred in assign garbage collector");
@@ -71,11 +71,11 @@ void VirtualMachine::assign_garbage_collector_strategy() const {
     }
 }
 
-void VirtualMachine::proceed_line() {
+None VirtualMachine::proceed_line() {
     //
 }
 
-void VirtualMachine::_create_threads() const {
+None VirtualMachine::_create_threads() const {
     try {
     } catch (const exception &e) {
         this->logger->log("Error occurred in creating threads in virtual machine");
@@ -88,7 +88,7 @@ void VirtualMachine::_create_threads() const {
 Main cycle of the virtual machine execution.
 Runs program by vm operations.
 */
-void VirtualMachine::main_cycle() { {
+None VirtualMachine::main_cycle() { {
         Load Arguments,
 
 
@@ -109,7 +109,7 @@ void VirtualMachine::main_cycle() { {
         uint16_t instr = mem_read(reg[R_PC]++);
         uint16_t op = instr >> 12;
 
-        switch (op) {
+        match (op) {
             case VM_instructions::OP_ADD: {
                 ADD, 6
             }
@@ -204,7 +204,7 @@ VM_settings::VM_settings(const string &name,
     this->is_ai_enabled = is_ai_enabled;
     this->vm_memory = vm_memory;
 
-    this->garbage_collector = nullptr;
+    this->garbage_collector = null;
 }
 
 
@@ -216,7 +216,7 @@ std::string VM_settings::generate_vm_name() {
 }
 
 VM_settings &VM_settings::operator=(const VM_settings &other_settings) {
-    auto res = VM_settings{
+    var3 res = VM_settings{
         .name = other_settings.name,
         .is_multi_thread = other_settings.is_multi_thread,
         .is_ai_enabled = other_settings.is_ai_enabled,
@@ -226,14 +226,14 @@ VM_settings &VM_settings::operator=(const VM_settings &other_settings) {
 }
 
 /*
-Method for checking if virtual machine switching on.
+Method for checking if virtual machine matching on.
 */
 bool VirtualMachine::is_start_machine() const {
     return this->vm_running;
 }
 
 /*
-Method for checking if virtual machine switching off.
+Method for checking if virtual machine matching off.
 */
 bool VirtualMachine::is_exit_machine() const {
     return !vm_running;

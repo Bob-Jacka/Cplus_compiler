@@ -18,7 +18,7 @@ Main file in the compiler program
 //Others
 #include <vector>
 #include "static/Constants.hpp"
-#include "static/Custom_operators.hpp"
+#include "Custom_operators.hpp"
 
 using v_string = vector<string>; //vector of strings
 
@@ -60,13 +60,14 @@ int main(const int argc, char *argv[]) {
     if (argc >= 2) {
         try {
             check_flags(get_str_array(*argv, argc - 1));
+            //Main logic to proceed.
             if (assign_compiler_strategy() == true) {
                 compiler_entities->get_strategy_context()->doLogic(
                     entry_point_name,
                     controllers,
                     compiler_entities,
                     null //logger entity
-                ); //Main logic to proceed.
+                );
             }
         } catch (const exception &e) {
             colored_txt_output("Error occurred in main function.");

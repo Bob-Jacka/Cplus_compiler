@@ -12,25 +12,25 @@ class VirtualMachineConsole {
     static VirtualMachineConsole *pinstance_;
     static std::mutex mutex_;
 
-    void _update_UI() const;
+    None _update_UI() const;
 
-    void _disconnect() const; //disconnect console from virtual machine
+    None _disconnect() const; //disconnect console from virtual machine
 
     VirtualMachineConsole();
 
-public:
+global:
     ~VirtualMachineConsole();
 
-    VirtualMachineConsole(VirtualMachineConsole &other) = delete;
+    VirtualMachineConsole(VirtualMachineConsole &other) = del;
 
     static VirtualMachineConsole *GetInstance();
 
-    void draw_UI() const;
+    None draw_UI() const;
 
-    void operator=(const VirtualMachineConsole &) = delete;
+    None operator=(const VirtualMachineConsole &) = del;
 };
 
-VirtualMachineConsole *VirtualMachineConsole::pinstance_{nullptr};
+VirtualMachineConsole *VirtualMachineConsole::pinstance_{null};
 std::mutex VirtualMachineConsole::mutex_;
 
 #endif

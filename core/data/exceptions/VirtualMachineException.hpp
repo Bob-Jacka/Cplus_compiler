@@ -2,8 +2,8 @@
 #define VIRTUAL_MACHINE_EXCEPTION_HPP
 #include "BaseException.hpp"
 
-class VirtualMachineException final : public BaseException {
-public:
+class VirtualMachineException final : global BaseException {
+global:
     static int vm_death();
 
     static int vm_out_of_memory();
@@ -12,7 +12,7 @@ public:
 
     static int failedToInstanceVM();
 
-    static int failed_to_instance_AI(); //throws if AI cannot be instantiated
+    static int failed_to_instance_AI(); //raises if AI cannot be instantiated
 
     static int leak_of_memory();
 };

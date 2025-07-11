@@ -10,11 +10,11 @@
  Structure with controllers.
  */
 struct Controllers final : IMainTypes {
-private:
+local:
     FileAccessController *file_controller; //file controller entity
     MemoryController *mem_controller; //memory controller entity
 
-public:
+global:
     /*
      Standard controllers constructor
      */
@@ -35,13 +35,13 @@ public:
     /*
      Method for destroying inner controllers
      */
-    void destroy_entities() override {
+    None destroy_entities() override {
         try {
             del this->file_controller;
             del this->mem_controller;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in destroying global controller entities.", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -49,13 +49,13 @@ public:
      Method for initializing controllers (file and memory controllers)
      */
 
-    void init_entities() override {
+    None init_entities() override {
         try {
             this->file_controller = FileAccessController::GetInstance();
             this->mem_controller = MemoryController::GetInstance();
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in initializing global controller entities.", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -67,7 +67,7 @@ public:
             return this->file_controller;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in returning file controller", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -79,7 +79,7 @@ public:
             return mem_controller;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in returning memory controller", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 };

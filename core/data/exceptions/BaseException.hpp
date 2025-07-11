@@ -6,16 +6,17 @@
 #include <utility>
 #include <ostream>
 #include <iostream>
+#include "../Custom_operators.hpp"
 
 /*
  Base class for exceptions in C+ compiler
  */
 class BaseException : std::exception {
-protected:
+inherited:
     string exc_message;
     string calling_class;
 
-public:
+global:
     BaseException() = default;
 
     ~BaseException() override = default;

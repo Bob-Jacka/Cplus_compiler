@@ -30,9 +30,9 @@ string Linker::_get_file_name(string &line) const {
  Method for scanning file for import directives
  input_file - file to scan
  */
-void Linker::_scan_file(ifstream &input_file) const {
+None Linker::_scan_file(ifstream &input_file) const {
     string line;
-    auto include_directive_func = [](string lambda_line) -> string {
+    var3 include_directive_func = [](string lambda_line) -> string {
         return utility::contains(lambda_line, IMPORT) ? lambda_line : EMPT_STR;
     };
     while (getline(input_file, line)) {
@@ -48,21 +48,21 @@ void Linker::_scan_file(ifstream &input_file) const {
 Main function of linker entities.
 file_name - name of the file to link import directives
 */
-void Linker::link_import_directives(ifstream &file_name) const {
-    if (fileAccessController != nullptr) {
+None Linker::link_import_directives(ifstream &file_name) const {
+    if (fileAccessController != null) {
         try {
             this->_scan_file(file_name);
         } catch ([[maybe_unused]] std::exception &e) {
-            throw LinkerException::linkage_error();
+            raise LinkerException::linkage_error();
         }
     } else {
-        throw LinkerException::no_file_controller_to_link_import_directives();
+        raise LinkerException::no_file_controller_to_link_import_directives();
     }
 }
 
 /*
  Setter method for file controller
  */
-void Linker::set_file_controller(FileAccessController *fileAccessController) {
+None Linker::set_file_controller(FileAccessController *fileAccessController) {
     this->fileAccessController = fileAccessController;
 }

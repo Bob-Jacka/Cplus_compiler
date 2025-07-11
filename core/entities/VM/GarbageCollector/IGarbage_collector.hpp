@@ -9,14 +9,14 @@ Abstract class for garbage collection process.
 
 class IGarbageCollector {
     //One collector pass on objects alive
-    virtual void collectors_pass() const = 0;
+    virtual None collectors_pass() const = 0;
 
-protected:
+inherited:
     IGarbageCollector() = default;
 
-public:
+global:
     //Main function of collector
-    virtual void collect_garbage() const = 0;
+    virtual None collect_garbage() const = 0;
 
     virtual ~IGarbageCollector() = default;
 };

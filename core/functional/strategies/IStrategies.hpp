@@ -10,22 +10,22 @@ struct Controllers;
 Interface class for strategy pattern.
 */
 class IStrategy {
-public:
+global:
     virtual ~IStrategy() = default;
 
-    virtual void doAlgorithm(const string &,
+    virtual None doAlgorithm(const string &,
                              Controllers *,
                              Compiler_entities *,
                              Logger *
     ) = 0;
 
-    IStrategy(const IStrategy &) = delete;
+    IStrategy(const IStrategy &) = del;
 
-    IStrategy &operator=(const IStrategy &) = delete;
+    IStrategy &operator=(const IStrategy &) = del;
 
-    IStrategy(IStrategy &&) = delete;
+    IStrategy(IStrategy &&) = del;
 
-protected:
+inherited:
     IStrategy() = default;
 };
 

@@ -11,22 +11,22 @@ VirtualMachineConsole::~VirtualMachineConsole() {
     //
 }
 
-void VirtualMachineConsole::_update_UI() const {
+None VirtualMachineConsole::_update_UI() const {
     //
 }
 
-void VirtualMachineConsole::_disconnect() const {
+None VirtualMachineConsole::_disconnect() const {
     //
 }
 
 VirtualMachineConsole *VirtualMachineConsole::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new VirtualMachineConsole();
     }
     return pinstance_;
 }
 
-void VirtualMachineConsole::draw_UI() const {
+None VirtualMachineConsole::draw_UI() const {
     //
 }

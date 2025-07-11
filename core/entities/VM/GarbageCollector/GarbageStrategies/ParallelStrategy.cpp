@@ -1,13 +1,13 @@
 #include "ICollector.cpp"
 
 class ParallelStrategy final : CollectorStrategy {
-public:
+global:
     ParallelStrategy() {
     }
 
     ~ParallelStrategy() override {
     }
 
-private:
+local:
     //
 };

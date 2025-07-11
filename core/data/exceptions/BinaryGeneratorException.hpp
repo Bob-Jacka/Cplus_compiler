@@ -3,8 +3,8 @@
 
 #include "BaseException.hpp"
 
-class BinaryGeneratorException final : public BaseException {
-public:
+class BinaryGeneratorException final : global BaseException {
+global:
     static int ErrorInBinaryGeneration(); //general exception
 };
 

@@ -38,7 +38,7 @@ global:
 
     ~Compiler_entities() override = default;
 
-    void init_entities() override {
+    None init_entities() override {
         try {
             lexer = Lexer::GetInstance();
             parser = Parser::GetInstance();
@@ -51,14 +51,14 @@ global:
             s_context = new Strategy_context(null);
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in initializing global compiler entities.", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
     /*
     Function for destroying created entities.
     */
-    void destroy_entities() override {
+    None destroy_entities() override {
         try {
             del lexer;
             del parser;
@@ -71,7 +71,7 @@ global:
             del s_context;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in destroying global compiler entities.", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -79,12 +79,12 @@ global:
      Error safety method for getting lexer
      Return - lexer
      */
-    [[nodiscard]] auto get_lexer() const -> Lexer * {
+    [[nodiscard]] var3 get_lexer() const -> Lexer * {
         try {
             return lexer;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return lexer", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -92,12 +92,12 @@ global:
      Error safety method for getting parser
      Return - parser
      */
-    [[nodiscard]] auto get_parser() const -> Parser * {
+    [[nodiscard]] var3 get_parser() const -> Parser * {
         try {
             return parser;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return parser", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -105,12 +105,12 @@ global:
      Error safety method for getting linker
      Return - linker
      */
-    [[nodiscard]] auto get_linker() const -> Linker * {
+    [[nodiscard]] var3 get_linker() const -> Linker * {
         try {
             return linker;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return linker", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -118,12 +118,12 @@ global:
      Error safety method for getting preprocessor
      Return - preprocessor
      */
-    [[nodiscard]] auto get_preprocessor() const -> Preprocessor * {
+    [[nodiscard]] var3 get_preprocessor() const -> Preprocessor * {
         try {
             return preprocessor;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return preprocessor", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -131,12 +131,12 @@ global:
      Error safety method for getting binary generator
      Return - binary generator
      */
-    [[nodiscard]] auto get_binary_generator() const -> Binary_generator * {
+    [[nodiscard]] var3 get_binary_generator() const -> Binary_generator * {
         try {
             return bin_gen;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return assembly generator", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -144,12 +144,12 @@ global:
      Error safety method for getting Assembly generator
      Return - Assembly generator
      */
-    [[nodiscard]] auto get_assembly_generator() const -> Assembly_generator * {
+    [[nodiscard]] var3 get_assembly_generator() const -> Assembly_generator * {
         try {
             return asm_gen;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return assembly generator", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -157,12 +157,12 @@ global:
      Error safety method for getting Analyzer
      Return - Analyzer
      */
-    [[nodiscard]] auto get_analyzer() const -> Analyzer * {
+    [[nodiscard]] var3 get_analyzer() const -> Analyzer * {
         try {
             return analyzer;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return analyzer", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 
@@ -170,12 +170,12 @@ global:
      Error safety method for getting strategy context
      Return - strategy context
      */
-    [[nodiscard]] auto get_strategy_context() const -> Strategy_context * {
+    [[nodiscard]] var3 get_strategy_context() const -> Strategy_context * {
         try {
             return s_context;
         } catch (std::exception &e) {
             utility::colored_txt_output("Error in return strategy context", utility::Color::red);
-            throw e;
+            raise e;
         }
     }
 };

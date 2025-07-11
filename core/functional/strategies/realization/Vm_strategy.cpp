@@ -1,14 +1,14 @@
 #include "../declaration/Vm_strategy.hpp"
 
 VMStrategy::VMStrategy(VMStrategy const &) {
-    this->log_file = nullptr;
+    this->log_file = null;
 }
 
 
 /*
 Algorithm of the virtual machine strategy.
 */
-void VMStrategy::doAlgorithm(const string &entry_point_name,
+None VMStrategy::doAlgorithm(const string &entry_point_name,
                              Controllers *controllers,
                              Compiler_entities *compiler_entities,
                              Logger *logger) override {
@@ -37,9 +37,9 @@ void VMStrategy::doAlgorithm(const string &entry_point_name,
 
     //End of the virtual machine strategy
     {
-        delete p_vm_instance;
-        delete p_console;
-        delete p_settings;
-        delete logger;
+        del p_vm_instance;
+        del p_console;
+        del p_settings;
+        del logger;
     }
 }

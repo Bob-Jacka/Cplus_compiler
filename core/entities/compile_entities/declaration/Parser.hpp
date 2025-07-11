@@ -9,8 +9,8 @@ Get stream from lexer and build syntax tree;
 #include <mutex>
 #include <vector>
 
-#include "Custom_operators.hpp"
 #include "Lexer.hpp"
+#include "../Custom_operators.hpp"
 
 class Parser {
     static Parser *pinstance_;

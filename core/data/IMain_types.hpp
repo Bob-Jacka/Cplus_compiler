@@ -8,18 +8,18 @@
  Also include Util funcs header file.
  */
 class IMainTypes {
-public:
+global:
     /*
      Method for initializing entities of the main types
      */
-    virtual void init_entities();
+    virtual None init_entities();
 
     /*
      Method for destroying entities of the main types
      */
-    virtual void destroy_entities();
+    virtual None destroy_entities();
 
-protected:
+inherited:
     IMainTypes();
 
     virtual ~IMainTypes();

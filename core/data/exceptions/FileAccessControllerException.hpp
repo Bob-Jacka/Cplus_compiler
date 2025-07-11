@@ -4,7 +4,7 @@
 #include "BaseException.hpp"
 
 class FileAccessControllerExceptions final : BaseException {
-public:
+global:
     static int error_to_open_file();
 
     static int error_to_close_file();
@@ -13,7 +13,7 @@ public:
 
     static int error_to_write_file();
 
-    static int error_to_delete_file();
+    static int error_to_del_file();
 
     static int wrong_extension();
 
@@ -71,8 +71,8 @@ inline int error_in_assembly_file() {
     return 1;
 }
 
-inline int error_in_delete_file() {
-    std::cerr << "Failed to delete file";
+inline int error_in_del_file() {
+    std::cerr << "Failed to del file";
     return 1;
 }
 

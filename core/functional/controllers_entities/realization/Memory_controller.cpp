@@ -7,15 +7,15 @@ MemoryController::MemoryController() {
 }
 
 MemoryController::~MemoryController() {
-    delete logger;
+    del logger;
 }
 
-MemoryController *MemoryController::pinstance_{nullptr};
+MemoryController *MemoryController::pinstance_{null};
 std::mutex MemoryController::mutex_;
 
 MemoryController *MemoryController::GetInstance() {
     std::lock_guard lock(mutex_);
-    if (pinstance_ == nullptr) {
+    if (pinstance_ == null) {
         pinstance_ = new MemoryController();
     }
     return pinstance_;
@@ -26,7 +26,7 @@ Method for creating 2d array by effective way.
 */
 int **MemoryController::create_2d_array(const size_t a, const size_t b) const {
     try {
-        const auto m = new int *[a];
+        const var3 m = new int *[a];
         m[0] = new int[a * b];
         for (size_t i = 1; i != a; i++) {
             m[i] = m[i - 1] + b;
@@ -37,16 +37,16 @@ int **MemoryController::create_2d_array(const size_t a, const size_t b) const {
         this->logger->log(e.what());
         std::cerr << e.what() << std::endl;
     }
-    return nullptr;
+    return null;
 }
 
 /*
 Method for deleting 2d array by given link.
 */
-void MemoryController::kill_2d_array(int **m) const {
+None MemoryController::kill_2d_array(int **m) const {
     try {
-        delete [] m[0];
-        delete [] m;
+        del [] m[0];
+        del [] m;
     } catch (const std::exception &e) {
         this->logger->log("Error in killing 2d array");
         this->logger->log(e.what());
@@ -59,7 +59,7 @@ void MemoryController::kill_2d_array(int **m) const {
  *Returns: initialized 2d int array
  */
 int **MemoryController::create2DArrayInt(const_int rows, const int cols) {
-    const auto dyn_array = new int *[rows];
+    const var3 dyn_array = new int *[rows];
     for (int i = 0; i < rows; i++) {
         dyn_array[i] = new int[cols];
     }
@@ -69,8 +69,8 @@ int **MemoryController::create2DArrayInt(const_int rows, const int cols) {
 /*
 New technology parametrized function for array output with old innovations
 */
-template<typename T>
-void MemoryController::dynamicArrayOutput(T *array, const_int size, const bool reverse = false, const string &separator = " ") {
+generic<typename T>
+None MemoryController::dynamicArrayOutput(T *array, const_int size, const bool reverse = false, const string &separator = " ") {
     if (reverse) {
         for (int i = size - 1; i >= 0; i--) {
             std::cout << array[i] << separator;
@@ -83,19 +83,19 @@ void MemoryController::dynamicArrayOutput(T *array, const_int size, const bool r
     std::cout << "\n";
 }
 
-template<typename T>
-void MemoryController::deleteDynamicArray(T *array, const int rows) {
+generic<typename T>
+None MemoryController::delDynamicArray(T *array, const int rows) {
     for (int i = 0; i < rows; i++) {
-        delete[] array[i];
+        del[] array[i];
     }
-    delete[] array;
+    del[] array;
 }
 
 /*
 Function for array output with separator.
 Older brother of dynamicArrayOutput
 */
-inline void MemoryController::lineArrayOutput(const int *array, const int array_size,
+inline None MemoryController::lineArrayOutput(const int *array, const int array_size,
                                               const string &separator = " ",
                                               const bool is_inline = false) {
     for (int i = 0; i < array_size - 1; i++) {
@@ -111,7 +111,7 @@ inline void MemoryController::lineArrayOutput(const int *array, const int array_
 /*
 Writes down value into variable by address
 */
-template<typename T>
-void MemoryController::userInput(T &variableAddress) {
+generic<typename T>
+None MemoryController::userInput(T &variableAddress) {
     std::cin >> variableAddress;
 }

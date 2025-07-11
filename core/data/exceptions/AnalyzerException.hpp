@@ -7,7 +7,7 @@
  Class with exceptions in Analyzer entity
  */
 class AnalyzerException final : BaseException {
-public:
+global:
     static int wrong_function_definition();
 
     static int wrong_struct_definition();

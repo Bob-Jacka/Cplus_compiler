@@ -3,17 +3,17 @@
 #include <iostream>
 
 Strategy_context::Strategy_context() {
-    this->strategy_ = nullptr;
+    this->strategy_ = null;
 }
 
-void Strategy_context::set_strategy(unique_ptr<IStrategy> &&strategy) {
+None Strategy_context::set_strategy(unique_ptr<IStrategy> &&strategy) {
     this->strategy_ = std::move(strategy);
 }
 
 /*
  Function for do logic with given strategy in strategy_ param.
  */
-void Strategy_context::doLogic(const string &entry_point_name,
+None Strategy_context::doLogic(const string &entry_point_name,
                                Controllers *controllers,
                                Compiler_entities *compiler_entities,
                                Logger *logger) const {

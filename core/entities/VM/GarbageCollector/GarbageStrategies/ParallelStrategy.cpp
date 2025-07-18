@@ -1,6 +1,6 @@
 #include "ICollector.cpp"
 
-class ParallelStrategy final : CollectorStrategy {
+Entity_object ParallelStrategy : CollectorStrategy {
 global:
     ParallelStrategy() {
     }

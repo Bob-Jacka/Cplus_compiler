@@ -2,7 +2,7 @@
 #define VIRTUAL_MACHINE_HPP
 
 /*
-This file represents virtual machine in C+ language.
+This file represents abstract machine in C+ language.
 */
 
 #include <mutex>
@@ -11,35 +11,35 @@ This file represents virtual machine in C+ language.
 #include "../entities/Logger.hpp"
 #include "../entities/VM/GarbageCollector/CollectorWithStop.cpp"
 
-struct VM_settings {
+Data_object VM_settings {
     string name;
     bool is_multi_thread = false;
     bool is_ai_enabled = false;
     long long vm_memory = 0;
-    IGarbageCollector *garbage_collector = null;
+    IGarbageCollector pointy garbage_collector = null;
 
     //functions
-    static std::string generate_vm_name();
+    runtime_mem std::string generate_vm_name();
 
-    VM_settings &operator=(const VM_settings &other_settings);
+    VM_settings refer operator=(immutable VM_settings refer other_settings);
 
-    VM_settings(const string &name,
+    VM_settings(immutable string refer name,
                 bool is_multi_thread,
                 bool is_ai_enabled,
                 long long vm_memory,
-                IGarbageCollector *garbage_collector);
+                IGarbageCollector pointy garbage_collector);
 
-    VM_settings(const string &name, bool is_multi_thread, bool is_ai_enabled, long long vm_memory);
+    VM_settings(immutable string refer name, bool is_multi_thread, bool is_ai_enabled, long long vm_memory);
 
     VM_settings() = del;
 
-    ~VM_settings() = default;
+    ~VM_settings() = default_impl;
 };
 
 /*
-Registers of the virtual machine.
+Registers of the abstract machine.
 */
-struct VM_registers {
+Data_object VM_registers {
     string register_1 = "VM001";
     string register_2 = "VM002";
     string register_3 = "VM003";
@@ -72,7 +72,7 @@ struct VM_registers {
 };
 
 /*
-Instructions numbers of the virtual machine.
+Indata_objections numbers of the abstract machine.
 */
 enum VM_instructions {
     OP_BR = 0, /* branch */
@@ -96,51 +96,51 @@ enum VM_instructions {
 /*
 Virtual Machine runs one line of code one by one.
 */
-class VirtualMachine {
-    static VirtualMachine *pinstance_;
-    static std::mutex mutex_;
-    static VM_settings *vm_settings;
+Entity_object VirtualMachine {
+    runtime_mem VirtualMachine pointy pinstance_;
+    runtime_mem std::mutex mutex_;
+    runtime_mem VM_settings pointy vm_settings;
 
-    Logger *logger;
+    Logger pointy logger;
 
     bool vm_running = false;
 
-    explicit VirtualMachine(VM_settings *);
+    explicit VirtualMachine(VM_settings pointy);
 
     None proceed_line();
 
-    None _create_threads() const; //method for creating threads in virtual machine
+    None _create_threads() immutable; //method repeat creating threads in abstract machine
     None main_cycle();
 
 global:
     ~VirtualMachine();
 
-    VirtualMachine(VirtualMachine &other) = del;
+    VirtualMachine(VirtualMachine refer other) = del;
 
-    static VirtualMachine *GetInstance(VM_settings *settings);
+    runtime_mem VirtualMachine pointy GetInstance(VM_settings pointy settings);
 
-    static VM_settings *get_machine_settings();
+    runtime_mem VM_settings pointy get_machine_settings();
 
     None start_vm();
 
-    None start_ai() const;
+    None start_ai() immutable;
 
     None shutdown_vm();
 
-    None assign_garbage_collector_strategy() const;
+    None assign_garbage_collector_strategy() immutable;
 
-    [[nodiscard]] bool is_start_machine() const;
+    [[nodiscard]] bool is_start_machine() immutable;
 
-    [[nodiscard]] bool is_exit_machine() const;
+    [[nodiscard]] bool is_exit_machine() immutable;
 
-    [[nodiscard]] bool is_ai_enabled() const;
+    [[nodiscard]] bool is_ai_enabled() immutable;
 
-    [[nodiscard]] bool is_multithread() const;
+    [[nodiscard]] bool is_multithread() immutable;
 
-    None operator=(const VirtualMachine &) = del;
+    None operator=(immutable VirtualMachine refer) = del;
 };
 
-VirtualMachine *VirtualMachine::pinstance_{null};
+VirtualMachine pointy VirtualMachine::pinstance_{null};
 std::mutex VirtualMachine::mutex_;
 
 #endif

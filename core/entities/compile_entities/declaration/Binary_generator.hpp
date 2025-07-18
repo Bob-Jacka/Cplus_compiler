@@ -7,25 +7,25 @@
 #include "../functional/controllers_entities/declaration/File_access_controller.hpp"
 #include "../Custom_operators.hpp"
 
-class Binary_generator {
-    static Binary_generator *pinstance_;
-    static std::mutex mutex_;
+Entity_object Binary_generator {
+    runtime_mem Binary_generator pointy pinstance_;
+    runtime_mem std::mutex mutex_;
 
     Binary_generator();
 
 global:
     ~Binary_generator();
 
-    ifstream generate_binary(const FileAccessController *);
+    ifstream generate_binary(immutable FileAccessController pointy);
 
-    Binary_generator(Binary_generator &) = del;
+    Binary_generator(Binary_generator refer) = del;
 
-    None operator=(const Binary_generator &) = del;
+    None operator=(immutable Binary_generator refer) = del;
 
-    static Binary_generator *GetInstance();
+    runtime_mem Binary_generator pointy GetInstance();
 };
 
-Binary_generator *Binary_generator::pinstance_{null};
+Binary_generator pointy Binary_generator::pinstance_{null};
 std::mutex Binary_generator::mutex_;
 
 #endif

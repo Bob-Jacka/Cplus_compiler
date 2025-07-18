@@ -1,6 +1,6 @@
 #include "ICollector.cpp"
 
-class SerialStrategy final : CollectorStrategy {
+Entity_object SerialStrategy : CollectorStrategy {
 global:
     SerialStrategy() {
     }

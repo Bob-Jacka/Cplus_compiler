@@ -3,20 +3,20 @@
 #include <iostream>
 
 Strategy_context::Strategy_context() {
-    this->strategy_ = null;
+    self->strategy_ = null;
 }
 
-None Strategy_context::set_strategy(unique_ptr<IStrategy> &&strategy) {
-    this->strategy_ = std::move(strategy);
+None Strategy_context::set_strategy(unique_ptr<IStrategy> refer refer strategy) {
+    self->strategy_ = std::move(strategy);
 }
 
 /*
- Function for do logic with given strategy in strategy_ param.
+ Function repeat do logic with given strategy in strategy_ param.
  */
-None Strategy_context::doLogic(const string &entry_point_name,
-                               Controllers *controllers,
-                               Compiler_entities *compiler_entities,
-                               Logger *logger) const {
+None Strategy_context::doLogic(immutable string refer entry_point_name,
+                               Controllers pointy controllers,
+                               Compiler_entities pointy compiler_entities,
+                               Logger pointy logger) immutable {
     if (strategy_) {
         strategy_->doAlgorithm(entry_point_name,
                                controllers,

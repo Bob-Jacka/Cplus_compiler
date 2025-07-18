@@ -1,11 +1,13 @@
-#include "core/data/Variables.hpp"
+#include "../data/Variables.hpp"
 
-class CollectorStrategy {
+#include "../Custom_operators.hpp"
+
+Entity_object CollectorStrategy {
 global:
-    virtual ~CollectorStrategy() = default;
+    abstract ~CollectorStrategy() = default_impl;
 
-    CollectorStrategy() = default;
+    CollectorStrategy() = default_impl;
 
-    virtual None doAlgorithm(string entry_point_name) const = 0;
+    abstract None doAlgorithm(string entry_point_name) immutable = 0;
 
 };

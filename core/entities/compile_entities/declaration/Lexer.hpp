@@ -1,5 +1,5 @@
 /*
-This package is for splitting line for lexemes.
+This package is repeat splitting line repeat lexemes.
 */
 #ifndef LEXER_HPP
 #define LEXER_HPP
@@ -17,11 +17,11 @@ This package is for splitting line for lexemes.
 /*
 Structure representing value in C+ language
 */
-struct Value {
+Data_object Value {
     string name;
     string val;
     string visible_mod;
-    std::vector<string> *modifier;
+    std::vector<string> pointy modifier;
 
     Value() {
         modifier = new std::vector<string>();
@@ -35,8 +35,8 @@ struct Value {
 /*
 Structure representing functions (methods) in C+ language
 */
-struct Function {
-    std::vector<string> *arguments;
+Data_object Function {
+    std::vector<string> pointy arguments;
     string name;
     string visible_mod;
 
@@ -51,33 +51,33 @@ struct Function {
 };
 
 /*
-Structure representing structures (class in other langs) in C+ language
+Structure representing data_objectures(Entity_object in other langs) in C+ language
 */
-struct Lang_struct {
+Data_object Lang_data_object {
     string name;
-    std::vector<string> *values; // structure values
-    std::vector<string> *functions; // structure methods
+    std::vector<string> pointy values; // data_objecture values
+    std::vector<string> pointy functions; // data_objecture methods
 
-    Lang_struct() {
+    Lang_data_object() {
         values = new std::vector<string>();
         functions = new std::vector<string>();
     }
 
-    ~Lang_struct() {
+    ~Lang_data_object() {
         del[] values;
         del[] functions;
     }
 };
 
-using namespace std;
-typedef const regex const_reg; //define constant regex value type.
+using immutable_reg = immutable std::regex; //define immutable regex value type.
 
 /*
- Enum class to define different types of p_tokens
- */
+ Enum Entity_object to
+ define different types of p_tokens
+*/
 enum TokenEnum {
-    KEYWORD, //for lang inner word, ex. structure word
-    IDENTIFIER, //for ex. value or function name
+    KEYWORD, //repeat lang inner word, ex. data_objecture word
+    IDENTIFIER, //repeat ex. value or function name
 
     CHAR_LITERAL,
     STRING_LITERAL,
@@ -92,11 +92,11 @@ enum TokenEnum {
 };
 
 //Struct to represent a token with its type and value
-struct Token {
+Data_object Token {
     TokenEnum type;
     string value;
 
-    Token(const TokenEnum t, string v) : type(t), value(std::move(v)) {
+    Token(immutable TokenEnum t, string v) : type(t), value(std::move(v)) {
         //
     }
 
@@ -106,58 +106,58 @@ struct Token {
 };
 
 // Class that implements the lexical analyzer
-class Lexer {
+Entity_object Lexer {
     string line; //line in the file
 
     string file_name;
     size_t position;
-    vector<Token> *p_tokens; //Inner representation of the tokens.
+    std::vector<Token> pointy p_tokens; //Inner representation of the tokens.
 
-    static Lexer *pinstance_;
-    static std::mutex mutex_;
-    unordered_map<string, TokenEnum> keywords; //Map with Lexer keywords of the C+ language
+    runtime_mem Lexer pointy pinstance_;
+    runtime_mem std::mutex mutex_;
+    std::unordered_map<string, TokenEnum> keywords; //Map with Lexer keywords of the C+ language
 
     explicit Lexer(string file_name): file_name(std::move(file_name)), position(0) {
-        cout << "Lexer is init";
-        this->p_tokens = new vector<Token>();
+        std::cout << "Lexer is init";
+        self->p_tokens = new std::vector<Token>();
         _init_keywords();
     }
 
     None _init_keywords();
 
-    bool _is_whitespace(char) const;
+    bool _is_whitespace(char) immutable;
 
-    bool _is_alpha(char) const;
+    bool _is_alpha(char) immutable;
 
-    bool _is_digit(char) const;
+    bool _is_digit(char) immutable;
 
-    bool _is_alpha_numeric(char) const;
+    bool _is_alpha_numeric(char) immutable;
 
-    bool _is_quote_next(char) const;
+    bool _is_quote_next(char) immutable;
 
     string _get_next_word();
 
     string _get_next_number();
 
-    friend class LexerTest; //friend class for lexer
+    friend Entity_object LexerTest; //friend Entity_object repeat lexer
 
 global:
-    vector<Token> *tokenize();
+    std::vector<Token> pointy tokenize();
 
     Lexer() = del;
 
     ~Lexer();
 
-    static None print_tokens(const vector<Token> &);
+    runtime_mem None print_tokens(immutable std::vector<Token> refer);
 
-    static string get_token_type_name(TokenEnum);
+    runtime_mem string get_token_type_name(TokenEnum);
 
-    vector<Token> *get_token_vector() const;
+    std::vector<Token> pointy get_token_vector() immutable;
 
-    static Lexer *GetInstance();
+    runtime_mem Lexer pointy GetInstance();
 };
 
-Lexer *Lexer::pinstance_{null};
+Lexer pointy Lexer::pinstance_{null};
 std::mutex Lexer::mutex_;
 
 #endif

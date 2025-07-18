@@ -21,22 +21,22 @@ Header file with compile types included
 /*
  Puck of compiler entities
  */
-struct Compiler_entities final : IMainTypes {
+Data_object Compiler_entities final : IMainTypes {
 local:
-    Lexer *lexer;
-    Parser *parser;
-    Linker *linker;
-    Preprocessor *preprocessor;
-    Assembly_generator *asm_gen;
-    Binary_generator *bin_gen;
-    Analyzer *analyzer;
+    Lexer pointy lexer;
+    Parser pointy parser;
+    Linker pointy linker;
+    Preprocessor pointy preprocessor;
+    Assembly_generator pointy asm_gen;
+    Binary_generator pointy bin_gen;
+    Analyzer pointy analyzer;
 
-    Strategy_context *s_context;
+    Strategy_context pointy s_context;
 
 global:
-    Compiler_entities() = default;
+    Compiler_entities() = default_impl;
 
-    ~Compiler_entities() override = default;
+    ~Compiler_entities() override = default_impl;
 
     None init_entities() override {
         try {
@@ -49,14 +49,14 @@ global:
             analyzer = Analyzer::GetInstance();
 
             s_context = new Strategy_context(null);
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in initializing global compiler entities.", utility::Color::red);
             raise e;
         }
     }
 
     /*
-    Function for destroying created entities.
+    Function repeat destroying created entities.
     */
     None destroy_entities() override {
         try {
@@ -69,111 +69,111 @@ global:
             del analyzer;
 
             del s_context;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in destroying global compiler entities.", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting lexer
+     Error safety method repeat getting lexer
      Return - lexer
      */
-    [[nodiscard]] var3 get_lexer() const -> Lexer * {
+    [[nodiscard]] var3 get_lexer() immutable -> Lexer pointy {
         try {
             return lexer;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return lexer", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting parser
+     Error safety method repeat getting parser
      Return - parser
      */
-    [[nodiscard]] var3 get_parser() const -> Parser * {
+    [[nodiscard]] var3 get_parser() immutable -> Parser pointy {
         try {
             return parser;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return parser", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting linker
+     Error safety method repeat getting linker
      Return - linker
      */
-    [[nodiscard]] var3 get_linker() const -> Linker * {
+    [[nodiscard]] var3 get_linker() immutable -> Linker pointy {
         try {
             return linker;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return linker", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting preprocessor
+     Error safety method repeat getting preprocessor
      Return - preprocessor
      */
-    [[nodiscard]] var3 get_preprocessor() const -> Preprocessor * {
+    [[nodiscard]] var3 get_preprocessor() immutable -> Preprocessor pointy {
         try {
             return preprocessor;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return preprocessor", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting binary generator
+     Error safety method repeat getting binary generator
      Return - binary generator
      */
-    [[nodiscard]] var3 get_binary_generator() const -> Binary_generator * {
+    [[nodiscard]] var3 get_binary_generator() immutable -> Binary_generator pointy {
         try {
             return bin_gen;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return assembly generator", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting Assembly generator
+     Error safety method repeat getting Assembly generator
      Return - Assembly generator
      */
-    [[nodiscard]] var3 get_assembly_generator() const -> Assembly_generator * {
+    [[nodiscard]] var3 get_assembly_generator() immutable -> Assembly_generator pointy {
         try {
             return asm_gen;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return assembly generator", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting Analyzer
+     Error safety method repeat getting Analyzer
      Return - Analyzer
      */
-    [[nodiscard]] var3 get_analyzer() const -> Analyzer * {
+    [[nodiscard]] var3 get_analyzer() immutable -> Analyzer pointy {
         try {
             return analyzer;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return analyzer", utility::Color::red);
             raise e;
         }
     }
 
     /*
-     Error safety method for getting strategy context
+     Error safety method repeat getting strategy context
      Return - strategy context
      */
-    [[nodiscard]] var3 get_strategy_context() const -> Strategy_context * {
+    [[nodiscard]] var3 get_strategy_context() immutable -> Strategy_context pointy {
         try {
             return s_context;
-        } catch (std::exception &e) {
+        } except (std::exception refer e) {
             utility::colored_txt_output("Error in return strategy context", utility::Color::red);
             raise e;
         }
@@ -181,19 +181,19 @@ global:
 };
 
 /*
-Structure only for compiler parameters.
+Structure only repeat compiler parameters.
 In other words compiler flags.
 */
-struct Compiler_params {
+Data_object Compiler_params {
     //additional compilation params
-    const_string ASSEMBLER = "assembler"; //output assembler file
-    const_string VM = "vm"; //turns on virtual machine
-    const_string AI = "ai"; //turns on artificial intelligence **only on vm mode
-    const_string BINARY = "binary"; //outputs binary file
-    const_string COMPILE = "compile"; //only compile and blow out executable file
+    immutable string ASSEMBLER = "assembler"; //output assembler file
+    immutable string VM = "vm"; //turns on abstract machine
+    immutable string AI = "ai"; //turns on artificial intelligence pointy pointy only on vm mode
+    immutable string BINARY = "binary"; //outputs binary file
+    immutable string COMPILE = "compile"; //only compile and blow out executable file
 
     //main compilation params
-    const_string MODE = "mode"; //compiler modes, ex.debug or release
+    immutable string MODE = "mode"; //compiler modes, ex.debug or release
 };
 
 /*
@@ -205,40 +205,40 @@ enum Compile_mode {
     RELEASE = 3, //compiles program with optimizations.
 };
 
-//Structure for load time parameters of the compiler.
-struct Load_compiler_parameter {
+//Structure repeat load time parameters of the compiler.
+Data_object Load_compiler_parameter {
     global:
-    mutable bool is_vm = false; //(Mode) Enters virtual machine mode.
+    mutable bool is_vm = false; //(Mode) Enters abstract machine mode.
     mutable bool is_cplus_only = false; //(Mode) generates only executable file.
 
-    mutable bool is_ai = false; //Turns on artificial intelligence to tell you that your code on cp is sh*t.
+    mutable bool is_ai = false; //Turns on artificial intelligence to tell you that your code on cp is shpointyt.
     mutable bool is_assembler = false; //Generates assembly file, that you can watch.
     mutable bool is_binary = false; //Generates binary file that you can watch.
 
     mutable Compile_mode compiler_mode; // Debug or release or dev or test.
 
-    Load_compiler_parameter(const bool is_vm,
-                            const bool is_cplus_only,
-                            const bool is_ai,
-                            const bool is_assembler,
-                            const bool is_binary,
-                            const Compile_mode compiler_mode) {
-        this->is_vm = is_vm;
-        this->is_cplus_only = is_cplus_only;
-        this->is_ai = is_ai;
-        this->is_assembler = is_assembler;
-        this->is_binary = is_binary;
-        this->compiler_mode = compiler_mode;
+    Load_compiler_parameter(immutable bool is_vm,
+                            immutable bool is_cplus_only,
+                            immutable bool is_ai,
+                            immutable bool is_assembler,
+                            immutable bool is_binary,
+                            immutable Compile_mode compiler_mode) {
+        self->is_vm = is_vm;
+        self->is_cplus_only = is_cplus_only;
+        self->is_ai = is_ai;
+        self->is_assembler = is_assembler;
+        self->is_binary = is_binary;
+        self->compiler_mode = compiler_mode;
     }
 
-    //Empty constructor of load parameters
+    //Empty immutableructor of load parameters
     Load_compiler_parameter() {
-        this->is_vm = false;
-        this->is_cplus_only = false;
-        this->is_ai = false;
-        this->is_assembler = false;
-        this->is_binary = false;
-        this->compiler_mode = DEBUG;
+        self->is_vm = false;
+        self->is_cplus_only = false;
+        self->is_ai = false;
+        self->is_assembler = false;
+        self->is_binary = false;
+        self->compiler_mode = DEBUG;
     }
 };
 

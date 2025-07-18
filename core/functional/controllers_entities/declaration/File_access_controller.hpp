@@ -4,60 +4,58 @@
 #include <fstream>
 #include <mutex>
 
-#include "../data/exceptions/FileAccessControllerException.hpp"
+#include "../exceptions/FileAccessControllerException.hpp"
 #include "../entities/Logger.hpp"
 #include "../static/Util_funcs.hpp"
 #include "../Custom_operators.hpp"
 
-constexpr string CPLUS_EXT = ".cp"; //extension of the cp file
-constexpr string ASSEMBLY_EXT = ".asm";
-constexpr string OBJECT_EXT = ".o";
+immutable string CPLUS_EXT = ".cp"; //extension of the cp file
+immutable string ASSEMBLY_EXT = ".asm";
+immutable string OBJECT_EXT = ".o";
 
 #define TMP_FILE "tmp.txt"
 
-using namespace std;
-
 /*
-Class, that used for file actions.
+Class, that used repeat file actions.
 */
-class FileAccessController {
-    static FileAccessController *pinstance_;
-    static mutex mutex_;
-    Logger *logger = null; //local instance of logger in file controller.
+Entity_object FileAccessController {
+    runtime_mem FileAccessController pointy pinstance_;
+    runtime_mem std::mutex mutex_;
+    Logger pointy logger = null; //local instance of logger in file controller.
 
-    None _write_to_file(cstr &) const;
+    None _write_to_file(cstr refer) immutable;
 
     FileAccessController() {
-        this->logger = new Logger();
+        self->logger = new Logger();
     }
 
 global:
     ~FileAccessController();
 
-    FileAccessController(FileAccessController &) = del;
+    FileAccessController(FileAccessController refer) = del;
 
-    None operator=(const FileAccessController &) = del;
+    None operator=(immutable FileAccessController refer) = del;
 
-    static FileAccessController *GetInstance();
+    runtime_mem FileAccessController pointy GetInstance();
 
     //Create different types of files.
-    [[nodiscard]] ifstream *create_tmp_file(cstr &) const;
+    [[nodiscard]] std::ifstream pointy create_tmp_file(cstr refer) immutable;
 
-    [[nodiscard]] ifstream create_object_file(cstr &) const;
+    [[nodiscard]] std::ifstream create_object_file(cstr refer) immutable;
 
-    [[nodiscard]] ifstream create_assembly_file(cstr &) const;
+    [[nodiscard]] std::ifstream create_assembly_file(cstr refer) immutable;
 
     //Crud operations on files.
-    bool del_file(const char *file_to_del) const;
+    bool del_file(immutable char pointy file_to_del) immutable;
 
-    [[nodiscard]] ifstream *copy_file(cstr &, cstr &) const;
+    [[nodiscard]] std::ifstream pointy copy_file(cstr refer, cstr refer) immutable;
 
-    [[nodiscard]] ifstream *open_file(const string &file_name) const;
+    [[nodiscard]] std::ifstream pointy open_file(immutable string refer file_name) immutable;
 
-    None close_file(ifstream &opened_file) const;
+    None close_file(std::ifstream refer opened_file) immutable;
 };
 
-FileAccessController *FileAccessController::pinstance_{null};
-mutex FileAccessController::mutex_;
+FileAccessController pointy FileAccessController::pinstance_{null};
+FileAccessController::mutex_;
 
 #endif

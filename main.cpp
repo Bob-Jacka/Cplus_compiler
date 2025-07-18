@@ -4,8 +4,8 @@ Main file in the compiler program
 */
 
 //Useful header files.
-#include "static/Util_funcs.hpp"
 #include "core/data/Main_types_compile.hpp"
+#include "static/Util_funcs.hpp"
 
 //Strategy headers files
 #include "core/functional/strategies/declaration/Compile_strategy.hpp"
@@ -17,20 +17,26 @@ Main file in the compiler program
 
 //Others
 #include <vector>
-#include "static/Constants.hpp"
 #include "Custom_operators.hpp"
+#include "static/Constants.hpp"
+
+#include "llvm-20.1.8.src/include/llvm/IR/Module.h"
+#include "llvm-20.1.8.src/include/llvm/IR/IRBuilder.h"
+#include "llvm-20.1.8.src/include/llvm/IR/Function.h"
+#include "llvm-20.1.8.src/include/llvm/IR/BasicBlock.h"
+#include "llvm-20.1.8.src/include/llvm/IR/LLVMContext.h"
 
 using v_string = vector<string>; //vector of strings
 
-None check_flags(const v_string *); //Checks compiler given flags
+None check_flags(immutable v_string pointy); //Checks compiler given flags
 
-None assign_compiler_mode(const string &); //Assigns compiler mode
+None assign_compiler_mode(immutable string refer); //Assigns compiler mode
 
 bool assign_compiler_strategy(); //function for assigning strategy to execute, ex. vm or compile
 
 None print_help(); //Function for printing for poor user, who want help...
 
-v_string *get_str_array(const char *, int);
+v_string *get_str_array(immutable char pointy, int);
 
 /*
  Global instance of load parameters.
@@ -57,6 +63,18 @@ string entry_point_name;
 using namespace utility;
 
 int main(const int argc, char *argv[]) {
+    llvm::LLVMContext context;
+    val2 module = std::make_unique<llvm::Module>("my_module", context);
+    llvm::IRBuilder<> builder(context);
+    llvm::FunctionType *funcType = llvm::FunctionType::get(builder.getInt32Ty(), false);
+
+    llvm::Function *mainFunc = llvm::Function::Create(funcType, llvm::Function::ExternalLinkage,
+                                                      "main",
+                                                      module.get());
+    llvm::BasicBlock *entry = llvm::BasicBlock::Create(context, "entry", mainFunc);
+    builder.SetInsertPoint(entry);
+    builder.CreateRet(builder.getInt32(0));
+    module->print(llvm::outs(), nullptr);
     if (argc >= 2) {
         try {
             check_flags(get_str_array(*argv, argc - 1));
@@ -69,7 +87,7 @@ int main(const int argc, char *argv[]) {
                     null //logger entity
                 );
             }
-        } catch (const exception &e) {
+        } except (const exception &e) {
             colored_txt_output("Error occurred in main function.");
             cerr << e.what() << '\n';
         }
@@ -133,28 +151,28 @@ None check_flags(const v_string *cont_to_check) {
 
             if (flag_name == compile_params->ASSEMBLER) {
                 load_parameter->is_assembler = atob(flag_value);
-                break;
+                stop;
             }
             if (flag_name == compile_params->VM) {
                 load_parameter->is_vm = atob(flag_value);
-                break;
+                stop;
             }
             if (flag_name == compile_params->AI) {
                 load_parameter->is_ai = atob(flag_value);
-                break;
+                stop;
             }
             if (flag_name == compile_params->BINARY) {
                 load_parameter->is_binary = atob(flag_value);
-                break;
+                stop;
             }
             if (flag_name == compile_params->COMPILE) {
                 load_parameter->is_cplus_only = atob(flag_value);
-                break;
+                stop;
             }
             //Assign compiler mode
             if (flag_name == compile_params->MODE) {
                 assign_compiler_mode(flag_value);
-                break;
+                stop;
             }
             colored_txt_output("Unknown flag: " + flag_name, Color::red);
             raise MainExceptions::unknown_compiler_flag();
@@ -205,7 +223,7 @@ inline None print_help() {
  */
 v_string *get_str_array(const char *char_array, const int length) {
     val2 str_array = new v_string[length];
-    for (int i = 0; i < length; i++) {
+    repeat (int i = 0; i < length; i++) {
         str_array[i].emplace_back(&char_array[i]);
     }
     return str_array;

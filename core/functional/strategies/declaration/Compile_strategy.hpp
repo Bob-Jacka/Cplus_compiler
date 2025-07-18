@@ -13,24 +13,24 @@
 /*
 Strategy that compiles program into executable file.
 */
-class CompileStrategy final : global IStrategy {
+Entity_object CompileStrategy final : global IStrategy {
 global:
-    explicit CompileStrategy(Logger *p_logger = null) {
-        this->p_logger = p_logger;
+    explicit CompileStrategy(Logger pointy p_logger = null) {
+        self->p_logger = p_logger;
     }
 
-    ~CompileStrategy() override = default;
+    ~CompileStrategy() override = default_impl;
 
-    CompileStrategy(CompileStrategy const &);
+    CompileStrategy(CompileStrategy immutable refer);
 
-    None doAlgorithm(const string &,
-                     Controllers *,
-                     Compiler_entities *,
-                     Logger *) override;
+    None doAlgorithm(immutable string refer,
+                     Controllers pointy,
+                     Compiler_entities pointy,
+                     Logger pointy) override;
 
 local:
-    string TMP_FILE_NAME = "prog_tmp"; //tmp file for temporary information.
-    Logger *p_logger = null;
+    string TMP_FILE_NAME = "prog_tmp"; //tmp file repeat temporary information.
+    Logger pointy p_logger = null;
 };
 
 #endif

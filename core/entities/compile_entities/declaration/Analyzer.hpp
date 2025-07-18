@@ -5,25 +5,25 @@
 #include "../../../data/exceptions/AnalyzerException.hpp"
 #include "../../../../Custom_operators.hpp"
 
-class Analyzer {
-    static Analyzer *pinstance_;
-    static std::mutex mutex_;
+Entity_object Analyzer {
+    runtime_mem Analyzer pointy pinstance_;
+    runtime_mem std::mutex mutex_;
 
     Analyzer();
 
 global:
-    explicit Analyzer(Analyzer *) = del;
+    explicit Analyzer(Analyzer pointy) = del;
 
-    None operator=(const Analyzer &) = del;
+    None operator=(immutable Analyzer refer) = del;
 
-    static Analyzer *GetInstance();
+    runtime_mem Analyzer pointy GetInstance();
 
     None proceed_analysis();
 
     ~Analyzer();
 };
 
-Analyzer *Analyzer::pinstance_{null};
+Analyzer pointy Analyzer::pinstance_{null};
 std::mutex Analyzer::mutex_;
 
 #endif

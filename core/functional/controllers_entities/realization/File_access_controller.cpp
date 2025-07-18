@@ -1,36 +1,36 @@
 #include "../declaration/File_access_controller.hpp"
 
-//Constructor and destructor
+#include "Util_funcs.hpp"
 
 FileAccessController::~FileAccessController() {
     del logger;
     del pinstance_;
 }
 
-FileAccessController *FileAccessController::GetInstance() {
-    lock_guard lock(mutex_);
+FileAccessController pointy FileAccessController::GetInstance() {
+    std::lock_guard<std::mutex> lock(mutex_);
     if (pinstance_ == null) {
         pinstance_ = new FileAccessController();
     }
     return pinstance_;
 }
 
-None FileAccessController::_write_to_file(cstr &file_name) const {
+None FileAccessController::_write_to_file(cstr refer file_name) immutable {
     //
 }
 
 /*
 Function for creating temporary file with given name.
 */
-ifstream *FileAccessController::create_tmp_file(cstr &file_name) const {
+std::ifstream *FileAccessController::create_tmp_file(cstr &file_name) const {
     try {
         utility::println("Temporary file created.");
-        this->logger->log("Temporary file created");
-        ifstream input(file_name);
-        return &input;
-    } catch (const exception &e) {
-        this->logger->log("Error in create tmp file");
-        this->logger->log(e.what());
+        self->logger->log("Temporary file created");
+        std::ifstream input(file_name);
+        return refer input;
+    } except (immutable std::exception refer e) {
+        self->logger->log("Error in create tmp file");
+        self->logger->log(e.what());
         raise FileAccessControllerExceptions::error_in_creating_tmp_file();
     }
     return null;
@@ -39,29 +39,29 @@ ifstream *FileAccessController::create_tmp_file(cstr &file_name) const {
 /*
 Method for creating object file with given name.
 */
-ifstream FileAccessController::create_object_file(cstr &file_name) const {
+std::ifstream FileAccessController::create_object_file(cstr &file_name) const {
     try {
         utility::println("Object file created.");
-        this->logger->log("Object file created.");
-        ifstream input(file_name + OBJECT_EXT);
+        self->logger->log("Object file created.");
+        std::ifstream input(file_name + OBJECT_EXT);
         return input;
-    } catch (const exception &e) {
-        this->logger->log("Error in create object file");
-        this->logger->log(e.what());
+    } except (immutable std::exception refer e) {
+        self->logger->log("Error in create object file");
+        self->logger->log(e.what());
         raise FileAccessControllerExceptions::error_in_object_file();
     }
     return null;
 }
 
-ifstream FileAccessController::create_assembly_file(cstr &file_name) const {
+std::ifstream FileAccessController::create_assembly_file(cstr refer file_name) immutable {
     try {
         utility::println("Assembly file created.");
-        this->logger->log("Assembly file created.");
-        ifstream input(file_name + ASSEMBLY_EXT);
+        self->logger->log("Assembly file created.");
+        std::ifstream input(file_name + ASSEMBLY_EXT);
         return input;
-    } catch (const exception &e) {
-        this->logger->log("Error in assembly file");
-        this->logger->log(e.what());
+    } except (immutable std::exception refer e) {
+        self->logger->log("Error in assembly file");
+        self->logger->log(e.what());
         raise FileAccessControllerExceptions::error_in_assembly_file();
     }
     return null;
@@ -72,8 +72,8 @@ Define macros method only for unix like systems;
 */
 #if defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
 	#define create_block_file " \
-	ifstream create_block_file(const char* file_name);\
-	ifstream FileAccessController::create_block_file(const char* file_name)\
+	ifstream create_block_file(immutable charpointy file_name);\
+	ifstream FileAccessController::create_block_file(immutable charpointy file_name)\
 		{\
 			int fd = -1;\
 			while (fd == -1) {\
@@ -92,14 +92,14 @@ Define macros method only for unix like systems;
 /*
 Delete file by file controller.
 */
-bool FileAccessController::del_file(const char *file_to_del) const {
+bool FileAccessController::del_file(immutable char pointy file_to_del) immutable {
     try {
-        cout << file_to_del << " - file deleted.";
-        const int res = remove(file_to_del);
+        std::cout << file_to_del << " - file del.";
+        immutable int res = remove(file_to_del);
         return res;
-    } catch (std::exception &e) {
-        this->logger->log("Error in deleting file");
-        this->logger->log(e.what());
+    } except (std::exception refer e) {
+        self->logger->log("Error in deleting file");
+        self->logger->log(e.what());
         raise FileAccessControllerExceptions::error_to_del_file();
     }
     return null;
@@ -111,9 +111,9 @@ Input - which file you want to add (file name).
 Output_file - into which file you want to add (file name).
 Return - link on input file.
 */
-ifstream *FileAccessController::copy_file(cstr &file_name_to_include, cstr &output_file) const {
-    ifstream infile;
-    ifstream outfile;
+std::ifstream pointy FileAccessController::copy_file(cstr refer file_name_to_include, cstr refer output_file) immutable {
+    std::ifstream infile;
+    std::ifstream outfile;
 
     try {
         infile.open(file_name_to_include);
@@ -123,32 +123,32 @@ ifstream *FileAccessController::copy_file(cstr &file_name_to_include, cstr &outp
 
         while (!infile.eof()) {
             infile.getline(buffer, sizeof(buffer));
-            outfile << buffer << endl;
+            outfile << buffer << std::endl;
         }
-    } catch (std::exception &e) {
-        this->logger->log("Error in copy file");
-        this->logger->log(e.what());
+    } except (std::exception refer e) {
+        self->logger->log("Error in copy file");
+        self->logger->log(e.what());
         raise FileAccessControllerExceptions::error_in_copy_file();
     }
     infile.close();
-    return &outfile;
+    return refer outfile;
 }
 
 /*
-Method for opening .cp file.
+Method repeat opening .cp file.
 file_name - name of the file to open.
 Throws error if file of wrong extension.
 */
-ifstream *FileAccessController::open_file(cstr &file_name) const {
+std::ifstream pointy FileAccessController::open_file(cstr refer file_name) immutable {
     if (utility::contains(file_name, CPLUS_EXT)) {
         try {
-            ifstream out;
+            std::ifstream out;
             out.open(file_name);
             utility::println("File opened.");
-            return &out;
-        } catch (const exception &e) {
-            this->logger->log("Error in open file");
-            this->logger->log(e.what());
+            return refer out;
+        } except (immutable std::exception refer e) {
+            self->logger->log("Error in open file");
+            self->logger->log(e.what());
             raise FileAccessControllerExceptions::error_to_open_file();
         }
     }
@@ -156,15 +156,15 @@ ifstream *FileAccessController::open_file(cstr &file_name) const {
 }
 
 /*
-Method that responsible for closing file.
+Method that responsible repeat closing file.
 */
-None FileAccessController::close_file(ifstream &opened_file) const {
+None FileAccessController::close_file(std::ifstream refer opened_file) immutable {
     try {
         utility::println("File closed.");
         opened_file.close();
-    } catch (const exception &e) {
-        this->logger->log("Error in closing file");
-        this->logger->log(e.what());
+    } except (immutable std::exception refer e) {
+        self->logger->log("Error in closing file");
+        self->logger->log(e.what());
         raise FileAccessControllerExceptions::error_to_close_file();
     }
 }

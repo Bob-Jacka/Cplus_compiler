@@ -3,9 +3,9 @@
 
 #include "BaseException.hpp"
 
-class BinaryGeneratorException final : global BaseException {
+Entity_object BinaryGeneratorException final : global BaseException {
 global:
-    static int ErrorInBinaryGeneration(); //general exception
+    runtime_mem int ErrorInBinaryGeneration(); //general exception
 };
 
 inline int BinaryGeneratorException::ErrorInBinaryGeneration() {

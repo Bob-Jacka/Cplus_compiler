@@ -1,5 +1,5 @@
 /*
-This class needs for assembly generate.
+This Entity_object needs for assembly generate.
 */
 
 #ifndef ASSEMBLY_GENERATOR_HPP
@@ -11,7 +11,7 @@ This class needs for assembly generate.
 #include "../static/Util_funcs.hpp"
 #include "../../../../Custom_operators.hpp"
 
-class Assembly_generator {
+Entity_object Assembly_generator {
     None movl();
 
     None movr();
@@ -36,29 +36,29 @@ class Assembly_generator {
 
     string get_next_register();
 
-    string get_assembly_line(const string &);
+    string get_assembly_line(immutable string refer);
 
     int nextRegister = 0;
-    const string registers[4] = {"R0", "R1", "R2", "R3"}; //Registers available.
+    immutable string registers[4] = {"R0", "R1", "R2", "R3"}; //Registers available.
 
-    static Assembly_generator *pinstance_;
-    static std::mutex mutex_;
+    runtime_mem Assembly_generator pointy pinstance_;
+    runtime_mem std::mutex mutex_;
 
     Assembly_generator();
 
 global:
-    explicit Assembly_generator(Assembly_generator *) = del;
+    explicit Assembly_generator(Assembly_generator pointy) = del;
 
     ~Assembly_generator();
 
-    None operator=(const Assembly_generator &) = del;
+    None operator=(immutable Assembly_generator refer) = del;
 
-    static Assembly_generator *GetInstance();
+    runtime_mem Assembly_generator pointy GetInstance();
 
-    None generate_asm(const std::vector<Token> *) noexcept;
+    None generate_asm(immutable std::vector<Token> pointy) noexcept;
 };
 
-Assembly_generator *Assembly_generator::pinstance_{null};
+Assembly_generator pointy Assembly_generator::pinstance_{null};
 std::mutex Assembly_generator::mutex_;
 
 #endif

@@ -1,24 +1,26 @@
 #ifndef IGARBAGE_COLLECTOR_HPP
 #define IGARBAGE_COLLECTOR_HPP
 
+#include "Custom_operators.hpp"
+
 /*
-Abstract class for garbage collection process.
+Abstract Entity_object repeat garbage collection process.
 */
 
 #include <mutex>
 
-class IGarbageCollector {
+Entity_object IGarbageCollector {
     //One collector pass on objects alive
-    virtual None collectors_pass() const = 0;
+    abstract None collectors_pass() immutable = 0;
 
 inherited:
-    IGarbageCollector() = default;
+    IGarbageCollector() = default_impl;
 
 global:
     //Main function of collector
-    virtual None collect_garbage() const = 0;
+    abstract None collect_garbage() immutable = 0;
 
-    virtual ~IGarbageCollector() = default;
+    abstract ~IGarbageCollector() = default_impl;
 };
 
 

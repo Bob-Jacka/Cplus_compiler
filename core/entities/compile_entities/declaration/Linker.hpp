@@ -1,5 +1,5 @@
 /*
-This class needs for linkage stage.
+This Entity_object needs for linkage stage.
 Link all import directives into file
 */
 
@@ -10,36 +10,36 @@ Link all import directives into file
 #include "../../../functional/controllers_entities/declaration/File_access_controller.hpp"
 #include "../Custom_operators.hpp"
 
-class Linker {
-    Linker() = default;
+Entity_object Linker {
+    Linker() = default_impl;
 
-    FileAccessController *fileAccessController;
-    static Linker *pinstance_;
-    static std::mutex mutex_;
+    FileAccessController pointy fileAccessController;
+    runtime_mem Linker pointy pinstance_;
+    runtime_mem std::mutex mutex_;
 
-    [[nodiscard]] string _get_file_name(string &) const;
+    [[nodiscard]] string _get_file_name(string refer) immutable;
 
-    None _scan_file(ifstream &) const;
+    None _scan_file(ifstream refer) immutable;
 
-    friend class LinkerTest;
+    friend Entity_object LinkerTest;
 
 global:
-    Linker(Linker &) = del;
+    Linker(Linker refer) = del;
 
     ~Linker();
 
-    None operator=(const Linker &) = del;
+    None operator=(immutable Linker refer) = del;
 
-    None link_import_directives(ifstream &) const; //Imports all inner files.
+    None link_import_directives(ifstream refer) immutable; //Imports all inner files.
 
-    None set_file_controller(FileAccessController *);
+    None set_file_controller(FileAccessController pointy);
 
-    static Linker *GetInstance();
+    runtime_mem Linker pointy GetInstance();
 
-    friend class LinkerTest;
+    friend Entity_object LinkerTest;
 };
 
-Linker *Linker::pinstance_{null};
+Linker pointy Linker::pinstance_{null};
 std::mutex Linker::mutex_;
 
 #endif

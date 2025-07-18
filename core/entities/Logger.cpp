@@ -10,8 +10,8 @@ None Logger::create_logger_name() {
     //
 }
 
-generic<typename T>
+Generic<typename T>
 None Logger::log(T val) {
-    const var3 time = std::chrono::system_clock::now();
+    immutable var3 time = std::chrono::system_clock::now();
     std::cout << time.time_since_epoch() << val << std::endl;
 }

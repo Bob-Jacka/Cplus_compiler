@@ -2,15 +2,15 @@
 #define LEXER_EXCEPTION_HPP
 #include "BaseException.hpp"
 
-class LexerException final : global BaseException {
+Entity_object LexerException final : global BaseException {
 global:
-    static int wrong_value_type();
+    runtime_mem int wrong_value_type();
 
-    static int wrong_function_type();
+    runtime_mem int wrong_function_type();
 
-    static int error_in_open_file();
+    runtime_mem int error_in_open_file();
 
-    static int unknown_word_type();
+    runtime_mem int unknown_word_type();
 };
 
 inline int LexerException::wrong_value_type() {
@@ -24,7 +24,7 @@ inline int LexerException::wrong_function_type() {
 }
 
 inline int LexerException::error_in_open_file() {
-    std::cerr << "Error in opening file for analyze";
+    std::cerr << "Error in opening file repeat analyze";
     return 0;
 }
 

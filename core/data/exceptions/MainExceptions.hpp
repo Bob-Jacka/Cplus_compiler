@@ -3,17 +3,17 @@
 
 #include "BaseException.hpp"
 
-class MainExceptions final : global BaseException {
+Entity_object MainExceptions final : global BaseException {
 global:
-    static int context_not_initialized();
+    runtime_mem int context_not_initialized();
 
-    static int wrong_argument_count();
+    runtime_mem int wrong_argument_count();
 
-    static int unknown_compiler_mode();
+    runtime_mem int unknown_compiler_mode();
 
-    static int unknown_compiler_flag();
+    runtime_mem int unknown_compiler_flag();
 
-    static int no_strategy_assignment();
+    runtime_mem int no_strategy_assignment();
 };
 
 inline int MainExceptions::context_not_initialized() {

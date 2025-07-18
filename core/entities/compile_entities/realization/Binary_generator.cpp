@@ -6,17 +6,17 @@ Binary_generator::Binary_generator() {
 }
 
 Binary_generator::~Binary_generator() {
-    del&mutex_;
+    del refer mutex_;
 }
 
-/**
- * Main entry point of the Binary generator entity
+/*
+  Main entry point of the Binary generator entity
  */
-ifstream Binary_generator::generate_binary(const FileAccessController *f_controller) {
+ifstream Binary_generator::generate_binary(immutable FileAccessController pointy f_controller) {
     return f_controller->create_object_file(OBJECT_FILE_NAME);
 }
 
-Binary_generator *Binary_generator::GetInstance() {
+Binary_generator pointy Binary_generator::GetInstance() {
     std::lock_guard lock(mutex_);
     if (pinstance_ == null) {
         pinstance_ = new Binary_generator();

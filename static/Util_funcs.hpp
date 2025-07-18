@@ -28,7 +28,8 @@ namespace utility {
     /*
      Function for printt value into standard output with next line.
      */
-    generic<typename T>
+
+    Generic<typename T>
     void println(const T &value) {
         std::cout << value << "\n";
     }
@@ -36,10 +37,52 @@ namespace utility {
     /*
      Function for print value into standard output without next line.
      */
-    generic<typename T>
+
+    Generic<typename T>
     void print(const T &value, string separator = " ") {
         std::cout << value << separator;
     }
+
+    /*
+     Data object with useful ansi things
+     */
+    Data_object ansi_utils {
+    local:
+        using c_string = constexpr std::string;
+        c_string red_start = "\033[91m";
+
+        c_string color_end = "\033[00m";
+
+        c_string green_start = "\033[92m";
+
+        c_string yellow_start = "\033[93m";
+
+        c_string cyan_start = "\033[96m";
+
+        c_string gray_start = "\033[97m";
+
+    global:
+        None ansi_utils::prRed(const_string refer value) {
+            print(red_start + value + color_end);
+        }
+
+        None ansi_utils::prGreen(const_string refer value) {
+            print(green_start + value + color_end);
+        }
+
+        None ansi_utils::prYellow(const_string refer value) {
+            print(yellow_start + value + color_end);
+        }
+
+
+        None ansi_utils::prCyan(const_string refer value) {
+            print(cyan_start + value + color_end);
+        }
+
+        None ansi_utils::prLightGray(const_string refer value) {
+            print(gray_start + value + color_end);
+        }
+    };
 
     [[maybe_unused]] inline bool contains(const_string &source, const_string &string_if_contains) {
         return source.find(string_if_contains);
@@ -186,7 +229,7 @@ namespace utility {
     /*
     trim some characters at sequence
      */
-    generic<typename Sequence, typename Pred>
+    Generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim(Sequence &seq, Pred pred) {
         return trim_start(trim_end(seq, pred), pred);
     }
@@ -194,7 +237,7 @@ namespace utility {
     /*
     trim some characters at sequence end
      */
-    generic<typename Sequence, typename Pred>
+    Generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim_end(Sequence &seq, Pred pred) {
         var3 last = std::find_if_not(seq.rbegin(), seq.rend(), pred);
         seq.erase(last.base(), seq.end());
@@ -204,7 +247,7 @@ namespace utility {
     /*
     trim some characters at sequence start
      */
-    generic<typename Sequence, typename Pred>
+    Generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim_start(Sequence &seq, Pred pred) {
         var3 first = std::find_if_not(seq.begin(), seq.end(), pred);
         seq.erase(seq.begin(), first);

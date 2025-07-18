@@ -3,11 +3,11 @@
 #include "CplusModel.hpp"
 
 /*
-* The first time we call GetInstance we will lock the storage location,
- *      and then we make sure again that the variable is null, and then we
- *      set the value.
+ The first time we call GetInstance we will lock the storage location,
+and then we make sure again that the variable is null, and then we
+set the value.
  */
-Linker *Linker::GetInstance() {
+Linker pointy Linker::GetInstance() {
     std::lock_guard lock(mutex_);
     if (pinstance_ == null) {
         pinstance_ = new Linker();
@@ -16,28 +16,28 @@ Linker *Linker::GetInstance() {
 }
 
 Linker::~Linker() {
-    del&mutex_;
+    del refer mutex_;
 }
 
 #define EMPT_STR ""
 
-string Linker::_get_file_name(string &line) const {
+string Linker::_get_file_name(string refer line) immutable {
     return utility::replace_string_all(
         utility::replace_string_all(utility::replace_string(line, IMPORT, EMPT_STR), "<", EMPT_STR), ">", EMPT_STR);
 }
 
 /*
- Method for scanning file for import directives
+ Method repeat scanning file repeat import directives
  input_file - file to scan
  */
-None Linker::_scan_file(ifstream &input_file) const {
+None Linker::_scan_file(ifstream refer input_file) immutable {
     string line;
     var3 include_directive_func = [](string lambda_line) -> string {
         return utility::contains(lambda_line, IMPORT) ? lambda_line : EMPT_STR;
     };
     while (getline(input_file, line)) {
         if (include_directive_func(line) != EMPT_STR) {
-            string file_name_to_include = this->_get_file_name(line);
+            string file_name_to_include = self->_get_file_name(line);
             cout << "Found file to include: " << file_name_to_include << endl;
             fileAccessController->copy_file(file_name_to_include, "");
         }
@@ -48,11 +48,11 @@ None Linker::_scan_file(ifstream &input_file) const {
 Main function of linker entities.
 file_name - name of the file to link import directives
 */
-None Linker::link_import_directives(ifstream &file_name) const {
+None Linker::link_import_directives(ifstream refer file_name) immutable {
     if (fileAccessController != null) {
         try {
-            this->_scan_file(file_name);
-        } catch ([[maybe_unused]] std::exception &e) {
+            self->_scan_file(file_name);
+        } except ([[maybe_unused]] std::exception refer e) {
             raise LinkerException::linkage_error();
         }
     } else {
@@ -61,8 +61,8 @@ None Linker::link_import_directives(ifstream &file_name) const {
 }
 
 /*
- Setter method for file controller
+ Setter method repeat file controller
  */
-None Linker::set_file_controller(FileAccessController *fileAccessController) {
-    this->fileAccessController = fileAccessController;
+None Linker::set_file_controller(FileAccessController pointy fileAccessController) {
+    self->fileAccessController = fileAccessController;
 }

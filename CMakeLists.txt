@@ -44,7 +44,12 @@ target_include_directories(Cplus_compiler PRIVATE
         ${PROJECT_SOURCE_DIR}/static
 
         ${PROJECT_SOURCE_DIR}/core/data
-        ${PROJECT_SOURCE_DIR}/core/data/dependencies
+        ###Outer dependencies
+        ${PROJECT_SOURCE_DIR}/core/data/dependencies/boost
+        ${PROJECT_SOURCE_DIR}/core/data/dependencies/llvm-20.1.8.src
+        ${PROJECT_SOURCE_DIR}/core/data/dependencies/catch_amalgamated.hpp
+        ${PROJECT_SOURCE_DIR}/core/data/dependencies/termcolor.hpp
+
         ${PROJECT_SOURCE_DIR}/core/data/exceptions
 
         ${PROJECT_SOURCE_DIR}/core/entities

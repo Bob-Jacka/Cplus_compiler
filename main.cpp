@@ -79,7 +79,7 @@ int main(const int argc, char *argv[]) {
         try {
             check_flags(get_str_array(*argv, argc - 1));
             //Main logic to proceed.
-            if (assign_compiler_strategy() == true) {
+            if (assign_compiler_strategy()) {
                 compiler_entities->get_strategy_context()->doLogic(
                     entry_point_name,
                     controllers,

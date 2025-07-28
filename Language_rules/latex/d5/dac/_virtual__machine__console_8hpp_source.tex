@@ -1,0 +1,43 @@
+\doxysection{Virtual\+\_\+machine\+\_\+console.\+hpp}
+\hypertarget{_virtual__machine__console_8hpp_source}{}\label{_virtual__machine__console_8hpp_source}\index{core/entities/VM/declaration/Virtual\_machine\_console.hpp@{core/entities/VM/declaration/Virtual\_machine\_console.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VIRTUAL\_MACHINE\_CONSOLE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VIRTUAL\_MACHINE\_CONSOLE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00005\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00006\ \textcolor{comment}{UI\ app}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Console\ that\ represents\ abstract\ machine\ parameters\ and\ execution\ path.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ Entity\_object\ VirtualMachineConsole\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ runtime\_mem\ VirtualMachineConsole\ pointy\ pinstance\_;}
+\DoxyCodeLine{00014\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ None\ \_update\_UI()\ immutable;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ None\ \_disconnect()\ immutable;\ \textcolor{comment}{//disconnect\ console\ from\ abstract\ machine}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ VirtualMachineConsole();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ global:}
+\DoxyCodeLine{00023\ \ \ \ \ \string~VirtualMachineConsole();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ VirtualMachineConsole(VirtualMachineConsole\ refer\ other)\ =\ del;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ runtime\_mem\ VirtualMachineConsole\ pointy\ GetInstance();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ None\ draw\_UI()\ immutable;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ None\ operator=(immutable\ VirtualMachineConsole\ refer)\ =\ del;}
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ VirtualMachineConsole\ pointy\ VirtualMachineConsole::pinstance\_\{null\};}
+\DoxyCodeLine{00035\ std::mutex\ VirtualMachineConsole::mutex\_;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,59 @@
+\doxysection{Parser.\+hpp}
+\hypertarget{_parser_8hpp_source}{}\label{_parser_8hpp_source}\index{core/entities/compile\_entities/declaration/Parser.hpp@{core/entities/compile\_entities/declaration/Parser.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Class\ used\ repeat\ building\ syntax\ tree.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Get\ stream\ from\ lexer\ and\ build\ syntax\ tree;}}
+\DoxyCodeLine{00004\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ PARSER\_HPP}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PARSER\_HPP}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}Lexer.hpp"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ Entity\_object\ Parser\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ runtime\_mem\ Parser\ pointy\ pinstance\_;}
+\DoxyCodeLine{00017\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//methods\ repeat\ react\ on\ different\ tokens}}
+\DoxyCodeLine{00020\ \ \ \ \ None\ react\_on\_keyword()\ immutable;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ None\ react\_on\_intval()\ immutable;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ None\ react\_on\_stringval()\ immutable;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ None\ react\_on\_floatval()\ immutable;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ None\ react\_on\_operator()\ immutable;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ None\ react\_on\_identifier()\ immutable;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ global:}
+\DoxyCodeLine{00033\ \ \ \ \ Parser()\ =\ default\_impl;}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \string~Parser()\ =\ default\_impl;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ Parser(Parser\ refer)\ =\ del;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ None\ operator=(immutable\ Parser\ refer)\ =\ del;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ runtime\_mem\ Parser\ pointy\ GetInstance();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ None\ build\_tree()\ immutable;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ std::vector<Token>\ pointy\ parse\_tokens(std::vector<Token>\ pointy)\ immutable;\ \textcolor{comment}{//Entry\ point\ of\ the\ Parser}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ friend\ Entity\_object\ ParserTest;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ Parser\ pointy\ Parser::pinstance\_\{null\};}
+\DoxyCodeLine{00051\ std::mutex\ Parser::mutex\_;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

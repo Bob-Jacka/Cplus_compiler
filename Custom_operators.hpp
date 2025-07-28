@@ -6,7 +6,7 @@
 #ifndef CUSTOM_OPERATORS_HPP
 #define CUSTOM_OPERATORS_HPP
 
-/*
+/**
  So, why I can't do this?
  */
 #define elif else if //more convenience that else if
@@ -36,10 +36,10 @@
 
 //Value modifiers
 #define no_optim volatile //compiler should not optimize variable with this modifier
-#define refer & //macro for reference
-#define pointy * //pointer macro
+#define refer & //macro for reference symbol
+#define pointy * //pointer macro symbol
 
-/*
+/**
  C+ code style in C++ code style
  */
 #define global public

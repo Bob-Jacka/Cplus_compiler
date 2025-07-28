@@ -25,7 +25,7 @@ SCENARIO("should Not open file two times") {
 }
 
 TEST_CASE("should Not close file two times", "[contains]") {
-    ifstream file;
+    std::ifstream file;
     file.open(test_file_1);
     fileAccessController->close_file(file);
     fileAccessController->close_file(file);

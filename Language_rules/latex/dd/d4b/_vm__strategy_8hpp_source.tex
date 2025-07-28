@@ -1,0 +1,42 @@
+\doxysection{Vm\+\_\+strategy.\+hpp}
+\hypertarget{_vm__strategy_8hpp_source}{}\label{_vm__strategy_8hpp_source}\index{core/functional/strategies/declaration/Vm\_strategy.hpp@{core/functional/strategies/declaration/Vm\_strategy.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VM\_STRATEGY\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VM\_STRATEGY\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../../../entities/VM/declaration/Virtual\_machine.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../../../entities/VM/declaration/Virtual\_machine\_console.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../../../data/Main\_types\_compile.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Strategy\ that\ runs\ program\ one\ line\ by\ one.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00014\ Entity\_object\ VMStrategy\ final\ :\ global\ IStrategy\ \{}
+\DoxyCodeLine{00015\ global:}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{explicit}\ VMStrategy(Logger\ pointy\ p\_logger\ =\ null,\ VirtualMachineConsole\ pointy\ p\_console\ =\ null)\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ self-\/>p\_logger\ =\ p\_logger;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ self-\/>p\_console\ =\ p\_console;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ self-\/>log\_file\ =\ \textcolor{keyword}{new}\ ofstream();}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ None\ doAlgorithm(immutable\ \textcolor{keywordtype}{string}\ refer,\ Controllers\ pointy,\ Compiler\_entities\ pointy,\ Logger\ pointy)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \string~VMStrategy()\ \textcolor{keyword}{override}\ =\ default\_impl;}
+\DoxyCodeLine{00026\ \ \ \ \ VMStrategy(VMStrategy\ immutable\ refer);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ local:}
+\DoxyCodeLine{00029\ \ \ \ \ VM\_settings\ pointy\ p\_settings\ =\ null;}
+\DoxyCodeLine{00030\ \ \ \ \ VirtualMachine\ pointy\ p\_vm\_instance\ =\ null;}
+\DoxyCodeLine{00031\ \ \ \ \ VirtualMachineConsole\ pointy\ p\_console\ =\ null;}
+\DoxyCodeLine{00032\ \ \ \ \ Logger\ pointy\ p\_logger\ =\ null;}
+\DoxyCodeLine{00033\ \ \ \ \ ofstream\ pointy\ log\_file;}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

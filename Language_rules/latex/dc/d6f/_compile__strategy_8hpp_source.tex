@@ -1,0 +1,42 @@
+\doxysection{Compile\+\_\+strategy.\+hpp}
+\hypertarget{_compile__strategy_8hpp_source}{}\label{_compile__strategy_8hpp_source}\index{core/functional/strategies/declaration/Compile\_strategy.hpp@{core/functional/strategies/declaration/Compile\_strategy.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COMPILE\_STRATEGY\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COMPILE\_STRATEGY\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../data/Main\_types\_compile.hpp"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../data/Main\_types\_controllers.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../data/exceptions/CompilerModeException.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../functional/strategies/IStrategies.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../static/CplusModel.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00014\ \textcolor{comment}{Strategy\ that\ compiles\ program\ into\ executable\ file.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00016\ Entity\_object\ CompileStrategy\ final\ :\ global\ IStrategy\ \{}
+\DoxyCodeLine{00017\ global:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{explicit}\ CompileStrategy(Logger\ pointy\ p\_logger\ =\ null)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ self-\/>p\_logger\ =\ p\_logger;}
+\DoxyCodeLine{00020\ \ \ \ \ \}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \string~CompileStrategy()\ \textcolor{keyword}{override}\ =\ default\_impl;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ CompileStrategy(CompileStrategy\ immutable\ refer);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ None\ doAlgorithm(immutable\ \textcolor{keywordtype}{string}\ refer,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Controllers\ pointy,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Compiler\_entities\ pointy,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Logger\ pointy)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ local:}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{string}\ TMP\_FILE\_NAME\ =\ \textcolor{stringliteral}{"{}prog\_tmp"{}};\ \textcolor{comment}{//tmp\ file\ repeat\ temporary\ information.}}
+\DoxyCodeLine{00033\ \ \ \ \ Logger\ pointy\ p\_logger\ =\ null;}
+\DoxyCodeLine{00034\ \};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

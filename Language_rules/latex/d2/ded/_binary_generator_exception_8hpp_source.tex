@@ -1,0 +1,22 @@
+\doxysection{Binary\+Generator\+Exception.\+hpp}
+\hypertarget{_binary_generator_exception_8hpp_source}{}\label{_binary_generator_exception_8hpp_source}\index{core/data/exceptions/BinaryGeneratorException.hpp@{core/data/exceptions/BinaryGeneratorException.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BIN\_GENERATOR\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BIN\_GENERATOR\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BaseException.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ Entity\_object\ BinaryGeneratorException\ final\ :\ global\ BaseException\ \{}
+\DoxyCodeLine{00007\ global:}
+\DoxyCodeLine{00008\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ ErrorInBinaryGeneration();\ \textcolor{comment}{//general\ exception}}
+\DoxyCodeLine{00009\ \};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ BinaryGeneratorException::ErrorInBinaryGeneration()\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ occurred\ in\ binary\ generation\ process"{}};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00014\ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

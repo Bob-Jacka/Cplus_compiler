@@ -1,0 +1,19 @@
+\doxysection{ICollector.\+cpp}
+\hypertarget{_i_collector_8cpp_source}{}\label{_i_collector_8cpp_source}\index{core/entities/VM/GarbageCollector/GarbageStrategies/ICollector.cpp@{core/entities/VM/GarbageCollector/GarbageStrategies/ICollector.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}../data/Variables.hpp"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ Entity\_object\ CollectorStrategy\ \{}
+\DoxyCodeLine{00006\ global:}
+\DoxyCodeLine{00007\ \ \ \ \ abstract\ \string~CollectorStrategy()\ =\ default\_impl;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ CollectorStrategy()\ =\ default\_impl;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ abstract\ None\ doAlgorithm(\textcolor{keywordtype}{string}\ entry\_point\_name)\ immutable\ =\ 0;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \};}
+
+\end{DoxyCode}

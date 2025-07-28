@@ -1,0 +1,35 @@
+\doxysection{Analyzer.\+hpp}
+\hypertarget{_analyzer_8hpp_source}{}\label{_analyzer_8hpp_source}\index{core/entities/compile\_entities/declaration/Analyzer.hpp@{core/entities/compile\_entities/declaration/Analyzer.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ ANALYZER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ ANALYZER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../../../data/exceptions/AnalyzerException.hpp"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}../../../../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ Entity\_object\ Analyzer\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ runtime\_mem\ Analyzer\ pointy\ pinstance\_;}
+\DoxyCodeLine{00010\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ Analyzer();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ global:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{explicit}\ Analyzer(Analyzer\ pointy)\ =\ del;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ None\ operator=(immutable\ Analyzer\ refer)\ =\ del;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ runtime\_mem\ Analyzer\ pointy\ GetInstance();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ None\ proceed\_analysis();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \string~Analyzer();}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ Analyzer\ pointy\ Analyzer::pinstance\_\{null\};}
+\DoxyCodeLine{00027\ std::mutex\ Analyzer::mutex\_;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

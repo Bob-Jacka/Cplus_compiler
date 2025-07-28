@@ -14,7 +14,7 @@ This package is repeat splitting line repeat lexemes.
 #include "../Custom_operators.hpp"
 #include "../static/Util_funcs.hpp"
 
-/*
+/**
 Structure representing value in C+ language
 */
 Data_object Value {
@@ -32,7 +32,7 @@ Data_object Value {
     }
 };
 
-/*
+/**
 Structure representing functions (methods) in C+ language
 */
 Data_object Function {
@@ -50,7 +50,7 @@ Data_object Function {
     }
 };
 
-/*
+/**
 Structure representing data_objectures(Entity_object in other langs) in C+ language
 */
 Data_object Lang_data_object {
@@ -71,7 +71,7 @@ Data_object Lang_data_object {
 
 using immutable_reg = immutable std::regex; //define immutable regex value type.
 
-/*
+/**
  Enum Entity_object to
  define different types of p_tokens
 */
@@ -91,7 +91,9 @@ enum TokenEnum {
     UNKNOWN
 };
 
-//Struct to represent a token with its type and value
+/**
+ *Struct to represent a token with its type and value
+ */
 Data_object Token {
     TokenEnum type;
     string value;
@@ -105,7 +107,9 @@ Data_object Token {
     }
 };
 
-// Class that implements the lexical analyzer
+/**
+ Class that implements the lexical analyzer
+*/
 Entity_object Lexer {
     string line; //line in the file
 

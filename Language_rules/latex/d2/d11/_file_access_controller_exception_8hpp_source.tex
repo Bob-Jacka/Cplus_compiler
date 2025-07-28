@@ -1,0 +1,85 @@
+\doxysection{File\+Access\+Controller\+Exception.\+hpp}
+\hypertarget{_file_access_controller_exception_8hpp_source}{}\label{_file_access_controller_exception_8hpp_source}\index{core/data/exceptions/FileAccessControllerException.hpp@{core/data/exceptions/FileAccessControllerException.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FILE\_CONTROLLER\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FILE\_CONTROLLER\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BaseException.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ Entity\_object\ FileAccessControllerExceptions\ final\ :\ BaseException\ \{}
+\DoxyCodeLine{00007\ global:}
+\DoxyCodeLine{00008\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_open\_file();}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_close\_file();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_read\_file();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_write\_file();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_del\_file();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ wrong\_extension();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_in\_copy\_file();}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_in\_creating\_tmp\_file();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_in\_object\_file();}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_in\_assembly\_file();}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_to\_open\_file()\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ open\ file"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_to\_close\_file()\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ close\ file"{}};}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00037\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_to\_read\_file()\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ read\ from\ file"{}};}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_to\_write\_file()\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ write\ to\ file"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ wrong\_extension()\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}File\ of\ wrong\ extension,\ only\ .cp\ ext\ file\ need"{}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_in\_copy\_file()\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ copy\ file"{}};}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_in\_creating\_tmp\_file()\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ create\ tmp\ file"{}};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_in\_object\_file()\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ create\ object\ file"{}};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_in\_assembly\_file()\ \{}
+\DoxyCodeLine{00070\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ assembly\ file"{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_in\_del\_file()\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Failed\ to\ del\ file"{}};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

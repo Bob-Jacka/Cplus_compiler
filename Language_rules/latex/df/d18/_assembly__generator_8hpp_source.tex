@@ -1,0 +1,70 @@
+\doxysection{Assembly\+\_\+generator.\+hpp}
+\hypertarget{_assembly__generator_8hpp_source}{}\label{_assembly__generator_8hpp_source}\index{core/entities/compile\_entities/declaration/Assembly\_generator.hpp@{core/entities/compile\_entities/declaration/Assembly\_generator.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{This\ Entity\_object\ needs\ for\ assembly\ generate.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ ASSEMBLY\_GENERATOR\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ASSEMBLY\_GENERATOR\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Lexer.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../../../data/exceptions/AssemblyGeneratorException.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../static/Util\_funcs.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../../../../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ Entity\_object\ Assembly\_generator\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ None\ movl();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ None\ movr();}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ None\ movz();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ None\ jmp();}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ None\ neg();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ None\ cmp();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ None\ div();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ None\ push();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ None\ pushq();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ None\ sub();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ None\ inc();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{string}\ get\_next\_register();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{string}\ get\_assembly\_line(immutable\ \textcolor{keywordtype}{string}\ refer);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ nextRegister\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ immutable\ \textcolor{keywordtype}{string}\ registers[4]\ =\ \{\textcolor{stringliteral}{"{}R0"{}},\ \textcolor{stringliteral}{"{}R1"{}},\ \textcolor{stringliteral}{"{}R2"{}},\ \textcolor{stringliteral}{"{}R3"{}}\};\ \textcolor{comment}{//Registers\ available.}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ runtime\_mem\ Assembly\_generator\ pointy\ pinstance\_;}
+\DoxyCodeLine{00045\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ Assembly\_generator();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ global:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{explicit}\ Assembly\_generator(Assembly\_generator\ pointy)\ =\ del;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \string~Assembly\_generator();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ None\ operator=(immutable\ Assembly\_generator\ refer)\ =\ del;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ runtime\_mem\ Assembly\_generator\ pointy\ GetInstance();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ None\ generate\_asm(immutable\ std::vector<Token>\ pointy)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00059\ \};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ Assembly\_generator\ pointy\ Assembly\_generator::pinstance\_\{null\};}
+\DoxyCodeLine{00062\ std::mutex\ Assembly\_generator::mutex\_;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

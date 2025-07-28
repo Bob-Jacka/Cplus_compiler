@@ -1,0 +1,40 @@
+\doxysection{Linker\+Exception.\+hpp}
+\hypertarget{_linker_exception_8hpp_source}{}\label{_linker_exception_8hpp_source}\index{core/data/exceptions/LinkerException.hpp@{core/data/exceptions/LinkerException.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ /pointy}
+\DoxyCodeLine{00002\ \ \ \ \ Occurs\ when\ error\ happens\ in\ linkage}
+\DoxyCodeLine{00003\ pointy/}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ LINKER\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ LINKER\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}BaseException.hpp"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ Entity\_object\ LinkerException\ final\ :\ global\ BaseException\ \{}
+\DoxyCodeLine{00011\ global:}
+\DoxyCodeLine{00012\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ linkage\_error();}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ failed\_add\_file\_error();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ no\_file\_controller\_to\_link\_import\_directives();}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ LinkerException::linkage\_error()\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ occurred\ in\ linkage\ process"{}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00022\ \}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ LinkerException::failed\_add\_file\_error()\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ occurred\ in\ adding\ file\ process"{}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ LinkerException::no\_file\_controller\_to\_link\_import\_directives()\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ occurred\ in\ adding\ directories"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

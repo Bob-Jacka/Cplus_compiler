@@ -1,0 +1,260 @@
+\doxysection{Utils Namespace Reference}
+\hypertarget{namespace_utils}{}\label{namespace_utils}\index{Utils@{Utils}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_utils_1_1_test__results}{Test\+\_\+results}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Tensor \mbox{\hyperlink{namespace_utils_aa756d16f6c15ae216bc6dd0679247771}{proceed\+\_\+image}} (str\texorpdfstring{$\vert$}{|}Path\+Like path)
+\item 
+\textbackslash{} tuple\mbox{[}Data\+Loader, Data\+Loader\texorpdfstring{$\vert$}{|}None\mbox{]}\texorpdfstring{$\vert$}{|}None \mbox{\hyperlink{namespace_utils_ac90932cec5a45320559a8ab75d2e4414}{get\+\_\+dataloader}} (str\texorpdfstring{$\vert$}{|}Path\+Like labels\+\_\+dir\+\_\+path, str\texorpdfstring{$\vert$}{|}Path\+Like img\+\_\+dir\+\_\+path, batch\+\_\+size=64, shuffle\+\_\+sets=True)
+\item 
+\mbox{\hyperlink{namespace_utils_a0491f0eb8e903960d55eeeb8f2eded1e}{show\+\_\+img}} (str\texorpdfstring{$\vert$}{|}Path\+Like path, tuple\mbox{[}int, int\mbox{]}\texorpdfstring{$\vert$}{|}list\mbox{[}int, int\mbox{]} image\+\_\+size=(300, 300))
+\item 
+\mbox{\hyperlink{namespace_utils_adbdd41938aef6d0fd4e339e3a3e2bb74}{update\+\_\+labels}} (str\texorpdfstring{$\vert$}{|}Path\+Like labels\+\_\+dir\+\_\+path, str images\+\_\+dir\+\_\+name=\textquotesingle{}images\textquotesingle{}, str labels\+\_\+file\+\_\+name=\textquotesingle{}labels.\+csv\textquotesingle{})
+\item 
+tuple\mbox{[}int, int\mbox{]}\texorpdfstring{$\vert$}{|}None \mbox{\hyperlink{namespace_utils_ad8ce7515a079bace1eeb842b39a2cc55}{get\+\_\+max\+\_\+size}} (str path\+\_\+to\+\_\+images\+\_\+dir, bool is\+\_\+beautiful\+\_\+output=True)
+\item 
+str\texorpdfstring{$\vert$}{|}Path\+Like \mbox{\hyperlink{namespace_utils_a8bf09f4a750346ba71f1d5cca9a7b2dd}{select\+\_\+terminal}} (str items\+\_\+directory\+\_\+path, bool is\+\_\+full\+\_\+path\+\_\+ret=False)
+\item 
+int \mbox{\hyperlink{namespace_utils_aa534bcc436a83701c9b2fed42eaf5090}{input\+\_\+from\+\_\+user}} (int values\+\_\+range=None)
+\item 
+int\texorpdfstring{$\vert$}{|}str \mbox{\hyperlink{namespace_utils_ae0588aa7dbf9cab2fc0f0812a222163a}{user\+\_\+input\+\_\+with\+\_\+exit}} (int values\+\_\+range=None)
+\item 
+\mbox{\hyperlink{namespace_utils_ad0caf851e2d9858841c74fa33093279b}{get\+\_\+model\+\_\+parameters}} (dict model\+\_\+state\+\_\+dict)
+\item 
+\mbox{\hyperlink{namespace_utils_af0f412738e17d46a68bc7f49e4240040}{print\+\_\+error}} (str msg)
+\item 
+\mbox{\hyperlink{namespace_utils_a130c920fea94f7e51b1a2e11e7d9e2ef}{print\+\_\+success}} (str msg)
+\item 
+\mbox{\hyperlink{namespace_utils_aa71b8aab7a52fdd24e89a6aa5710fddc}{print\+\_\+info}} (str msg)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_utils_a8552e047aac264b36136dc58c06d1222}{transform\+\_\+func\+\_\+train}}
+\item 
+\mbox{\hyperlink{namespace_utils_ad3a53efc5960079d77862643a3ec7478}{transform\+\_\+func\+\_\+classify}}
+\item 
+\mbox{\hyperlink{namespace_utils_a14c0971443c025c1a069b3ae0132689f}{transform\+\_\+func\+\_\+lite}}
+\item 
+dict \mbox{\hyperlink{namespace_utils_adb0c46b95b66352401cae5508c1ff3b2}{test\+\_\+labels}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}File for some useful functions and values.
+Include settings for neuro model.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespace_utils_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespace_utils_ac90932cec5a45320559a8ab75d2e4414}\index{Utils@{Utils}!get\_dataloader@{get\_dataloader}}
+\index{get\_dataloader@{get\_dataloader}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{get\_dataloader()}{get\_dataloader()}}
+{\footnotesize\ttfamily \label{namespace_utils_ac90932cec5a45320559a8ab75d2e4414} 
+ \textbackslash{}         tuple\mbox{[}Data\+Loader, Data\+Loader \texorpdfstring{$\vert$}{|} None\mbox{]} \texorpdfstring{$\vert$}{|} None Utils.\+get\+\_\+dataloader (\begin{DoxyParamCaption}\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{labels\+\_\+dir\+\_\+path}{, }\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{img\+\_\+dir\+\_\+path}{, }\item[{}]{batch\+\_\+size}{ = {\ttfamily 64}, }\item[{}]{shuffle\+\_\+sets}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Function for creating dataloader. First DataLoader - train, Second DataLoader - validate.
+:param img_dir_path: path to directory where images are stored.
+:param labels_dir_path: path to directory where labels are stored.
+:param shuffle_sets: True or False.
+:param batch_size: size of the dataloader, by default equals 64.
+:return: DataLoader object with data.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_ad8ce7515a079bace1eeb842b39a2cc55}\index{Utils@{Utils}!get\_max\_size@{get\_max\_size}}
+\index{get\_max\_size@{get\_max\_size}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{get\_max\_size()}{get\_max\_size()}}
+{\footnotesize\ttfamily \label{namespace_utils_ad8ce7515a079bace1eeb842b39a2cc55} 
+ tuple\mbox{[}int, int\mbox{]} \texorpdfstring{$\vert$}{|} None Utils.\+get\+\_\+max\+\_\+size (\begin{DoxyParamCaption}\item[{str}]{path\+\_\+to\+\_\+images\+\_\+dir}{, }\item[{bool }]{is\+\_\+beautiful\+\_\+output}{ = {\ttfamily True}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Static function for receiving maximum image size in Image directory.
+
+:param path_to_images_dir string path to images directory.
+:param is_beautiful_output: beautiful values output (optional).
+:return: tuple with (width x height).
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_ad0caf851e2d9858841c74fa33093279b}\index{Utils@{Utils}!get\_model\_parameters@{get\_model\_parameters}}
+\index{get\_model\_parameters@{get\_model\_parameters}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{get\_model\_parameters()}{get\_model\_parameters()}}
+{\footnotesize\ttfamily \label{namespace_utils_ad0caf851e2d9858841c74fa33093279b} 
+Utils.\+get\+\_\+model\+\_\+parameters (\begin{DoxyParamCaption}\item[{dict}]{model\+\_\+state\+\_\+dict}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Static function for retrieving data from model state_dict.
+:param model_state_dict: full architecture of model, include weights and biases.
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_aa534bcc436a83701c9b2fed42eaf5090}\index{Utils@{Utils}!input\_from\_user@{input\_from\_user}}
+\index{input\_from\_user@{input\_from\_user}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{input\_from\_user()}{input\_from\_user()}}
+{\footnotesize\ttfamily \label{namespace_utils_aa534bcc436a83701c9b2fed42eaf5090} 
+ int Utils.\+input\+\_\+from\+\_\+user (\begin{DoxyParamCaption}\item[{int }]{values\+\_\+range}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Error safety static function for input integer number from user.
+:param values_range: accepts if inputted value in this range.
+:return: integer number from user.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_af0f412738e17d46a68bc7f49e4240040}\index{Utils@{Utils}!print\_error@{print\_error}}
+\index{print\_error@{print\_error}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{print\_error()}{print\_error()}}
+{\footnotesize\ttfamily \label{namespace_utils_af0f412738e17d46a68bc7f49e4240040} 
+Utils.\+print\+\_\+error (\begin{DoxyParamCaption}\item[{str}]{msg}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Static function for printing error with red color.
+:param msg: message to print.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_aa71b8aab7a52fdd24e89a6aa5710fddc}\index{Utils@{Utils}!print\_info@{print\_info}}
+\index{print\_info@{print\_info}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{print\_info()}{print\_info()}}
+{\footnotesize\ttfamily \label{namespace_utils_aa71b8aab7a52fdd24e89a6aa5710fddc} 
+Utils.\+print\+\_\+info (\begin{DoxyParamCaption}\item[{str}]{msg}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Static function for printing info messages with blue color.
+:param msg: message to print.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_a130c920fea94f7e51b1a2e11e7d9e2ef}\index{Utils@{Utils}!print\_success@{print\_success}}
+\index{print\_success@{print\_success}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{print\_success()}{print\_success()}}
+{\footnotesize\ttfamily \label{namespace_utils_a130c920fea94f7e51b1a2e11e7d9e2ef} 
+Utils.\+print\+\_\+success (\begin{DoxyParamCaption}\item[{str}]{msg}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Static function for printing success with green color.
+:param msg: message to print.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_aa756d16f6c15ae216bc6dd0679247771}\index{Utils@{Utils}!proceed\_image@{proceed\_image}}
+\index{proceed\_image@{proceed\_image}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{proceed\_image()}{proceed\_image()}}
+{\footnotesize\ttfamily \label{namespace_utils_aa756d16f6c15ae216bc6dd0679247771} 
+ Tensor Utils.\+proceed\+\_\+image (\begin{DoxyParamCaption}\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{path}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Function to proceed image with matplotlib methods.
+:return: torch tensor.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_a8bf09f4a750346ba71f1d5cca9a7b2dd}\index{Utils@{Utils}!select\_terminal@{select\_terminal}}
+\index{select\_terminal@{select\_terminal}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{select\_terminal()}{select\_terminal()}}
+{\footnotesize\ttfamily \label{namespace_utils_a8bf09f4a750346ba71f1d5cca9a7b2dd} 
+ str \texorpdfstring{$\vert$}{|} Path\+Like Utils.\+select\+\_\+terminal (\begin{DoxyParamCaption}\item[{str}]{items\+\_\+directory\+\_\+path}{, }\item[{bool }]{is\+\_\+full\+\_\+path\+\_\+ret}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Selects item to be proceeded in neuro network.
+:param is_full_path_ret: indicates if you need full path to directory or not.
+:param items_directory_path: directory where you need terminal.
+:return: path to use.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_a0491f0eb8e903960d55eeeb8f2eded1e}\index{Utils@{Utils}!show\_img@{show\_img}}
+\index{show\_img@{show\_img}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{show\_img()}{show\_img()}}
+{\footnotesize\ttfamily \label{namespace_utils_a0491f0eb8e903960d55eeeb8f2eded1e} 
+Utils.\+show\+\_\+img (\begin{DoxyParamCaption}\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{path}{, }\item[{tuple\mbox{[}int, int\mbox{]} \texorpdfstring{$\vert$}{|} list\mbox{[}int, int\mbox{]} }]{image\+\_\+size}{ = {\ttfamily (300,~300)}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Function for showing image by matplot library.
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_adbdd41938aef6d0fd4e339e3a3e2bb74}\index{Utils@{Utils}!update\_labels@{update\_labels}}
+\index{update\_labels@{update\_labels}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{update\_labels()}{update\_labels()}}
+{\footnotesize\ttfamily \label{namespace_utils_adbdd41938aef6d0fd4e339e3a3e2bb74} 
+Utils.\+update\+\_\+labels (\begin{DoxyParamCaption}\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{labels\+\_\+dir\+\_\+path}{, }\item[{str }]{images\+\_\+dir\+\_\+name}{ = {\ttfamily \textquotesingle{}images\textquotesingle{}}, }\item[{str }]{labels\+\_\+file\+\_\+name}{ = {\ttfamily \textquotesingle{}labels.csv\textquotesingle{}}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Static function for updating labels in csv file.
+Opens file if it exits or creates new file if it not and then rewritten (written) data to file on every call.
+Before every call unlocks file for writing, after every call locks file for writing.
+
+RULES:
+    1. Images names must ends with {success_img_indicator} or {failure_img_indicator}.
+    2. labels_file_name must include '.csv' extension.
+    3. labels_dir_path must fill out in Prepreprocessor.py file.
+
+:param labels_dir_path path where labels are stored.
+:param images_dir_name path where images are stored.
+:param labels_file_name: name of the labels file.
+:return: None.
+\end{DoxyVerb}
+ \Hypertarget{namespace_utils_ae0588aa7dbf9cab2fc0f0812a222163a}\index{Utils@{Utils}!user\_input\_with\_exit@{user\_input\_with\_exit}}
+\index{user\_input\_with\_exit@{user\_input\_with\_exit}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{user\_input\_with\_exit()}{user\_input\_with\_exit()}}
+{\footnotesize\ttfamily \label{namespace_utils_ae0588aa7dbf9cab2fc0f0812a222163a} 
+ int \texorpdfstring{$\vert$}{|} str Utils.\+user\+\_\+input\+\_\+with\+\_\+exit (\begin{DoxyParamCaption}\item[{int }]{values\+\_\+range}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Error safety static function for input string or integer number from user, that supports exit from loop.
+Input value can be string or integer.
+:param values_range: accepts if inputted value in this range.
+:return: integer number from user or "exit" value if user wants to exit loop.
+\end{DoxyVerb}
+ 
+
+\label{doc-var-members}
+\Hypertarget{namespace_utils_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespace_utils_adb0c46b95b66352401cae5508c1ff3b2}\index{Utils@{Utils}!test\_labels@{test\_labels}}
+\index{test\_labels@{test\_labels}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{test\_labels}{test\_labels}}
+{\footnotesize\ttfamily \label{namespace_utils_adb0c46b95b66352401cae5508c1ff3b2} 
+dict Utils.\+test\+\_\+labels}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ \{}
+\DoxyCodeLine{00002\ \ \ \ \ \textcolor{stringliteral}{'Success'}:\ 0,}
+\DoxyCodeLine{00003\ \ \ \ \ \textcolor{stringliteral}{'Failed'}:\ 1}
+\DoxyCodeLine{00004\ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespace_utils_ad3a53efc5960079d77862643a3ec7478}\index{Utils@{Utils}!transform\_func\_classify@{transform\_func\_classify}}
+\index{transform\_func\_classify@{transform\_func\_classify}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{transform\_func\_classify}{transform\_func\_classify}}
+{\footnotesize\ttfamily \label{namespace_utils_ad3a53efc5960079d77862643a3ec7478} 
+Utils.\+transform\+\_\+func\+\_\+classify}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ transforms.Compose([}
+\DoxyCodeLine{00002\ \ \ \ \ transforms.Grayscale,}
+\DoxyCodeLine{00003\ \ \ \ \ transforms.Resize(input\_img\_size),}
+\DoxyCodeLine{00004\ \ \ \ \ transforms.ToTensor(),}
+\DoxyCodeLine{00005\ \ \ \ \ transforms.Normalize((0.5,),\ (0.5,))}
+\DoxyCodeLine{00006\ ])}
+
+\end{DoxyCode}
+\Hypertarget{namespace_utils_a14c0971443c025c1a069b3ae0132689f}\index{Utils@{Utils}!transform\_func\_lite@{transform\_func\_lite}}
+\index{transform\_func\_lite@{transform\_func\_lite}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{transform\_func\_lite}{transform\_func\_lite}}
+{\footnotesize\ttfamily \label{namespace_utils_a14c0971443c025c1a069b3ae0132689f} 
+Utils.\+transform\+\_\+func\+\_\+lite}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ transforms.Compose([}
+\DoxyCodeLine{00002\ \ \ \ \ transforms.Grayscale(),}
+\DoxyCodeLine{00003\ \ \ \ \ transforms.Resize(input\_img\_size),}
+\DoxyCodeLine{00004\ \ \ \ \ transforms.ToTensor(),}
+\DoxyCodeLine{00005\ \ \ \ \ transforms.Normalize((0.5,),\ (0.5,))}
+\DoxyCodeLine{00006\ ])}
+
+\end{DoxyCode}
+\Hypertarget{namespace_utils_a8552e047aac264b36136dc58c06d1222}\index{Utils@{Utils}!transform\_func\_train@{transform\_func\_train}}
+\index{transform\_func\_train@{transform\_func\_train}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{transform\_func\_train}{transform\_func\_train}}
+{\footnotesize\ttfamily \label{namespace_utils_a8552e047aac264b36136dc58c06d1222} 
+Utils.\+transform\+\_\+func\+\_\+train}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ =\ \ transforms.Compose([}
+\DoxyCodeLine{00002\ \ \ \ \ transforms.ColorJitter(brightness=0.3,\ contrast=0.4),}
+\DoxyCodeLine{00003\ \ \ \ \ transforms.GaussianBlur(5),}
+\DoxyCodeLine{00004\ \ \ \ \ transforms.Grayscale(),}
+\DoxyCodeLine{00005\ \ \ \ \ transforms.RandomCrop(2),}
+\DoxyCodeLine{00006\ \ \ \ \ transforms.RandomErasing(),}
+\DoxyCodeLine{00007\ \ \ \ \ transforms.Resize(input\_img\_size),}
+\DoxyCodeLine{00008\ \ \ \ \ transforms.RandomHorizontalFlip(),}
+\DoxyCodeLine{00009\ \ \ \ \ transforms.ToTensor(),}
+\DoxyCodeLine{00010\ \ \ \ \ transforms.Normalize((0.5,),\ (0.5,))}
+\DoxyCodeLine{00011\ ])}
+
+\end{DoxyCode}

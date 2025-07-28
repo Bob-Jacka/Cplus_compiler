@@ -1,0 +1,54 @@
+\doxysection{Custom\+\_\+operators.\+hpp}
+\hypertarget{_custom__operators_8hpp_source}{}\label{_custom__operators_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ Header\ file\ with\ my\ custom\ operators,\ style\ like\ Python\ or\ Java}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ Before\ write\ your\ own\ language,\ change\ types\ in\ parent\ language}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ CUSTOM\_OPERATORS\_HPP}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CUSTOM\_OPERATORS\_HPP}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ So,\ why\ I\ can't\ do\ this?}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ elif\ else\ if\ }\textcolor{comment}{//more\ convenience\ that\ else\ if}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ null\ nullptr\ }\textcolor{comment}{//Java\ like\ style\ for\ null\ pointers}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ var3\ auto\ }\textcolor{comment}{//Kotlin\ like\ style\ to\ define\ variable,\ var1\ and\ var2\ are\ occupied\ by\ sh*ty\ inner\ lib}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ val2\ const\ auto\ }\textcolor{comment}{//Immutable\ Kotlin\ variable\ style}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ None\ void\ }\textcolor{comment}{//Python\ like\ code\ style\ for\ nothing}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//custom\ keywords}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ del\ delete\ }\textcolor{comment}{//Python\ like\ delete\ operator}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ raise\ throw\ }\textcolor{comment}{//Python\ like\ style\ in\ throwing\ exceptions}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ match\ switch\ }\textcolor{comment}{//Python\ like\ switch}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ Generic\ template\ }\textcolor{comment}{//I\ do\ not\ know\ what\ lang\ code\ style,\ but\ I\ like\ 'generic'\ word}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ except\ catch\ }\textcolor{comment}{//Python\ style}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ self\ this\ }\textcolor{comment}{//why\ not,\ in\ Python\ I\ can\ use\ this\ or\ self,\ or\ another\ word}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ stop\ break\ }\textcolor{comment}{//why\ not}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ resume\ continue}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ immutable\ const\ }\textcolor{comment}{//this\ variable\ or\ function\ does\ not\ mutate}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ repeat\ for\ }\textcolor{comment}{//repeat\ some\ statement}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ default\_impl\ default\ }\textcolor{comment}{//stands\ for\ default\ implementation}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ runtime\_mem\ static\ }\textcolor{comment}{//memory\ that\ allocates\ only\ for\ runtime\ of\ the\ program}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ abstract\ virtual\ }\textcolor{comment}{//virtual\ word\ means\ abstract\ function\ in\ abstract\ class}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//Objects,\ because\ in\ C++\ structs\ and\ classes\ almost\ identical,\ I\ use\ these\ definitions}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ Data\_object\ struct}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ Entity\_object\ class}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//Value\ modifiers}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ no\_optim\ volatile\ }\textcolor{comment}{//compiler\ should\ not\ optimize\ variable\ with\ this\ modifier}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ refer\ \&\ }\textcolor{comment}{//macro\ for\ reference}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ pointy\ *\ }\textcolor{comment}{//pointer\ macro}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ C+\ code\ style\ in\ C++\ code\ style}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ global\ public}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ local\ private}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ inherited\ protected}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

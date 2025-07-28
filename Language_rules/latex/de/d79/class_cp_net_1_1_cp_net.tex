@@ -1,0 +1,140 @@
+\doxysection{Cp\+Net.\+Cp\+Net Class Reference}
+\hypertarget{class_cp_net_1_1_cp_net}{}\label{class_cp_net_1_1_cp_net}\index{CpNet.CpNet@{CpNet.CpNet}}
+Inheritance diagram for Cp\+Net.\+Cp\+Net\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{de/d79/class_cp_net_1_1_cp_net}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cp_net_1_1_cp_net_a64f1a30d5975c5172bf6f52ef17379cd}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, bool is\+\_\+already\+\_\+trained=False, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\mbox{\hyperlink{class_cp_net_1_1_cp_net_ab2d5cac99f7cf13e5bf26a28741ff861}{forward}} (self, X)
+\item 
+str \mbox{\hyperlink{class_cp_net_1_1_cp_net_a642c1352923a9893421549d2a55175b4}{get\+\_\+result}} (self, str\texorpdfstring{$\vert$}{|}Path\+Like input\+\_\+img)
+\item 
+\mbox{\hyperlink{class_cp_net_1_1_cp_net_a949d66116f1e8061691ba843df406c48}{train\+\_\+model}} (self, Data\+Loader train\+\_\+data\+\_\+loader, int train\+\_\+epochs\+\_\+count=40, bool after\+\_\+train\+\_\+save=False)
+\item 
+\mbox{\hyperlink{class_cp_net_1_1_cp_net_ab50bf3e62e4ed18331c23f2a0dcd1819}{test\+\_\+model}} (self, Data\+Loader test\+\_\+data\+\_\+loader, int test\+\_\+epochs\+\_\+count=20, bool after\+\_\+test\+\_\+save=False)
+\item 
+\mbox{\hyperlink{class_cp_net_1_1_cp_net_a0d9c996de11381c4ffa6d4d9c3d9d7d5}{create\+\_\+optim}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Module \mbox{\hyperlink{class_cp_net_1_1_cp_net_abd3dc52bc1d9ccce2dd1640db393e3ad}{load\+\_\+model}} (str\texorpdfstring{$\vert$}{|}Path\+Like load\+\_\+path, str model\+\_\+name, Literal\mbox{[}\textquotesingle{}.pth\textquotesingle{}, \textquotesingle{}.pt\textquotesingle{}, \textquotesingle{}.pwf\textquotesingle{}\mbox{]} ext)
+\item 
+None \mbox{\hyperlink{class_cp_net_1_1_cp_net_a4b9e6b6e8be94373b77dc8eebe7bcb35}{save\+\_\+model}} (str\texorpdfstring{$\vert$}{|}Path\+Like save\+\_\+path, str \+\_\+\+\_\+model\+\_\+name=\textquotesingle{}network\textquotesingle{}, Literal\mbox{[}\textquotesingle{}.pth\textquotesingle{}, \textquotesingle{}.pt\textquotesingle{}, \textquotesingle{}.pwf\textquotesingle{}\mbox{]} ext=\textquotesingle{}.pth\textquotesingle{}, \+\_\+\+\_\+model\+\_\+\+\_\+=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Class that represents torch model. Implementing nn module of torch library.
+Local neuro network for CP language virtual machine mode.
+\end{DoxyVerb}
+ 
+
+\label{doc-constructors}
+\Hypertarget{class_cp_net_1_1_cp_net_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_cp_net_1_1_cp_net_a64f1a30d5975c5172bf6f52ef17379cd}\index{CpNet.CpNet@{CpNet.CpNet}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_a64f1a30d5975c5172bf6f52ef17379cd} 
+Cp\+Net.\+Cp\+Net.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{bool }]{is\+\_\+already\+\_\+trained}{ = {\ttfamily False}, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Contractor for creating CpNet with defined count of layers.
+:param is_already_trained: bool value that define - get trained model or train new model.
+:param args: args parameters for super constractor.
+:param kwargs: kwargs parameters for super constractor.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{class_cp_net_1_1_cp_net_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_cp_net_1_1_cp_net_a0d9c996de11381c4ffa6d4d9c3d9d7d5}\index{CpNet.CpNet@{CpNet.CpNet}!create\_optim@{create\_optim}}
+\index{create\_optim@{create\_optim}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{create\_optim()}{create\_optim()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_a0d9c996de11381c4ffa6d4d9c3d9d7d5} 
+Cp\+Net.\+Cp\+Net.\+create\+\_\+optim (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}None safety function to create optimizer and loss function.
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{class_cp_net_1_1_cp_net_ab2d5cac99f7cf13e5bf26a28741ff861}\index{CpNet.CpNet@{CpNet.CpNet}!forward@{forward}}
+\index{forward@{forward}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_ab2d5cac99f7cf13e5bf26a28741ff861} 
+Cp\+Net.\+Cp\+Net.\+forward (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{X}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inner method of neuro model.
+:param X: ?
+:return: ?
+\end{DoxyVerb}
+ \Hypertarget{class_cp_net_1_1_cp_net_a642c1352923a9893421549d2a55175b4}\index{CpNet.CpNet@{CpNet.CpNet}!get\_result@{get\_result}}
+\index{get\_result@{get\_result}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{get\_result()}{get\_result()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_a642c1352923a9893421549d2a55175b4} 
+ str Cp\+Net.\+Cp\+Net.\+get\+\_\+result (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{input\+\_\+img}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Method for get result of the test classify.
+:param input_img path to image to proceed by model.
+:return: 'success' for successful test, 'failed' for failed test, 'skip' for skipped test.
+\end{DoxyVerb}
+ \Hypertarget{class_cp_net_1_1_cp_net_abd3dc52bc1d9ccce2dd1640db393e3ad}\index{CpNet.CpNet@{CpNet.CpNet}!load\_model@{load\_model}}
+\index{load\_model@{load\_model}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{load\_model()}{load\_model()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_abd3dc52bc1d9ccce2dd1640db393e3ad} 
+ Module Cp\+Net.\+Cp\+Net.\+load\+\_\+model (\begin{DoxyParamCaption}\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{load\+\_\+path}{, }\item[{str}]{model\+\_\+name}{, }\item[{Literal\mbox{[}\textquotesingle{}.pth\textquotesingle{}, \textquotesingle{}.pt\textquotesingle{}, \textquotesingle{}.pwf\textquotesingle{}\mbox{]}}]{ext}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Loads model, using load path as a path where model saved.
+:param model_name: name of the creating model.
+:param ext: extension of the model file.
+:param load_path: path string from load model.
+:return: loaded model object from file.
+\end{DoxyVerb}
+ \Hypertarget{class_cp_net_1_1_cp_net_a4b9e6b6e8be94373b77dc8eebe7bcb35}\index{CpNet.CpNet@{CpNet.CpNet}!save\_model@{save\_model}}
+\index{save\_model@{save\_model}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{save\_model()}{save\_model()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_a4b9e6b6e8be94373b77dc8eebe7bcb35} 
+ None Cp\+Net.\+Cp\+Net.\+save\+\_\+model (\begin{DoxyParamCaption}\item[{str \texorpdfstring{$\vert$}{|} Path\+Like}]{save\+\_\+path}{, }\item[{str }]{\+\_\+\+\_\+model\+\_\+name}{ = {\ttfamily \textquotesingle{}network\textquotesingle{}}, }\item[{Literal\mbox{[}\textquotesingle{}.pth\textquotesingle{}, \textquotesingle{}.pt\textquotesingle{}, \textquotesingle{}.pwf\textquotesingle{}\mbox{]} }]{ext}{ = {\ttfamily \textquotesingle{}.pth\textquotesingle{}}, }\item[{}]{\+\_\+\+\_\+model\+\_\+\+\_\+}{ = {\ttfamily None}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Method for saving model on saving full_path.
+:param ext: extension of the save file.
+:param __model_name: name of the model.
+:param __model__: model to save.
+:param save_path: where to save (directory) by default equals save_model_dir in Utils.py.
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{class_cp_net_1_1_cp_net_ab50bf3e62e4ed18331c23f2a0dcd1819}\index{CpNet.CpNet@{CpNet.CpNet}!test\_model@{test\_model}}
+\index{test\_model@{test\_model}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{test\_model()}{test\_model()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_ab50bf3e62e4ed18331c23f2a0dcd1819} 
+Cp\+Net.\+Cp\+Net.\+test\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Data\+Loader}]{test\+\_\+data\+\_\+loader}{, }\item[{int }]{test\+\_\+epochs\+\_\+count}{ = {\ttfamily 20}, }\item[{bool }]{after\+\_\+test\+\_\+save}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Method for testing model on unseen images.
+:param test_data_loader: object for storing data.
+:param test_epochs_count: count of epoch to test the model.
+:param after_test_save: bool value represent needs of saving the model after test.
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{class_cp_net_1_1_cp_net_a949d66116f1e8061691ba843df406c48}\index{CpNet.CpNet@{CpNet.CpNet}!train\_model@{train\_model}}
+\index{train\_model@{train\_model}!CpNet.CpNet@{CpNet.CpNet}}
+\doxysubsubsection{\texorpdfstring{train\_model()}{train\_model()}}
+{\footnotesize\ttfamily \label{class_cp_net_1_1_cp_net_a949d66116f1e8061691ba843df406c48} 
+Cp\+Net.\+Cp\+Net.\+train\+\_\+model (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Data\+Loader}]{train\+\_\+data\+\_\+loader}{, }\item[{int }]{train\+\_\+epochs\+\_\+count}{ = {\ttfamily 40}, }\item[{bool }]{after\+\_\+train\+\_\+save}{ = {\ttfamily False}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Method for training model on images during epoch_count.
+:param train_data_loader: object for storing data.
+:param train_epochs_count: count of epoch to train the model.
+:param after_train_save: bool value represent needs of saving the model after train.
+:return: nothing.
+\end{DoxyVerb}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/entities/\+VM/\+Neuro\+Network/Cp\+Net.\+py\end{DoxyCompactItemize}

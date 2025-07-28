@@ -1,0 +1,151 @@
+\doxysection{Game\+Results\+Dataset.\+Game\+Results\+Dataset Class Reference}
+\hypertarget{class_game_results_dataset_1_1_game_results_dataset}{}\label{class_game_results_dataset_1_1_game_results_dataset}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+Inheritance diagram for Game\+Results\+Dataset.\+Game\+Results\+Dataset\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d1/db1/class_game_results_dataset_1_1_game_results_dataset}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_a1322d2524bbe1262f477c818c31fed7e}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str labels\+\_\+file\+\_\+path, str img\+\_\+dir\+\_\+path, transform, target\+\_\+transform=None)
+\item 
+"{}Concat\+Dataset\mbox{[}\+\_\+\+T\+\_\+co\mbox{]}"{} \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_aad4f066ee7c195c87ecc79dcbecded52}{\+\_\+\+\_\+add\+\_\+\+\_\+}} (self, "{}Dataset\mbox{[}\+\_\+\+T\+\_\+co\mbox{]}"{} other)
+\item 
+\+\_\+\+T\+\_\+co \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_a727d40091251d53456e5adc299d97c24}{\+\_\+\+\_\+getitem\+\_\+\+\_\+}} (self, int idx)
+\item 
+int \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_addbc86c069d7b2a994e7b6ca4ed57063}{\+\_\+\+\_\+len\+\_\+\+\_\+}} (self)
+\item 
+Any \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_a49fa47679cc4765e01578f599f91f721}{get\+\_\+image\+\_\+labels}} (self)
+\item 
+str\texorpdfstring{$\vert$}{|}None \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_a08daeb4128e46605e4a3e28efa51d316}{get\+\_\+img\+\_\+dir}} (self)
+\item 
+Compose\texorpdfstring{$\vert$}{|}None \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_a12da5efc30274ce95055b4e007e1fca6}{get\+\_\+transform}} (self)
+\item 
+Any\texorpdfstring{$\vert$}{|}None \mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_aa64e56cfa822344f8136ab973e9e443f}{get\+\_\+target\+\_\+transform}} (self)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_results_dataset_1_1_game_results_dataset_a4e8fcafb1eeeea76bf60908ef921a6d0}{img\+\_\+labels}}
+\item 
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_aed26de9ddefa34d6d0c496b1eebdbd90}\label{class_game_results_dataset_1_1_game_results_dataset_aed26de9ddefa34d6d0c496b1eebdbd90} 
+{\bfseries img\+\_\+dir} = img\+\_\+dir\+\_\+path
+\item 
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_ac7485f95c4e237762b1c1cca1d1526f7}\label{class_game_results_dataset_1_1_game_results_dataset_ac7485f95c4e237762b1c1cca1d1526f7} 
+{\bfseries transform} = transform
+\item 
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a52109183b070c13b39ffab27f605299a}\label{class_game_results_dataset_1_1_game_results_dataset_a52109183b070c13b39ffab27f605299a} 
+{\bfseries target\+\_\+transform} = target\+\_\+transform
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a1322d2524bbe1262f477c818c31fed7e}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_a1322d2524bbe1262f477c818c31fed7e} 
+Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{labels\+\_\+file\+\_\+path}{, }\item[{str}]{img\+\_\+dir\+\_\+path}{, }\item[{}]{transform}{, }\item[{}]{target\+\_\+transform}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Exception safety Custom data set object.
+Inherits Dataset class of the torch.util.
+:param labels_file_path: CSV file where contains annotation labels.
+:param img_dir_path: directory where contains images to train on.
+:param transform: transformations which will be applied to image.
+:param target_transform: ?.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_aad4f066ee7c195c87ecc79dcbecded52}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!\_\_add\_\_@{\_\_add\_\_}}
+\index{\_\_add\_\_@{\_\_add\_\_}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_add\_\_()}{\_\_add\_\_()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_aad4f066ee7c195c87ecc79dcbecded52} 
+ "{}Concat\+Dataset\mbox{[}\+\_\+\+T\+\_\+co\mbox{]}"{} Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+\_\+\+\_\+add\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{"{}Dataset\mbox{[}\+\_\+\+T\+\_\+co\mbox{]}"{}}]{other}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Method for adding dataset in inner structure.
+:param other: Object to add.
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a727d40091251d53456e5adc299d97c24}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!\_\_getitem\_\_@{\_\_getitem\_\_}}
+\index{\_\_getitem\_\_@{\_\_getitem\_\_}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_getitem\_\_()}{\_\_getitem\_\_()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_a727d40091251d53456e5adc299d97c24} 
+ \+\_\+\+T\+\_\+co Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+\_\+\+\_\+getitem\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{idx}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Method for getting item by index parameter.
+:param idx: index of which item get.
+:return: generic type of return value.
+\end{DoxyVerb}
+ \Hypertarget{class_game_results_dataset_1_1_game_results_dataset_addbc86c069d7b2a994e7b6ca4ed57063}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!\_\_len\_\_@{\_\_len\_\_}}
+\index{\_\_len\_\_@{\_\_len\_\_}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{\_\_len\_\_()}{\_\_len\_\_()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_addbc86c069d7b2a994e7b6ca4ed57063} 
+ int Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+\_\+\+\_\+len\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Zero safety length function of the dataset.
+:return: length (int parameter).
+\end{DoxyVerb}
+ \Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a49fa47679cc4765e01578f599f91f721}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!get\_image\_labels@{get\_image\_labels}}
+\index{get\_image\_labels@{get\_image\_labels}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{get\_image\_labels()}{get\_image\_labels()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_a49fa47679cc4765e01578f599f91f721} 
+ Any Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+get\+\_\+image\+\_\+labels (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}None safety method for get image labels.
+:return: image labels of dataset.
+\end{DoxyVerb}
+ \Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a08daeb4128e46605e4a3e28efa51d316}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!get\_img\_dir@{get\_img\_dir}}
+\index{get\_img\_dir@{get\_img\_dir}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{get\_img\_dir()}{get\_img\_dir()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_a08daeb4128e46605e4a3e28efa51d316} 
+ str \texorpdfstring{$\vert$}{|} None Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+get\+\_\+img\+\_\+dir (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}None safety method for get image directory.
+:return: path to image directory.
+\end{DoxyVerb}
+ \Hypertarget{class_game_results_dataset_1_1_game_results_dataset_aa64e56cfa822344f8136ab973e9e443f}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!get\_target\_transform@{get\_target\_transform}}
+\index{get\_target\_transform@{get\_target\_transform}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{get\_target\_transform()}{get\_target\_transform()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_aa64e56cfa822344f8136ab973e9e443f} 
+ Any \texorpdfstring{$\vert$}{|} None Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+get\+\_\+target\+\_\+transform (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}None safety method for get target transformation.
+:return: target_transform.
+\end{DoxyVerb}
+ \Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a12da5efc30274ce95055b4e007e1fca6}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!get\_transform@{get\_transform}}
+\index{get\_transform@{get\_transform}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{get\_transform()}{get\_transform()}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_a12da5efc30274ce95055b4e007e1fca6} 
+ Compose \texorpdfstring{$\vert$}{|} None Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+get\+\_\+transform (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}None safety method for get transformation.
+:return: transform, that will be used.
+\end{DoxyVerb}
+ 
+
+\label{doc-variable-members}
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_game_results_dataset_1_1_game_results_dataset_a4e8fcafb1eeeea76bf60908ef921a6d0}\index{GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}!img\_labels@{img\_labels}}
+\index{img\_labels@{img\_labels}!GameResultsDataset.GameResultsDataset@{GameResultsDataset.GameResultsDataset}}
+\doxysubsubsection{\texorpdfstring{img\_labels}{img\_labels}}
+{\footnotesize\ttfamily \label{class_game_results_dataset_1_1_game_results_dataset_a4e8fcafb1eeeea76bf60908ef921a6d0} 
+Game\+Results\+Dataset.\+Game\+Results\+Dataset.\+img\+\_\+labels}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ pd.read\_csv(labels\_file\_path,\ lineterminator=\textcolor{stringliteral}{'\(\backslash\)n'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skiprows=1)}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/entities/\+VM/\+Neuro\+Network/custom\+\_\+types/Game\+Results\+Dataset.\+py\end{DoxyCompactItemize}

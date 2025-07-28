@@ -1,0 +1,33 @@
+\doxysection{Logger.\+hpp}
+\hypertarget{_logger_8hpp_source}{}\label{_logger_8hpp_source}\index{core/entities/Logger.hpp@{core/entities/Logger.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LOGGER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LOGGER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00008\ \textcolor{comment}{Class\ repeat\ logging\ info\ and\ warns\ and\ critical\ errors}}
+\DoxyCodeLine{00009\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00010\ Entity\_object\ Logger\ \textcolor{keyword}{final}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ std::string\ logger\_name;}
+\DoxyCodeLine{00012\ \ \ \ \ std::ifstream\ pointy\ log\_file;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ None\ create\_log\_file();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ None\ create\_logger\_name();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ global:}
+\DoxyCodeLine{00019\ \ \ \ \ Generic<typename\ T>}
+\DoxyCodeLine{00020\ \ \ \ \ None\ log(T\ val);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \string~Logger()\ =\ default\_impl;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ Logger()\ =\ default\_impl;}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

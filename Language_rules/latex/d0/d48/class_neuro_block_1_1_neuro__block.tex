@@ -1,0 +1,147 @@
+\doxysection{Neuro\+Block.\+Neuro\+\_\+block Class Reference}
+\hypertarget{class_neuro_block_1_1_neuro__block}{}\label{class_neuro_block_1_1_neuro__block}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+Inheritance diagram for Neuro\+Block.\+Neuro\+\_\+block\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d0/d48/class_neuro_block_1_1_neuro__block}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_neuro_block_1_1_neuro__block_a0f11b0120c1c2b38002503ea03fd0b08}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, tuple\mbox{[}int, int\mbox{]}\texorpdfstring{$\vert$}{|}list\mbox{[}int, int\mbox{]} sizes, float input\+\_\+dropout\+\_\+rate, Literal\mbox{[}\textquotesingle{}Conv2d\textquotesingle{}, \textquotesingle{}Linear\textquotesingle{}, \textquotesingle{}Dense\textquotesingle{}\mbox{]} class\+\_\+to\+\_\+create, int kernel\+\_\+size=3, int padding=1, int stride=1, bool bias=True, \texorpdfstring{$\ast$}{*}args, \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}kwargs)
+\item 
+\mbox{\hyperlink{class_neuro_block_1_1_neuro__block_a5cc61cad7499dc12e27a4cfce0b5d30c}{\+\_\+\+\_\+create\+\_\+conv\+\_\+layer\+\_\+\+\_\+}} (self, int input\+\_\+count, int output\+\_\+count, int kernel\+\_\+size, int stride, int padding, bool bias, float dropout\+\_\+rate)
+\item 
+\mbox{\hyperlink{class_neuro_block_1_1_neuro__block_a88a1fa1270e43b3c22d4609cefffcb4c}{\+\_\+\+\_\+create\+\_\+linear\+\_\+layer\+\_\+\+\_\+}} (self, int input\+\_\+count, int output\+\_\+count, bool bias, float dropout\+\_\+rate, int percentage\+\_\+to\+\_\+reduce)
+\item 
+Iterator\mbox{[}Parameter\mbox{]} \mbox{\hyperlink{class_neuro_block_1_1_neuro__block_a3a102f6b60f06e5f45de04b5e094b0f6}{get\+\_\+parameters}} (self)
+\item 
+\mbox{\hyperlink{class_neuro_block_1_1_neuro__block_a2500c257ff855dfb787de79f01b18fbe}{forward}} (self, Tensor x)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_neuro_block_1_1_neuro__block_afe8de98871196c6b6b83db8cfbe30f0b}\label{class_neuro_block_1_1_neuro__block_afe8de98871196c6b6b83db8cfbe30f0b} 
+{\bfseries dropout\+\_\+rate} = input\+\_\+dropout\+\_\+rate
+\item 
+\Hypertarget{class_neuro_block_1_1_neuro__block_abee1c1761fc98a63a259c0078903132d}\label{class_neuro_block_1_1_neuro__block_abee1c1761fc98a63a259c0078903132d} 
+{\bfseries nb\+\_\+kernel\+\_\+size} = kernel\+\_\+size
+\item 
+\Hypertarget{class_neuro_block_1_1_neuro__block_abf09d84bd0574e9db61cdcbe3bd8977c}\label{class_neuro_block_1_1_neuro__block_abf09d84bd0574e9db61cdcbe3bd8977c} 
+{\bfseries padding} = padding
+\item 
+\Hypertarget{class_neuro_block_1_1_neuro__block_a4921246de4c6ee6b7a82a9639adbaa0e}\label{class_neuro_block_1_1_neuro__block_a4921246de4c6ee6b7a82a9639adbaa0e} 
+{\bfseries create\+\_\+class} = class\+\_\+to\+\_\+create
+\item 
+\mbox{\hyperlink{class_neuro_block_1_1_neuro__block_adf989c2992f39b97b562769f3000dc3e}{inner\+\_\+structure}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Class for one neuro block, can be convolutional or linear.
+Implements nn.Module.
+Contains methods for constructing Linear or Conv neural networks.
+\end{DoxyVerb}
+ 
+
+\label{doc-constructors}
+\Hypertarget{class_neuro_block_1_1_neuro__block_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_neuro_block_1_1_neuro__block_a0f11b0120c1c2b38002503ea03fd0b08}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{class_neuro_block_1_1_neuro__block_a0f11b0120c1c2b38002503ea03fd0b08} 
+Neuro\+Block.\+Neuro\+\_\+block.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{tuple\mbox{[}int, int\mbox{]} \texorpdfstring{$\vert$}{|} list\mbox{[}int, int\mbox{]}}]{sizes}{, }\item[{float}]{input\+\_\+dropout\+\_\+rate}{, }\item[{Literal\mbox{[}\textquotesingle{}Conv2d\textquotesingle{}, \textquotesingle{}Linear\textquotesingle{}, \textquotesingle{}Dense\textquotesingle{}\mbox{]}}]{class\+\_\+to\+\_\+create}{, }\item[{int }]{kernel\+\_\+size}{ = {\ttfamily 3}, }\item[{int }]{padding}{ = {\ttfamily 1}, }\item[{int }]{stride}{ = {\ttfamily 1}, }\item[{bool }]{bias}{ = {\ttfamily True}, }\item[{\texorpdfstring{$\ast$}{*}}]{args}{, }\item[{\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{kwargs}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Constructor for neuro block with different layers.
+:param sizes: 2 value tuple, where first element is width of image and second value is height.
+:param input_dropout_rate: values in tensors with this float number will be cut off.
+:param kernel_size: size of window to compute. By default, equals 3.
+:param: padding:
+:param class_to_create torch classes of models to create, can be one of ... .
+:param args: None.
+:param kwargs: None.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{class_neuro_block_1_1_neuro__block_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_neuro_block_1_1_neuro__block_a5cc61cad7499dc12e27a4cfce0b5d30c}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}!\_\_create\_conv\_layer\_\_@{\_\_create\_conv\_layer\_\_}}
+\index{\_\_create\_conv\_layer\_\_@{\_\_create\_conv\_layer\_\_}!NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+\doxysubsubsection{\texorpdfstring{\_\_create\_conv\_layer\_\_()}{\_\_create\_conv\_layer\_\_()}}
+{\footnotesize\ttfamily \label{class_neuro_block_1_1_neuro__block_a5cc61cad7499dc12e27a4cfce0b5d30c} 
+Neuro\+Block.\+Neuro\+\_\+block.\+\_\+\+\_\+create\+\_\+conv\+\_\+layer\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{input\+\_\+count}{, }\item[{int}]{output\+\_\+count}{, }\item[{int}]{kernel\+\_\+size}{, }\item[{int}]{stride}{, }\item[{int}]{padding}{, }\item[{bool}]{bias}{, }\item[{float}]{dropout\+\_\+rate}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}*Private method of class*.
+Creates convolutional network with given parameters.
+:param input_count: input count of connections.
+:param output_count: output count of connections.
+:param dropout_rate: drop out rate for Dropout layer, cut off this value from input flow.
+:param kernel_size: size of window to compute.
+:return: convolutional layer in inner structure.
+\end{DoxyVerb}
+ \Hypertarget{class_neuro_block_1_1_neuro__block_a88a1fa1270e43b3c22d4609cefffcb4c}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}!\_\_create\_linear\_layer\_\_@{\_\_create\_linear\_layer\_\_}}
+\index{\_\_create\_linear\_layer\_\_@{\_\_create\_linear\_layer\_\_}!NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+\doxysubsubsection{\texorpdfstring{\_\_create\_linear\_layer\_\_()}{\_\_create\_linear\_layer\_\_()}}
+{\footnotesize\ttfamily \label{class_neuro_block_1_1_neuro__block_a88a1fa1270e43b3c22d4609cefffcb4c} 
+Neuro\+Block.\+Neuro\+\_\+block.\+\_\+\+\_\+create\+\_\+linear\+\_\+layer\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{int}]{input\+\_\+count}{, }\item[{int}]{output\+\_\+count}{, }\item[{bool}]{bias}{, }\item[{float}]{dropout\+\_\+rate}{, }\item[{int}]{percentage\+\_\+to\+\_\+reduce}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}*Private method of class*.
+Creates Linear network with given parameters.
+:param input_count: input count of connections.
+:param output_count: output count of connections.
+:param bias: bool value of structure bias.
+:param dropout_rate: drop out rate for Dropout layer, cut off this value from input flow.
+:return: linear layer in inner structure.
+\end{DoxyVerb}
+ \Hypertarget{class_neuro_block_1_1_neuro__block_a2500c257ff855dfb787de79f01b18fbe}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}!forward@{forward}}
+\index{forward@{forward}!NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{class_neuro_block_1_1_neuro__block_a2500c257ff855dfb787de79f01b18fbe} 
+Neuro\+Block.\+Neuro\+\_\+block.\+forward (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Tensor}]{x}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Inner torch function for computing.
+:param x: input tensor
+:return: nothing.
+\end{DoxyVerb}
+ \Hypertarget{class_neuro_block_1_1_neuro__block_a3a102f6b60f06e5f45de04b5e094b0f6}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}!get\_parameters@{get\_parameters}}
+\index{get\_parameters@{get\_parameters}!NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+\doxysubsubsection{\texorpdfstring{get\_parameters()}{get\_parameters()}}
+{\footnotesize\ttfamily \label{class_neuro_block_1_1_neuro__block_a3a102f6b60f06e5f45de04b5e094b0f6} 
+ Iterator\mbox{[}Parameter\mbox{]} Neuro\+Block.\+Neuro\+\_\+block.\+get\+\_\+parameters (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Method for receiving NeuroBlock parameters.
+:return: Iterator with parameters.
+\end{DoxyVerb}
+ 
+
+\label{doc-variable-members}
+\Hypertarget{class_neuro_block_1_1_neuro__block_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_neuro_block_1_1_neuro__block_adf989c2992f39b97b562769f3000dc3e}\index{NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}!inner\_structure@{inner\_structure}}
+\index{inner\_structure@{inner\_structure}!NeuroBlock.Neuro\_block@{NeuroBlock.Neuro\_block}}
+\doxysubsubsection{\texorpdfstring{inner\_structure}{inner\_structure}}
+{\footnotesize\ttfamily \label{class_neuro_block_1_1_neuro__block_adf989c2992f39b97b562769f3000dc3e} 
+Neuro\+Block.\+Neuro\+\_\+block.\+inner\+\_\+structure}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ Sequential(}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ OrderedDict([}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{'input\_conv'},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Conv2d(in\_channels=input\_count,\ out\_channels=output\_count,\ kernel\_size=kernel\_size,\ padding=padding,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stride=stride,\ bias=bias)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{'l\_relu'},\ LeakyReLU(leaky\_relu\_value)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{'maxPool\_layer'},\ MaxPool2d(kernel\_size=kernel\_size\ +\ 1,\ stride=stride)),}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{stringliteral}{'drop\_layer'},\ Dropout2d(p=dropout\_rate))}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ])}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+core/entities/\+VM/\+Neuro\+Network/custom\+\_\+types/Neuro\+Block.\+py\end{DoxyCompactItemize}

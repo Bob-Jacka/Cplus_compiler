@@ -20,11 +20,11 @@ Main file in the compiler program
 #include "Custom_operators.hpp"
 #include "static/Constants.hpp"
 
-#include "llvm-20.1.8.src/include/llvm/IR/Module.h"
-#include "llvm-20.1.8.src/include/llvm/IR/IRBuilder.h"
-#include "llvm-20.1.8.src/include/llvm/IR/Function.h"
-#include "llvm-20.1.8.src/include/llvm/IR/BasicBlock.h"
-#include "llvm-20.1.8.src/include/llvm/IR/LLVMContext.h"
+//LLVM dependencies
+#include "llvm/IR/BasicBlock.h"
+#include "include/llvm/IR/Function.h"
+#include "include/llvm/IR/LLVMContext.h"
+#include "include/llvm/IR/IRBuilder.h"
 
 using v_string = vector<string>; //vector of strings
 
@@ -108,9 +108,9 @@ int main(const int argc, char *argv[]) {
     }
 }
 
-/*
+/**
 Function for assigning strategy for the compiler flow.
-Returns true if strategy assigned or error if not.
+@returns true if strategy assigned or error if not.
 */
 bool assign_compiler_strategy() {
     mutex mutex_;
@@ -133,9 +133,9 @@ bool assign_compiler_strategy() {
     raise MainExceptions::no_strategy_assignment();
 }
 
-/*
+/**
 Function for checking command line arguments.
-Returns - void
+@returns void
 */
 None check_flags(const v_string *cont_to_check) {
     const var3 check_func_full = [](const string &str) -> bool {
@@ -181,7 +181,7 @@ None check_flags(const v_string *cont_to_check) {
     }
 }
 
-/*
+/**
 Function for checking compiler mode.
 Str_to_check - string value that you need to check.
 */
@@ -201,6 +201,9 @@ None assign_compiler_mode(const string &str_to_check) {
     }
 }
 
+/**
+ *Function for printing help to user
+ */
 inline None print_help() {
     colored_txt_output("C+ compiler - is a new age general purpose technology language, with interesting possibilities");
     colored_txt_output("Compiler can work in two modes:");
@@ -218,7 +221,7 @@ inline None print_help() {
     println(string("Author: ") + author);
 }
 
-/*
+/**
  Function for transferring char array into string array
  */
 v_string *get_str_array(const char *char_array, const int length) {

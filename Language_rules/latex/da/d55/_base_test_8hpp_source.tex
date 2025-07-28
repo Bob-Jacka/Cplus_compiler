@@ -1,0 +1,36 @@
+\doxysection{Base\+Test.\+hpp}
+\hypertarget{_base_test_8hpp_source}{}\label{_base_test_8hpp_source}\index{core/Tests/BaseTest.hpp@{core/Tests/BaseTest.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BASE\_TEST\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BASE\_TEST\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ TEST\_MODE\ }\textcolor{comment}{//TODO\ для\ проверки,\ удалить\ позже}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifdef\ TEST\_MODE}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//Test\ dependencies}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../data/dependencies/catch\_amalgamated.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//Static\ dependencies}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../functional/controllers\_entities/declaration/File\_access\_controller.hpp"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../functional/controllers\_entities/declaration/Memory\_controller.hpp"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}../../static/Util\_funcs.hpp"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//VM\ entities\ to\ test}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}../entities/VM/declaration/Virtual\_machine.hpp"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}../entities/VM/declaration/Virtual\_machine\_console.hpp"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}../entities/VM/GarbageCollector/CollectorWithStop.cpp"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00023\ \textcolor{comment}{Base\ class\ of\ the\ unit\ tests.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{Encapsulate\ all\ dependencies,\ so\ you\ not\ need\ to\ include\ all\ the\ dependencies}}
+\DoxyCodeLine{00025\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }BaseTest;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

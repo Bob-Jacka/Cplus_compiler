@@ -1,0 +1,29 @@
+\doxysection{Memory\+Controller\+Exception.\+hpp}
+\hypertarget{_memory_controller_exception_8hpp_source}{}\label{_memory_controller_exception_8hpp_source}\index{core/data/exceptions/MemoryControllerException.hpp@{core/data/exceptions/MemoryControllerException.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MEM\_CONTROLLER\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MEM\_CONTROLLER\_EXCEPTION\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BaseException.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ Entity\_object\ MemoryControllerException\ final\ :\ global\ BaseException\ \{}
+\DoxyCodeLine{00007\ global:}
+\DoxyCodeLine{00008\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_allocate\_memory();}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ runtime\_mem\ \textcolor{keywordtype}{int}\ error\_to\_free\_memory();}
+\DoxyCodeLine{00011\ \};}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_to\_allocate\_memory()\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ occurred\ in\ allocating\ memory\ repeat\ program"{}};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00016\ \}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ error\_to\_free\_memory()\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}Error\ occurred\ in\ freeing\ memory"{}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00021\ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

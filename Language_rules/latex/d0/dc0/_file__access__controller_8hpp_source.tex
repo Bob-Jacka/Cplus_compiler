@@ -1,0 +1,67 @@
+\doxysection{File\+\_\+access\+\_\+controller.\+hpp}
+\hypertarget{_file__access__controller_8hpp_source}{}\label{_file__access__controller_8hpp_source}\index{core/functional/controllers\_entities/declaration/File\_access\_controller.hpp@{core/functional/controllers\_entities/declaration/File\_access\_controller.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FILE\_ACCESS\_CONTROLLER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FILE\_ACCESS\_CONTROLLER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../exceptions/FileAccessControllerException.hpp"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../entities/Logger.hpp"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../static/Util\_funcs.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ immutable\ \textcolor{keywordtype}{string}\ CPLUS\_EXT\ =\ \textcolor{stringliteral}{"{}.cp"{}};\ \textcolor{comment}{//extension\ of\ the\ cp\ file}}
+\DoxyCodeLine{00013\ immutable\ \textcolor{keywordtype}{string}\ ASSEMBLY\_EXT\ =\ \textcolor{stringliteral}{"{}.asm"{}};}
+\DoxyCodeLine{00014\ immutable\ \textcolor{keywordtype}{string}\ OBJECT\_EXT\ =\ \textcolor{stringliteral}{"{}.o"{}};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TMP\_FILE\ "{}tmp.txt"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00019\ \textcolor{comment}{Class,\ that\ used\ repeat\ file\ actions.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00021\ Entity\_object\ FileAccessController\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ runtime\_mem\ FileAccessController\ pointy\ pinstance\_;}
+\DoxyCodeLine{00023\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00024\ \ \ \ \ Logger\ pointy\ logger\ =\ null;\ \textcolor{comment}{//local\ instance\ of\ logger\ in\ file\ controller.}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ None\ \_write\_to\_file(cstr\ refer)\ immutable;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ FileAccessController()\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ self-\/>logger\ =\ \textcolor{keyword}{new}\ Logger();}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ global:}
+\DoxyCodeLine{00033\ \ \ \ \ \string~FileAccessController();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ FileAccessController(FileAccessController\ refer)\ =\ del;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ None\ operator=(immutable\ FileAccessController\ refer)\ =\ del;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ runtime\_mem\ FileAccessController\ pointy\ GetInstance();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//Create\ different\ types\ of\ files.}}
+\DoxyCodeLine{00042\ \ \ \ \ [[nodiscard]]\ std::ifstream\ pointy\ create\_tmp\_file(cstr\ refer)\ immutable;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ [[nodiscard]]\ std::ifstream\ create\_object\_file(cstr\ refer)\ immutable;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ [[nodiscard]]\ std::ifstream\ create\_assembly\_file(cstr\ refer)\ immutable;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//Crud\ operations\ on\ files.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ del\_file(immutable\ \textcolor{keywordtype}{char}\ pointy\ file\_to\_del)\ immutable;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ [[nodiscard]]\ std::ifstream\ pointy\ copy\_file(cstr\ refer,\ cstr\ refer)\ immutable;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ [[nodiscard]]\ std::ifstream\ pointy\ open\_file(immutable\ \textcolor{keywordtype}{string}\ refer\ file\_name)\ immutable;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ None\ close\_file(std::ifstream\ refer\ opened\_file)\ immutable;}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ FileAccessController\ pointy\ FileAccessController::pinstance\_\{null\};}
+\DoxyCodeLine{00059\ FileAccessController::mutex\_;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

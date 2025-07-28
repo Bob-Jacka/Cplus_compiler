@@ -1,0 +1,51 @@
+\doxysection{Linker.\+hpp}
+\hypertarget{_linker_8hpp_source}{}\label{_linker_8hpp_source}\index{core/entities/compile\_entities/declaration/Linker.hpp@{core/entities/compile\_entities/declaration/Linker.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{This\ Entity\_object\ needs\ for\ linkage\ stage.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Link\ all\ import\ directives\ into\ file}}
+\DoxyCodeLine{00004\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LINKER\_HPP}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LINKER\_HPP}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../../../data/exceptions/LinkerException.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../../../functional/controllers\_entities/declaration/File\_access\_controller.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../Custom\_operators.hpp"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ Entity\_object\ Linker\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ Linker()\ =\ default\_impl;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ FileAccessController\ pointy\ fileAccessController;}
+\DoxyCodeLine{00017\ \ \ \ \ runtime\_mem\ Linker\ pointy\ pinstance\_;}
+\DoxyCodeLine{00018\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{string}\ \_get\_file\_name(\textcolor{keywordtype}{string}\ refer)\ immutable;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ None\ \_scan\_file(ifstream\ refer)\ immutable;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{friend}\ Entity\_object\ LinkerTest;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ global:}
+\DoxyCodeLine{00027\ \ \ \ \ Linker(Linker\ refer)\ =\ del;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \string~Linker();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ None\ operator=(immutable\ Linker\ refer)\ =\ del;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ None\ link\_import\_directives(ifstream\ refer)\ immutable;\ \textcolor{comment}{//Imports\ all\ inner\ files.}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ None\ set\_file\_controller(FileAccessController\ pointy);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ runtime\_mem\ Linker\ pointy\ GetInstance();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{friend}\ Entity\_object\ LinkerTest;}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ Linker\ pointy\ Linker::pinstance\_\{null\};}
+\DoxyCodeLine{00043\ std::mutex\ Linker::mutex\_;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

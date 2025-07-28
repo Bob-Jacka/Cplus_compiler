@@ -1,0 +1,152 @@
+\doxysection{Virtual\+\_\+machine.\+hpp}
+\hypertarget{_virtual__machine_8hpp_source}{}\label{_virtual__machine_8hpp_source}\index{core/entities/VM/declaration/Virtual\_machine.hpp@{core/entities/VM/declaration/Virtual\_machine.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VIRTUAL\_MACHINE\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VIRTUAL\_MACHINE\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ file\ represents\ abstract\ machine\ in\ C+\ language.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../data/Variables.hpp"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}../data/exceptions/VirtualMachineException.hpp"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}../entities/Logger.hpp"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../entities/VM/GarbageCollector/CollectorWithStop.cpp"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ Data\_object\ VM\_settings\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{string}\ name;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_multi\_thread\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_ai\_enabled\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ vm\_memory\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ \ \ IGarbageCollector\ pointy\ garbage\_collector\ =\ null;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//functions}}
+\DoxyCodeLine{00022\ \ \ \ \ runtime\_mem\ std::string\ generate\_vm\_name();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ VM\_settings\ refer\ operator=(immutable\ VM\_settings\ refer\ other\_settings);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ VM\_settings(immutable\ \textcolor{keywordtype}{string}\ refer\ name,}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_multi\_thread,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ is\_ai\_enabled,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ vm\_memory,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IGarbageCollector\ pointy\ garbage\_collector);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ VM\_settings(immutable\ \textcolor{keywordtype}{string}\ refer\ name,\ \textcolor{keywordtype}{bool}\ is\_multi\_thread,\ \textcolor{keywordtype}{bool}\ is\_ai\_enabled,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ vm\_memory);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ VM\_settings()\ =\ del;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \string~VM\_settings()\ =\ default\_impl;}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00040\ \textcolor{comment}{Registers\ of\ the\ abstract\ machine.}}
+\DoxyCodeLine{00041\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00042\ Data\_object\ VM\_registers\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_1\ =\ \textcolor{stringliteral}{"{}VM001"{}};}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_2\ =\ \textcolor{stringliteral}{"{}VM002"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_3\ =\ \textcolor{stringliteral}{"{}VM003"{}};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_4\ =\ \textcolor{stringliteral}{"{}VM004"{}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_5\ =\ \textcolor{stringliteral}{"{}VM005"{}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_6\ =\ \textcolor{stringliteral}{"{}VM006"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_7\ =\ \textcolor{stringliteral}{"{}VM007"{}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_8\ =\ \textcolor{stringliteral}{"{}VM008"{}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_9\ =\ \textcolor{stringliteral}{"{}VM009"{}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_10\ =\ \textcolor{stringliteral}{"{}VM010"{}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_11\ =\ \textcolor{stringliteral}{"{}VM011"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_12\ =\ \textcolor{stringliteral}{"{}VM012"{}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_13\ =\ \textcolor{stringliteral}{"{}VM013"{}};}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_14\ =\ \textcolor{stringliteral}{"{}VM014"{}};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_15\ =\ \textcolor{stringliteral}{"{}VM015"{}};}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_16\ =\ \textcolor{stringliteral}{"{}VM016"{}};}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_17\ =\ \textcolor{stringliteral}{"{}VM017"{}};}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_18\ =\ \textcolor{stringliteral}{"{}VM018"{}};}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_19\ =\ \textcolor{stringliteral}{"{}VM019"{}};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_20\ =\ \textcolor{stringliteral}{"{}VM020"{}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_21\ =\ \textcolor{stringliteral}{"{}VM021"{}};}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_22\ =\ \textcolor{stringliteral}{"{}VM022"{}};}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_23\ =\ \textcolor{stringliteral}{"{}VM023"{}};}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_24\ =\ \textcolor{stringliteral}{"{}VM024"{}};}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_25\ =\ \textcolor{stringliteral}{"{}VM025"{}};}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{string}\ register\_26\ =\ \textcolor{stringliteral}{"{}VM026"{}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{string}\ condition\_register\_001\ =\ \textcolor{stringliteral}{"{}VM027"{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{string}\ command\_register\_001\ =\ \textcolor{stringliteral}{"{}VM028"{}};}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00075\ \textcolor{comment}{Indata\_objections\ numbers\ of\ the\ abstract\ machine.}}
+\DoxyCodeLine{00076\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{enum}\ VM\_instructions\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ OP\_BR\ =\ 0,\ \textcolor{comment}{/*\ branch\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ OP\_ADD\ =\ 1,\ \textcolor{comment}{/*\ add\ \ */}}
+\DoxyCodeLine{00080\ \ \ \ \ OP\_LD\ =\ 2,\ \textcolor{comment}{/*\ load\ */}}
+\DoxyCodeLine{00081\ \ \ \ \ OP\_ST\ =\ 3,\ \textcolor{comment}{/*\ store\ */}}
+\DoxyCodeLine{00082\ \ \ \ \ OP\_JSR\ =\ 4,\ \textcolor{comment}{/*\ jump\ to\ register\ */}}
+\DoxyCodeLine{00083\ \ \ \ \ OP\_AND\ =\ 5,\ \textcolor{comment}{/*\ bitwise\ and\ */}}
+\DoxyCodeLine{00084\ \ \ \ \ OP\_LDR\ =\ 6,\ \textcolor{comment}{/*\ load\ register\ */}}
+\DoxyCodeLine{00085\ \ \ \ \ OP\_STR\ =\ 7,\ \textcolor{comment}{/*\ store\ register\ */}}
+\DoxyCodeLine{00086\ \ \ \ \ OP\_RTI\ =\ 8,\ \textcolor{comment}{/*\ unused\ */}}
+\DoxyCodeLine{00087\ \ \ \ \ OP\_NOT\ =\ 9,\ \textcolor{comment}{/*\ bitwise\ not\ */}}
+\DoxyCodeLine{00088\ \ \ \ \ OP\_LDI\ =\ 10,\ \textcolor{comment}{/*\ load\ indirect\ */}}
+\DoxyCodeLine{00089\ \ \ \ \ OP\_STI\ =\ 11,\ \textcolor{comment}{/*\ store\ indirect\ */}}
+\DoxyCodeLine{00090\ \ \ \ \ OP\_JMP\ =\ 12,\ \textcolor{comment}{/*\ jump\ */}}
+\DoxyCodeLine{00091\ \ \ \ \ OP\_RES\ =\ 13,\ \textcolor{comment}{/*\ reserved\ (unused)\ */}}
+\DoxyCodeLine{00092\ \ \ \ \ OP\_LEA\ =\ 14,\ \textcolor{comment}{/*\ load\ effective\ address\ */}}
+\DoxyCodeLine{00093\ \ \ \ \ OP\_TRAP\ =\ 15,\ \textcolor{comment}{/*\ execute\ trap\ */}}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00097\ \textcolor{comment}{Virtual\ Machine\ runs\ one\ line\ of\ code\ one\ by\ one.}}
+\DoxyCodeLine{00098\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00099\ Entity\_object\ VirtualMachine\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ runtime\_mem\ VirtualMachine\ pointy\ pinstance\_;}
+\DoxyCodeLine{00101\ \ \ \ \ runtime\_mem\ std::mutex\ mutex\_;}
+\DoxyCodeLine{00102\ \ \ \ \ runtime\_mem\ VM\_settings\ pointy\ vm\_settings;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ Logger\ pointy\ logger;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ vm\_running\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{explicit}\ VirtualMachine(VM\_settings\ pointy);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ None\ proceed\_line();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ None\ \_create\_threads()\ immutable;\ \textcolor{comment}{//method\ repeat\ creating\ threads\ in\ abstract\ machine}}
+\DoxyCodeLine{00113\ \ \ \ \ None\ main\_cycle();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ global:}
+\DoxyCodeLine{00116\ \ \ \ \ \string~VirtualMachine();}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ VirtualMachine(VirtualMachine\ refer\ other)\ =\ del;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ runtime\_mem\ VirtualMachine\ pointy\ GetInstance(VM\_settings\ pointy\ settings);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ runtime\_mem\ VM\_settings\ pointy\ get\_machine\_settings();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ None\ start\_vm();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ None\ start\_ai()\ immutable;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ None\ shutdown\_vm();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ None\ assign\_garbage\_collector\_strategy()\ immutable;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ is\_start\_machine()\ immutable;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ is\_exit\_machine()\ immutable;}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ is\_ai\_enabled()\ immutable;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{bool}\ is\_multithread()\ immutable;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ None\ operator=(immutable\ VirtualMachine\ refer)\ =\ del;}
+\DoxyCodeLine{00141\ \};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ VirtualMachine\ pointy\ VirtualMachine::pinstance\_\{null\};}
+\DoxyCodeLine{00144\ std::mutex\ VirtualMachine::mutex\_;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

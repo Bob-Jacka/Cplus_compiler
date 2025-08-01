@@ -1,13 +1,16 @@
 #include "ICollector.cpp"
 
-Entity_object SerialStrategy : CollectorStrategy {
-global:
-    SerialStrategy() {
-    }
+namespace VM {
+    Entity_object SerialStrategy : CollectorStrategy{
+        global:
+        SerialStrategy() {
+        }
 
-    ~SerialStrategy() override {
-    }
+        ~SerialStrategy() override{
+        }
 
-local:
-    //
-};
+        local:
+        //
+
+    };
+}

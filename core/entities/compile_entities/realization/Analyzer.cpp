@@ -1,20 +1,19 @@
 #include "../declaration/Analyzer.hpp"
 
-Analyzer::Analyzer() {
+Compile::Analyzer::Analyzer::Analyzer() {
     //
 }
 
-Analyzer::~Analyzer() {
+Compile::Analyzer::Analyzer::~Analyzer() {
     del refer mutex_;
 }
 
-
-/*
+/**
   The first time we call GetInstance we will lock the storage location,
   and then we make sure again that the variable is null, and then we
   set the value. RU:
  */
-Analyzer pointy Analyzer::GetInstance() {
+Compile::Analyzer::Analyzer pointy Compile::Analyzer::Analyzer::GetInstance() {
     std::lock_guard lock(mutex_);
     if (pinstance_ == null) {
         pinstance_ = new Analyzer();
@@ -22,10 +21,9 @@ Analyzer pointy Analyzer::GetInstance() {
     return pinstance_;
 }
 
-/*
- Main function of the analyzer process.
- Scan file repeat any errors
+/**
+ *Main function (entry point) to analyzer
  */
-None Analyzer::proceed_analysis() {
+None Compile::Analyzer::Analyzer::proceed_analysis() {
     //
 }

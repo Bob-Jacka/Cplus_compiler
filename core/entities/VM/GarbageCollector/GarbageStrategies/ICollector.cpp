@@ -4,9 +4,9 @@
 
 Entity_object CollectorStrategy {
 global:
-    abstract ~CollectorStrategy() = default_impl;
+    abstract ~CollectorStrategy() = defaultImpl;
 
-    CollectorStrategy() = default_impl;
+    CollectorStrategy() = defaultImpl;
 
     abstract None doAlgorithm(string entry_point_name) immutable = 0;
 

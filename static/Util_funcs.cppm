@@ -5,107 +5,137 @@
 #ifndef UTIL_FUNCS_HPP
 #define UTIL_FUNCS_HPP
 
+/**
+ Module with different useful functions.
+ */
+export module UtilFuncs;
+
 #include <regex>
 
 #include "../Custom_operators.hpp"
 #include "Variables.hpp"
 #include "dependencies/termcolor.hpp"
 
-/*
+/**
  Namespace with utility functions of the C+ compiler
  */
-namespace utility {
-    /*
-     Enumerate class for compiler colors
+export namespace utility {
+    /**
+     Enumerate class for compiler output colors
      */
     enum Color {
-        white,
-        red,
-        blue,
-        green
+        WHITE,
+        RED,
+        BLUE,
+        GREEN
     };
 
-    /*
+    /**
      Function for printt value into standard output with next line.
+     @param value
      */
-
     Generic<typename T>
-    void println(const T &value) {
+    None println(const T &value) {
         std::cout << value << "\n";
     }
 
-    /*
+    /**
      Function for print value into standard output without next line.
+     @param value
+     @param separator
      */
-
     Generic<typename T>
-    void print(const T &value, string separator = " ") {
+    None print(const T &value, string separator = " ") {
         std::cout << value << separator;
     }
 
-    /*
+    /**
      Data object with useful ansi things
      */
-    Data_object ansi_utils {
+    DataObject ansi_utils {
     local:
-        using c_string = constexpr std::string;
-        c_string red_start = "\033[91m";
+        string red_start = "\033[91m";
 
-        c_string color_end = "\033[00m";
+        string color_end = "\033[00m";
 
-        c_string green_start = "\033[92m";
+        string green_start = "\033[92m";
 
-        c_string yellow_start = "\033[93m";
+        string yellow_start = "\033[93m";
 
-        c_string cyan_start = "\033[96m";
+        string cyan_start = "\033[96m";
 
-        c_string gray_start = "\033[97m";
+        string gray_start = "\033[97m";
 
     global:
-        None ansi_utils::prRed(const_string refer value) {
+        /**
+         *
+         * @param value
+         */
+        None ansi_utils::prRed(string refer value) {
             print(red_start + value + color_end);
         }
 
+        /**
+         *
+         * @param value
+         */
         None ansi_utils::prGreen(const_string refer value) {
             print(green_start + value + color_end);
         }
 
+        /**
+        *
+        * @param value
+        */
         None ansi_utils::prYellow(const_string refer value) {
             print(yellow_start + value + color_end);
         }
 
-
+        /**
+        *
+        * @param value
+        */
         None ansi_utils::prCyan(const_string refer value) {
             print(cyan_start + value + color_end);
         }
 
+        /**
+        *
+        * @param value
+        */
         None ansi_utils::prLightGray(const_string refer value) {
             print(gray_start + value + color_end);
         }
     };
 
+    /**
+     *
+     * @param source
+     * @param string_if_contains
+     * @return bool value if string is in source
+     */
     [[maybe_unused]] inline bool contains(const_string &source, const_string &string_if_contains) {
         return source.find(string_if_contains);
     }
 
-    /*
+    /**
      Function for text output into standard output with color.
      Color provided by termcolor library.
-     str - string for output in console
-     color - color value from Color enum
+     @param str string for output in console
+     @param color color value from Color enum
      */
-    [[maybe_unused]] inline void colored_txt_output(const_string &str, const Color color = Color::white) {
+    [[maybe_unused]] inline void colored_txt_output(const_string &str, const Color color = Color::WHITE) {
         match (color) {
-            case Color::white:
+            case Color::WHITE:
                 std::cout << termcolor::white;
                 break;
-            case Color::red:
+            case Color::RED:
                 std::cout << termcolor::red;
                 break;
-            case Color::blue:
+            case Color::BLUE:
                 std::cout << termcolor::blue;
                 break;
-            case Color::green:
+            case Color::GREEN:
                 std::cout << termcolor::green;
                 break;
             default:
@@ -116,21 +146,21 @@ namespace utility {
         std::cout << termcolor::nocolorize;
     }
 
-    /*
+    /**
     Function for printing message in red
      */
     [[maybe_unused]] inline void print_error(const_string &error) {
         std::cout << termcolor::red << error;
     }
 
-    /*
+    /**
     Function for printing message in green
     */
     [[maybe_unused]] inline void print_success(const_string &success) {
         std::cout << termcolor::green << success;
     }
 
-    /*
+    /**
     Function for transferring ASCII to bool value.
     Yes, I know that this function is something that smell, but...
     */
@@ -147,42 +177,11 @@ namespace utility {
         if (string_to_scan == "False") {
             return false;
         }
-        colored_txt_output("Error occurred in atob function", Color::red);
+        colored_txt_output("Error occurred in atob function", Color::RED);
         return false;
     }
 
-    /*
-     Manual converting each character to lowercase
-     using ASCII values
-    */
-    // [[maybe_unused]] static string to_lower_case(const_string &s) {
-    //     std::transform(s.begin(), s.end(), s.begin(),
-    //                    [](const unsigned char c) { return std::tolower(c); });
-    //     return nullptr;
-    // }
-
-    /*
-    Manual converting each character to high case
-    using ASCII values
-     */
-    // [[maybe_unused]] static void to_high_case(const_string &s) {
-    //     std::transform(s.begin(), s.end(), s.begin(),
-    //                    [](const unsigned char c) { return std::toupper(c); });
-    // }
-
-    /*
-    Manual converting each character to capitalize case
-    using ASCII values
-     */
-    // [[maybe_unused]] static void to_capitalize(const_string &s) {
-    //     auto first_character = std::transform(s.begin(), s.end(), s.begin(),
-    //                                           [](unsigned char c) { return std::toupper(c); });
-    //
-    //     auto another_word_part = std::transform(s.begin() + 1, s.end(), s.begin(),
-    //                                             [](unsigned char c) { return std::tolower(c); });
-    // }
-
-    /*
+    /**
     Function for replacing symbol c1 with c2.
     Returns string value with replacing symbols.
     */
@@ -199,7 +198,7 @@ namespace utility {
         return s;
     }
 
-    /*
+    /**
     Function for replacing string c1 with c2.
     Returns string value with replacing symbols.
     */
@@ -211,8 +210,10 @@ namespace utility {
         return "";
     }
 
-    /*
+    /**
     Function for splitting string into array of strings.
+    @param to_split
+    @param delim
     */
     [[maybe_unused]] static std::vector<string> &line_splitter(const_string &to_split, const char delim = ' ') {
         std::istringstream input{to_split};
@@ -226,16 +227,20 @@ namespace utility {
         return result;
     }
 
-    /*
+    /**
     trim some characters at sequence
+    @param seq
+    @param pred
      */
     Generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim(Sequence &seq, Pred pred) {
         return trim_start(trim_end(seq, pred), pred);
     }
 
-    /*
+    /**
     trim some characters at sequence end
+    @param seq
+    @param pred
      */
     Generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim_end(Sequence &seq, Pred pred) {
@@ -244,8 +249,10 @@ namespace utility {
         return seq;
     }
 
-    /*
+    /**
     trim some characters at sequence start
+    @param seq
+    @param pred
      */
     Generic<typename Sequence, typename Pred>
     [[maybe_unused]] Sequence &trim_start(Sequence &seq, Pred pred) {
@@ -254,10 +261,13 @@ namespace utility {
         return seq;
     }
 
-    /*
+    /**
      Function for replacing all strings in string
+     @param str
+     @param replace
+     @param with
      */
-    [[maybe_unused]] inline string &replace_string_all(string &str, const_string &replace, const_string &with) {
+    [[maybe_unused]] optim string &replace_string_all(string &str, const_string &replace, const_string &with) {
         if (!replace.empty()) {
             std::size_t pos = 0;
             while ((pos = str.find(replace, pos)) != string::npos) {
@@ -268,8 +278,11 @@ namespace utility {
         return str;
     }
 
-    /*
+    /**
      Function for replace string
+     @param str
+     @param replace
+     @param with
      */
     [[maybe_unused]] inline string replace_string(string &str, const_string &replace, const_string &with) {
         std::size_t pos = str.find(replace);
@@ -278,10 +291,10 @@ namespace utility {
         return str;
     }
 
-    /*
+    /**
     Function for converting from char array into string array.
-    Input_array - char array.
-    Size - size of the char array.
+    @param input_array char array.
+    @param size - size of the char array.
     */
     [[maybe_unused]] inline string convert_to_string(const cconst_string input_array, const_int size) {
         string s;

@@ -4,28 +4,30 @@
 #include <mutex>
 
 #include "../data/exceptions/BinaryGeneratorException.hpp"
-#include "../functional/controllers_entities/declaration/File_access_controller.hpp"
 #include "../Custom_operators.hpp"
 
-Entity_object Binary_generator {
-    runtime_mem Binary_generator pointy pinstance_;
-    runtime_mem std::mutex mutex_;
+namespace Compile::Bin_generator {
+    EntityObject Binary_generator {
+        runtimeMem Binary_generator pointy pinstance_;
+        runtimeMem std::mutex mutex_;
 
-    Binary_generator();
+        Binary_generator();
 
-global:
-    ~Binary_generator();
+        global:
+            ~Binary_generator();
 
-    ifstream generate_binary(immutable FileAccessController pointy);
+        std::ifstream generate_binary(immutable File_controller::FileAccessController pointy);
 
-    Binary_generator(Binary_generator refer) = del;
+        Binary_generator(Binary_generator refer) = del;
 
-    None operator=(immutable Binary_generator refer) = del;
+        None operator=(immutable Binary_generator refer) = del;
 
-    runtime_mem Binary_generator pointy GetInstance();
-};
+        runtimeMem Binary_generator pointy GetInstance();
+    };
 
-Binary_generator pointy Binary_generator::pinstance_{null};
-std::mutex Binary_generator::mutex_;
+    Binary_generator pointy Binary_generator::pinstance_{null};
+    std::mutex Binary_generator::mutex_;
+}
+
 
 #endif

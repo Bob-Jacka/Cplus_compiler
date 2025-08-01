@@ -6,40 +6,42 @@ Link all import directives into file
 #ifndef LINKER_HPP
 #define LINKER_HPP
 
-#include "../../../data/exceptions/LinkerException.hpp"
-#include "../../../functional/controllers_entities/declaration/File_access_controller.hpp"
+#include "../data/exceptions/LinkerException.hpp"
+#include "../functional/controllers_entities/declaration/File_access_controller.cppm"
 #include "../Custom_operators.hpp"
 
-Entity_object Linker {
-    Linker() = default_impl;
+namespace Compile::Linker {
+    EntityObject Linker {
+        Linker() = defaultImpl;
 
-    FileAccessController pointy fileAccessController;
-    runtime_mem Linker pointy pinstance_;
-    runtime_mem std::mutex mutex_;
+        File_controller::FileAccessController pointy fileAccessController;
+        runtimeMem Linker pointy pinstance_;
+        runtimeMem std::mutex mutex_;
 
-    [[nodiscard]] string _get_file_name(string refer) immutable;
+        [[nodiscard]] string _get_file_name(string refer) immutable;
 
-    None _scan_file(ifstream refer) immutable;
+        None _scan_file(std::ifstream refer) immutable;
 
-    friend Entity_object LinkerTest;
+        friend EntityObject LinkerTest;
 
-global:
-    Linker(Linker refer) = del;
+    global:
+        Linker(Linker refer) = del;
 
-    ~Linker();
+        ~Linker();
 
-    None operator=(immutable Linker refer) = del;
+        None operator=(immutable Linker refer) = del;
 
-    None link_import_directives(ifstream refer) immutable; //Imports all inner files.
+        None link_import_directives(std::ifstream refer) immutable; //Imports all inner files.
 
-    None set_file_controller(FileAccessController pointy);
+        None set_file_controller(File_controller::FileAccessController pointy);
 
-    runtime_mem Linker pointy GetInstance();
+        runtimeMem Linker pointy GetInstance();
 
-    friend Entity_object LinkerTest;
-};
+        friend EntityObject LinkerTest;
+    };
 
-Linker pointy Linker::pinstance_{null};
-std::mutex Linker::mutex_;
+    Linker pointy Linker::pinstance_{null};
+    std::mutex Linker::mutex_;
+}
 
 #endif

@@ -2,28 +2,36 @@
 #define ANALYZER_HPP
 
 #include <mutex>
-#include "../../../data/exceptions/AnalyzerException.hpp"
-#include "../../../../Custom_operators.hpp"
+#include "../data/exceptions/AnalyzerException.hpp"
+#include "../Custom_operators.hpp"
 
-Entity_object Analyzer {
-    runtime_mem Analyzer pointy pinstance_;
-    runtime_mem std::mutex mutex_;
+/**
+ One namespace for all compile entities in compiler.
+ */
+namespace Compile::Analyzer {
+    EntityObject Analyzer {
+        runtimeMem Analyzer pointy pinstance_;
+        runtimeMem std::mutex mutex_;
 
-    Analyzer();
+        Analyzer();
 
-global:
-    explicit Analyzer(Analyzer pointy) = del;
+    global:
+        explicit Analyzer(Analyzer pointy) = del;
 
-    None operator=(immutable Analyzer refer) = del;
+        ~Analyzer();
 
-    runtime_mem Analyzer pointy GetInstance();
+        None operator=(immutable Analyzer refer) = del;
 
-    None proceed_analysis();
+        runtimeMem Analyzer pointy GetInstance();
 
-    ~Analyzer();
-};
+        /**
+         * Main function in analyzer entity
+         */
+        None proceed_analysis();
+    };
 
-Analyzer pointy Analyzer::pinstance_{null};
-std::mutex Analyzer::mutex_;
+    Analyzer pointy Analyzer::pinstance_{null};
+    std::mutex Analyzer::mutex_;
+}
 
 #endif

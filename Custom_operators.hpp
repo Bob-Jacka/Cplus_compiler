@@ -26,16 +26,17 @@
 #define resume continue
 #define immutable const //this variable or function does not mutate
 #define repeat for //repeat some statement
-#define default_impl default //stands for default implementation
-#define runtime_mem static //memory that allocates only for runtime of the program
+#define defaultImpl default //stands for default implementation
+#define runtimeMem static //memory that allocates only for runtime of the program
 #define abstract virtual //virtual word means abstract function in abstract class
 
 //Objects, because in C++ structs and classes almost identical, I use these definitions
-#define Data_object struct
-#define Entity_object class
+#define DataObject struct
+#define EntityObject class
 
 //Value modifiers
-#define no_optim volatile //compiler should not optimize variable with this modifier
+#define noOptim volatile //compiler should not optimize variable with this modifier
+#define optim inline //optimize function
 #define refer & //macro for reference symbol
 #define pointy * //pointer macro symbol
 

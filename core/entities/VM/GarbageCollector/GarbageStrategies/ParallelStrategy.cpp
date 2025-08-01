@@ -1,13 +1,16 @@
 #include "ICollector.cpp"
 
-Entity_object ParallelStrategy : CollectorStrategy {
-global:
-    ParallelStrategy() {
-    }
+namespace VM {
+    Entity_object ParallelStrategy : CollectorStrategy{
+        global:
+        ParallelStrategy() {
+        }
 
-    ~ParallelStrategy() override {
-    }
+        ~ParallelStrategy() override{
+        }
 
-local:
-    //
-};
+        local:
+        //
+
+    };
+}

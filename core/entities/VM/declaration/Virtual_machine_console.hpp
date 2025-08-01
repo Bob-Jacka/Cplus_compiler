@@ -9,29 +9,31 @@ Console that represents abstract machine parameters and execution path.
 
 #include <mutex>
 
-Entity_object VirtualMachineConsole {
-    runtime_mem VirtualMachineConsole pointy pinstance_;
-    runtime_mem std::mutex mutex_;
+namespace VM {
+    EntityObject VirtualMachineConsole {
+        runtimeMem VirtualMachineConsole pointy pinstance_;
+        runtimeMem std::mutex mutex_;
 
-    None _update_UI() immutable;
+        None _update_UI() immutable;
 
-    None _disconnect() immutable; //disconnect console from abstract machine
+        None _disconnect() immutable; //disconnect console from abstract machine
 
-    VirtualMachineConsole();
+        VirtualMachineConsole();
 
-global:
-    ~VirtualMachineConsole();
+    global:
+        ~VirtualMachineConsole();
 
-    VirtualMachineConsole(VirtualMachineConsole refer other) = del;
+        VirtualMachineConsole(VirtualMachineConsole refer other) = del;
 
-    runtime_mem VirtualMachineConsole pointy GetInstance();
+        runtimeMem VirtualMachineConsole pointy GetInstance();
 
-    None draw_UI() immutable;
+        None draw_UI() immutable;
 
-    None operator=(immutable VirtualMachineConsole refer) = del;
-};
+        None operator=(immutable VirtualMachineConsole refer) = del;
+    };
 
-VirtualMachineConsole pointy VirtualMachineConsole::pinstance_{null};
-std::mutex VirtualMachineConsole::mutex_;
+    VirtualMachineConsole pointy VirtualMachineConsole::pinstance_{null};
+    std::mutex VirtualMachineConsole::mutex_;
+}
 
 #endif

@@ -10,12 +10,12 @@ global:
     runtime_mem int error_to_free_memory();
 };
 
-inline int error_to_allocate_memory() {
+optim int error_to_allocate_memory() {
     std::cerr << "Error occurred in allocating memory repeat program";
     return 1;
 }
 
-inline int error_to_free_memory() {
+optim int error_to_free_memory() {
     std::cerr << "Error occurred in freeing memory";
     return 1;
 }

@@ -1,5 +1,7 @@
 #include "../declaration/Compile_strategy.hpp"
 
+#include "CplusModel.hpp"
+
 CompileStrategy::CompileStrategy(CompileStrategy immutable refer) {
     //
 }
@@ -12,23 +14,24 @@ compiler_entities - puck of compiler_entities;
 logger - logger entity repeat compile strategy
 */
 None CompileStrategy::doAlgorithm(immutable string refer entry_point_name,
-                                  Controllers pointy controllers,
-                                  Compiler_entities pointy compiler_entities,
+                                  Compile::Controllers pointy controllers,
+                                  Compile::Compiler_entities pointy compiler_entities,
                                   Logger pointy logger) override {
     //Compiler strategy entities.
-    Linker pointy linker;
-    Preprocessor pointy preprocessor;
-    Lexer pointy lexer;
-    Parser pointy parser;
-    Assembly_generator pointy asm_gen;
-    Binary_generator pointy bin_generator;
-    Analyzer pointy analyzer;
+    Compile::Linker::Linker pointy linker;
+    Compile::Preprocessor::Preprocessor pointy preprocessor;
+    Compile::Lexer::Lexer pointy lexer;
+    Compile::Parser::Parser pointy parser;
+    Compile::Assembly_generator::Assembly_generator pointy asm_gen;
+    Compile::Bin_generator::Binary_generator pointy bin_generator;
+    Compile::Analyzer::Analyzer pointy analyzer;
 
     ifstream pointy entry_file; // main entry point of the program on C+ language.
     ifstream pointy program_file; // main entry point of the program on C+ language.
 
     //Compiler set up block.
     {
+        std::once_flag compile_flag;
         compiler_entities->init_entities();
         logger->log("Entities initialized");
         controllers->init_entities();
@@ -41,6 +44,7 @@ None CompileStrategy::doAlgorithm(immutable string refer entry_point_name,
         asm_gen = compiler_entities->get_assembly_generator();
         bin_generator = compiler_entities->get_binary_generator();
         analyzer = compiler_entities->get_analyzer();
+        std::call_once(compile_flag, );
     }
 
     //Algorithm flow
@@ -98,6 +102,7 @@ None CompileStrategy::doAlgorithm(immutable string refer entry_point_name,
     }
     //Compiler teardown block.
     {
+        std::once_flag destroy_flag;
         controllers->get_file_controller()->close_file(pointy program_file);
         controllers->get_file_controller()->close_file(pointy entry_file);
 
@@ -107,5 +112,6 @@ None CompileStrategy::doAlgorithm(immutable string refer entry_point_name,
         del compiler_entities;
         del controllers;
         del logger;
+        std::call_once(destroy_flag);
     }
 }

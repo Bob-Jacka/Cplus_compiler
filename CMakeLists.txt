@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(Cplus_compiler LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
 message("Cmake C++ version accepted")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 message("CMAKE_CXX_STANDARD_REQUIRED switched to True")
@@ -9,7 +9,7 @@ set(LIBCXXABI_USE_LLVM_UNWINDER True)
 message("LLVM unwinder switched to ON")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}
-    -std=c++20
+    -std=c++23
     -pthread
     -O2
     -Wall
@@ -36,12 +36,12 @@ add_definitions(${LLVM_DEFINITIONS})
 
 add_executable(Cplus_compiler
         main.cpp
-        Custom_operators.hpp
+        Custom_operators.hpp #file with ugly custom aliases for C++ operators
 )
 
 target_include_directories(Cplus_compiler PRIVATE
         ${PROJECT_SOURCE_DIR}/core
-        ${PROJECT_SOURCE_DIR}/static
+        ${PROJECT_SOURCE_DIR}/static #static components (not in core directory)
 
         ${PROJECT_SOURCE_DIR}/core/data
 
@@ -50,9 +50,9 @@ target_include_directories(Cplus_compiler PRIVATE
         ${PROJECT_SOURCE_DIR}/core/data/dependencies/catch_amalgamated.hpp
         ${PROJECT_SOURCE_DIR}/core/data/dependencies/termcolor.hpp
 
-        ${PROJECT_SOURCE_DIR}/core/data/exceptions
+        ${PROJECT_SOURCE_DIR}/core/data/exceptions #add exceptions classes
 
-        ${PROJECT_SOURCE_DIR}/core/entities
+        ${PROJECT_SOURCE_DIR}/core/entities #add all entities (compile or virtual machine)
         ${PROJECT_SOURCE_DIR}/core/functional
-        ${PROJECT_SOURCE_DIR}/core/Tests
+        ${PROJECT_SOURCE_DIR}/core/Tests #directory with tests
 )

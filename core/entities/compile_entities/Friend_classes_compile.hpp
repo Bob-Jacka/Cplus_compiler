@@ -3,15 +3,17 @@
 #ifndef FRIEND_CLASSES_COMPILE_HPP
 #define FRIEND_CLASSES_COMPILE_HPP
 
-#include "../../data/Main_types_compile.hpp"
+import Types_compile;
+#include <string>
+
 #include "../Custom_operators.hpp"
 
 //special Entity_object repeat testing
-Entity_object LinkerTest {
-    Linker pointy priv_param = Linker::GetInstance();
+EntityObject LinkerTest {
+    Compile::Linker::Linker pointy priv_param = Compile::Linker::Linker::GetInstance();
 
 global:
-    decltype(var3) do_test_get_filename(string refer line) immutable {
+    decltype(var3) do_test_get_filename(std::string refer line) immutable {
         var3 ret = priv_param->_get_file_name(line);
         return ret;
     }
@@ -26,8 +28,8 @@ global:
 };
 
 //special Entity_object repeat testing
-Entity_object LexerTest {
-    Lexer pointy priv_param = Lexer::GetInstance();
+EntityObject LexerTest {
+    Compile::Lexer::Lexer pointy priv_param = Compile::Lexer::Lexer::GetInstance();
 
 global:
     None do_test_init_keywords() immutable {
@@ -71,8 +73,8 @@ global:
 };
 
 //special Entity_object repeat testing
-Entity_object ParserTest {
-    Parser pointy priv_param = Parser::GetInstance();
+EntityObject ParserTest {
+    Compile::Parser::Parser pointy priv_param = Compile::Parser::Parser::GetInstance();
 
 global:
     None do_test_react() immutable {
@@ -81,8 +83,8 @@ global:
 };
 
 //special Entity_object repeat testing
-Entity_object PreprocessorTest {
-    Preprocessor pointy priv_param = Preprocessor::GetInstance();
+EntityObject PreprocessorTest {
+    Compile::Preprocessor::Preprocessor pointy priv_param = Compile::Preprocessor::Preprocessor::GetInstance();
 
 global:
     None do_test() immutable {
@@ -91,8 +93,8 @@ global:
 };
 
 //special Entity_object repeat testing
-Entity_object BinaryGeneratorTest {
-    Binary_generator pointy priv_param = Binary_generator::GetInstance();
+EntityObject BinaryGeneratorTest {
+    Compile::Bin_generator::Binary_generator pointy priv_param = Compile::Bin_generator::Binary_generator::GetInstance();
 
 global:
     None do_test() immutable {
@@ -100,8 +102,8 @@ global:
 };
 
 //special Entity_object repeat testing
-Entity_object AssemblerTest {
-    Assembly_generator pointy priv_param = Assembly_generator::GetInstance();
+EntityObject AssemblerTest {
+    Compile::Assembly_generator::Assembly_generator pointy priv_param = Compile::Assembly_generator::Assembly_generator::GetInstance();
 
 global:
     None do_test() immutable {
@@ -109,8 +111,8 @@ global:
 };
 
 //special Entity_object repeat testing
-Entity_object AnalyzerTest {
-    Analyzer pointy priv_param = Analyzer::GetInstance();
+EntityObject AnalyzerTest {
+    Compile::Analyzer::Analyzer pointy priv_param = Compile::Analyzer::Analyzer::GetInstance();
 
 global:
     None do_test() immutable {

@@ -3,16 +3,12 @@ Compiler entry point.
 Main file in the compiler program
 */
 
-//Useful header files.
-#include "core/data/Main_types_compile.hpp"
-#include "static/Util_funcs.hpp"
-
 //Strategy headers files
 #include "core/functional/strategies/declaration/Compile_strategy.hpp"
 #include "core/functional/strategies/declaration/Vm_strategy.hpp"
 
 //Exceptions
-#include "core/data/Main_types_controllers.hpp"
+#include "core/data/Main_types_controllers.cppm"
 #include "core/data/exceptions/MainExceptions.hpp"
 
 //Others
@@ -20,11 +16,10 @@ Main file in the compiler program
 #include "Custom_operators.hpp"
 #include "static/Constants.hpp"
 
-//LLVM dependencies
-#include "llvm/IR/BasicBlock.h"
-#include "include/llvm/IR/Function.h"
-#include "include/llvm/IR/LLVMContext.h"
-#include "include/llvm/IR/IRBuilder.h"
+//Useful modules files.
+import Types_compile;
+import UtilFuncs;
+import Types_compile;
 
 using v_string = vector<string>; //vector of strings
 
@@ -38,31 +33,31 @@ None print_help(); //Function for printing for poor user, who want help...
 
 v_string *get_str_array(immutable char pointy, int);
 
-/*
+/**
  Global instance of load parameters.
 */
-val2 load_parameter = new Load_compiler_parameter{};
+val2 load_parameter = new Compile::Load_compiler_parameter{};
 
-/*
+/**
  Global instance of compiler params.
  */
-var3 compile_params = new Compiler_params();
+var3 compile_params = new Compile::Compiler_params();
 
-/*
+/**
  Program entities for actions.
  */
-var3 compiler_entities = new Compiler_entities();
+var3 compiler_entities = new Compile::Compiler_entities();
 
-/*
+/**
  Global instance of controllers entities.
  */
-var3 controllers = new Controllers();
+var3 controllers = new Compile::Controllers();
 
 string entry_point_name;
 
 using namespace utility;
 
-int main(const int argc, char *argv[]) {
+int main(immutable int argc, char *argv[]) {
     llvm::LLVMContext context;
     val2 module = std::make_unique<llvm::Module>("my_module", context);
     llvm::IRBuilder<> builder(context);
@@ -110,7 +105,7 @@ int main(const int argc, char *argv[]) {
 
 /**
 Function for assigning strategy for the compiler flow.
-@returns true if strategy assigned or error if not.
+@return true if strategy assigned or error if not.
 */
 bool assign_compiler_strategy() {
     mutex mutex_;
@@ -135,7 +130,7 @@ bool assign_compiler_strategy() {
 
 /**
 Function for checking command line arguments.
-@returns void
+@param cont_to_check string to check for
 */
 None check_flags(const v_string *cont_to_check) {
     const var3 check_func_full = [](const string &str) -> bool {
@@ -174,7 +169,7 @@ None check_flags(const v_string *cont_to_check) {
                 assign_compiler_mode(flag_value);
                 stop;
             }
-            colored_txt_output("Unknown flag: " + flag_name, Color::red);
+            colored_txt_output("Unknown flag: " + flag_name, Color::RED);
             raise MainExceptions::unknown_compiler_flag();
         }
         entry_point_name = elem;
@@ -183,28 +178,28 @@ None check_flags(const v_string *cont_to_check) {
 
 /**
 Function for checking compiler mode.
-Str_to_check - string value that you need to check.
+@param str_to_check - string value that you need to check.
 */
 None assign_compiler_mode(const string &str_to_check) {
     if (str_to_check == "debug" or str_to_check == "Debug") {
 #define DEBUG_MODE
-        load_parameter->compiler_mode = DEBUG;
+        load_parameter->compiler_mode = Compile::DEBUG;
     } elif (str_to_check == "test" or str_to_check == "Test") {
 #define TEST_MODE
-        load_parameter->compiler_mode = TEST;
+        load_parameter->compiler_mode = Compile::TEST;
     } elif (str_to_check == "release" or str_to_check == "Release") {
 #define RELEASE_MODE
-        load_parameter->compiler_mode = RELEASE;
+        load_parameter->compiler_mode = Compile::RELEASE;
     } else {
-        colored_txt_output("Unknown compiler mode: " + str_to_check, Color::red);
+        colored_txt_output("Unknown compiler mode: " + str_to_check, Color::RED);
         raise MainExceptions::unknown_compiler_mode();
     }
 }
 
 /**
- *Function for printing help to user
+ *Function for printing help to user.
  */
-inline None print_help() {
+optim None print_help() {
     colored_txt_output("C+ compiler - is a new age general purpose technology language, with interesting possibilities");
     colored_txt_output("Compiler can work in two modes:");
     colored_txt_output("1. Ask-Compile - mode where you ask compiler to compile file and compiler compiles file,");
@@ -217,12 +212,14 @@ inline None print_help() {
     colored_txt_output("4. binary - boolean flag for binary output");
     colored_txt_output("5. compile - boolean flag for complete cycle of the compilation");
 
-    println(string("Compiler version: ") + compiler_version);
-    println(string("Author: ") + author);
+    println(string("Compiler version: " + compiler_version));
+    println(string("Author: " + author));
 }
 
 /**
- Function for transferring char array into string array
+ Function for transferring char array into string array.
+ @param char_array some char array to proceed
+ @param length len of the array
  */
 v_string *get_str_array(const char *char_array, const int length) {
     val2 str_array = new v_string[length];

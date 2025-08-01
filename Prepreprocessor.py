@@ -8,7 +8,8 @@ STATIC_DIRECTIVE_START = '#define'  # directive start in C++
 STATIC_PREPREPROCESSOR_START = 'core'  # define this variable if you have another start dir, where you store another directories
 
 exclude_file_names: list[str] = ['Test', 'dependencies',
-                                 'Tests', 'Variables', 'static', 'NeuroNetwork']  # exclude files or maybe dir with these names from sin...
+                                 'Tests', 'Variables', 'Constants', 'CplusModel', 'Processor_registers',
+                                 'NeuroNetwork']  # exclude files or maybe dir with these names from sin...
 
 directives: dict[str, str] = dict()  # key is default value from C++ and value custom directive
 version = '1.1.0'
@@ -141,6 +142,7 @@ def init_app():
         print('Start init directives from file.')
         init_directives_from_file()
         print(f'Directives inited with - {str(directives.values())[13:-2]}')
+        print(f'Excluded files - {str(exclude_file_names)[9:-1]}')
     else:
         raise Exception('No file with directives was found.')
 

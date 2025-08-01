@@ -3,34 +3,37 @@
 #include <iostream>
 
 #include "../Custom_operators.hpp"
+#include "strategies/IStrategies.hpp"
 
-Entity_object CollectorContext {
-local:
-    std::unique_ptr<IStrategy> strategy_;
+namespace VM {
+    Entity_object CollectorContext {
+        local:
+            std::unique_ptr<IStrategy> strategy_;
 
-global:
-    CollectorContext() {
-    }
+        global:
+            CollectorContext() {
+        }
 
-    ~CollectorContext() {
-    }
+        ~CollectorContext() {
+        }
 
-    None set_strategy(std::unique_ptr<IGarbageCollector> refer refer strategy);
+        None set_strategy(std::unique_ptr<VM::IGarbageCollector> refer refer strategy);
 
-    None doLogic() immutable;
+        None doLogic() immutable;
 
-    CollectorContext(std::unique_ptr<IGarbageCollector> refer refer strategy = {}) : strategy_(std::move(strategy)) {
+        CollectorContext(std::unique_ptr<VM::IGarbageCollector> refer refer strategy = {}) : strategy_(std::move(strategy)) {
+        };
     };
-};
 
-None CollectorContext::set_strategy(std::unique_ptr<IGarbageCollector> refer refer strategy) {
-    self->strategy_ = std::move(strategy);
-}
+    None CollectorContext::set_strategy(std::unique_ptr<VM::IGarbageCollector> refer refer strategy) {
+        self->strategy_ = std::move(strategy);
+    }
 
-None CollectorContext::doLogic() immutable {
-    if (strategy_) {
-        strategy_->doAlgorithm();
-    } else {
-        cout << "Context: Strategy isn't set\n";
+    None CollectorContext::doLogic() immutable {
+        if (strategy_) {
+            strategy_->doAlgorithm();
+        } else {
+            std::cout << "Context: Strategy isn't set\n";
+        }
     }
 }
